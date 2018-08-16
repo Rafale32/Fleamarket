@@ -11,7 +11,7 @@ public class LoginAction implements Action {
 	//false 사용할때는 .jsp 를 사용 해서 보내는것임 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+	  
 		ActionForward forward = new ActionForward();
 		forward.setPath("/template.jsp"); //원하는 경로가 완전 새로운 페이지가 아니라면 템플릿으로 가야겟지 템플릿이 헤더및 푸터 있으니까
 		forward.setRedirect(false); //완전 새로운 페이지로 갈거냐 안갈거냐

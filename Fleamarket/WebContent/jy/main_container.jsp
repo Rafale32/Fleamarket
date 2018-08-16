@@ -8,6 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	메인화면 컨테이너 부분
+	<div class="recommend-title">
+		<h3>플리마켓 추천상품</h2>
+	</div>
+	
 </body>
 </html>
