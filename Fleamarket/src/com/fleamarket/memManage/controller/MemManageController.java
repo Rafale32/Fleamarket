@@ -19,6 +19,7 @@ import com.fleamarket.memManage.service.LogoutAction;
 //경로관련된 문자는 모두 무조건 소문자로  /맡은페이지경로/원하는작업.do  식으로 처리하기
 @WebServlet("/memmanage/*")
 public class MemManageController extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 	
 	public MemManageController() {
@@ -102,10 +103,9 @@ public class MemManageController extends HttpServlet {
 		doProcess(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		doProcess(request, response);
-	}
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    doProcess(request, response);
+  }
 
 }

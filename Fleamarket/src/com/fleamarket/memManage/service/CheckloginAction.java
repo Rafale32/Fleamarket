@@ -29,7 +29,7 @@ public class CheckloginAction implements Action {
 			session.setAttribute("member", member);
 		}*/
 	  String email = request.getParameter("email");
-	  System.out.println("email" + email);
+
 	  String password = request.getParameter("password");
 	  
 	  MemManageDAO dao = MemManageDAO.getInstance();
