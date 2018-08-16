@@ -14,6 +14,7 @@ public class LogoutAction implements Action {
 		 
 		HttpSession session = request.getSession();
 		session.removeAttribute("member");
+		session.invalidate();
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("/Fleamarket/maindetail/main.do"); //원하는 경로가 완전 새로운 페이지가 아니라면 템플릿으로 가야겟지 템플릿이 헤더및 푸터 있으니까

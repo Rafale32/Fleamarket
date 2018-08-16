@@ -9,11 +9,11 @@
 </head>
 <body>
 	<c:choose>
-		<c:when test="${member.nickname == null }">
+		<c:when test="${member.name == null }">
 			<a href="/Fleamarket/memmanage/login.do">로그인</a>
 		</c:when>
-		<c:when test="${member.nickname != null }">
-			${member.nickname } 님 환영합니다.
+		<c:when test="${member.name != null }">
+			${member.name } 님 환영합니다.
 			<a href="/Fleamarket/memmanage/logout.do">로그아웃</a>
 		</c:when>
 	</c:choose>

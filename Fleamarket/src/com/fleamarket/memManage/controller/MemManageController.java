@@ -72,8 +72,14 @@ public class MemManageController extends HttpServlet {
 			forward = action.execute(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-	}
+			}
+    	}/*else if(command.equals("join.do")){
+    		action = new JoinAction();
+    	}try {
+			forward = 
+		} catch (Exception e) {
+			// TODO: handle exception
+		}*/
     	
     	
     	

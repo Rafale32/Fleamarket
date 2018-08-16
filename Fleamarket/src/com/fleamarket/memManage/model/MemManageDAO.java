@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.fleamarket.mapper.BoardMapper;
+import com.fleamarket.mapper.MemManageMapper;
 
 public class MemManageDAO {
 	private static MemManageDAO dao = new MemManageDAO();
@@ -33,7 +34,19 @@ public class MemManageDAO {
 		return new SqlSessionFactoryBuilder().build(in);
 	}
 	
-	
+	public MemManageDTO loginMember(String email, String password){
+	  SqlSession sqlSession = getSqlSessionFactory().openSession();
+	  MemManageDTO member = null;
+	  
+	  try {
+	    member = sqlSession.getMapper(MemManageMapper.class).loginMember(email, password);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      sqlSession.close();
+    }
+	  return member;
+	}
 	
 	
 	
