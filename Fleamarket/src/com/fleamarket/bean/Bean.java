@@ -7,7 +7,7 @@ import com.fleamarket.mainDetail.model.MemberDTO;
 public class Bean {
 	
 	HttpServletRequest request;
-	MemberDTO memberDTO;
+	MemberDTO memberDTO;//회원 정보 가지고 있는객체
 	
 	
 	public Bean(HttpServletRequest request) {
