@@ -29,7 +29,7 @@ public class CheckloginAction implements Action {
 			session.setAttribute("member", member);
 		}*/
 	  String email = request.getParameter("email");
-	  System.out.println("email" + email);
+	  //System.out.println("email" + email);
 	  String password = request.getParameter("password");
 	  
 	  MemManageDAO dao = MemManageDAO.getInstance();
@@ -42,18 +42,25 @@ public class CheckloginAction implements Action {
 		if(member == null){
 		  forward.setPath("/Fleamarket/maindetail/main.do"); //원하는 경로가 완전 새로운 페이지가 아니라면 템플릿으로 가야겟지 템플릿이 헤더및 푸터 있으니까
 	    forward.setRedirect(true); //완전 새로운 페이지로 갈거냐 안갈거냐
+	    
+	    System.out.println("컨테이너 까지 왔나요?");
 	    forward.setConPath("./jw/login_container.jsp"); //원하는 container 파일 경로
+	    System.out.println("컨테이너 까지 나갔?");
 	    session.removeAttribute("member");
 	    session.invalidate();
-		}
+	    
+	    System.out.println("로그인 실패");
+		} 
+		
 		else{
+			System.out.println("양쪽에 다물리나?");
 		  forward.setPath("/Fleamarket/maindetail/main.do"); //원하는 경로가 완전 새로운 페이지가 아니라면 템플릿으로 가야겟지 템플릿이 헤더및 푸터 있으니까
 	    forward.setRedirect(true); //완전 새로운 페이지로 갈거냐 안갈거냐
-	    forward.setConPath("./jw/main_container.jsp"); //원하는 container 파일 경로
+	    forward.setConPath("./jy/main_container.jsp"); //원하는 container 파일 경로
 	    
 	    request.setAttribute("forward", forward); // 컨테이너 경로 사용하기위한 등록
 	    
-	    System.out.println("체크 로그인 액션 들어옴");
+	    System.out.println("로그인 성공");
 		}
 		
 		
