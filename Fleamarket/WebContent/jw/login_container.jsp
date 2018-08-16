@@ -8,8 +8,8 @@
 </head>
 <body>
 	<form action="/Fleamarket/memmanage/checklogin.do" method="post">
-		아이디: <input type="text" name="id">
-		비번: <input type="password" name="pw">
+		아이디: <input type="text" name="email">
+		비번: <input type="password" name="password">
 		<input type="submit" value="로그인">
 	</form>
 </body>

@@ -5,7 +5,7 @@
 
 <configuration>
 	<typeAliases>
-		<!-- <typeAlias type="kosta.bean.Board" alias="Board"/> -->
+		<typeAlias type="com.fleamarket.memManage.model.MemManageDTO" alias="MemManageDTO"/>
 
 	</typeAliases>
 	

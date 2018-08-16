@@ -8,13 +8,18 @@
 	<cache />
 	
 	
-	<insert id="insertBoard" parameterType="Board">
+	<!-- <insert id="insertBoard" parameterType="Board">
 		insert into board(
 			seq, title, writer, contents, regdate, hitcount, fname
 		)values(
 			board_seq.nextval, #{title},#{writer},#{contents},sysdate,0,#{fname}
 		)
-	</insert>
+	</insert> -->
+	
+	<select id="loginMember" parameterType="map" resultType="MemManageDTO">
+		select * from member where email=#{email} and password=#{password}
+		
+	</select>
 
 
 	
