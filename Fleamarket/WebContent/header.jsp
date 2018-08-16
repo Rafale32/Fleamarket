@@ -17,8 +17,8 @@
 			<a href="/Fleamarket/memmanage/logout.do">로그아웃</a>
 		</c:when>
 	</c:choose>
-	<a href="" class="btn">판매하기</a> 
-	<a href="" class="btn">내 상점</a> 
+	<a href="" class="btn">판매하기</a>
+	<a href="/Fleamarket/product/productlist.do" class="btn">내 상점</a>
 	<a href="" class="btn">내 정보보기</a>
 </body>
 </html>
