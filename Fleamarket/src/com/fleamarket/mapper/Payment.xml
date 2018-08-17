@@ -3,17 +3,16 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-
-<mapper namespace="com.fleamarket.mapper.PaymentMapper"><!-- 여기에 이제 sql 문이들가지 mapper 안에 BoardMapper 로 했지 이걸 인터페이스이름과 같아야함 -->
+<!-- 여기에 이제 sql 문이들가지 mapper 안에 BoardMapper 로 했지 이걸 인터페이스이름과 같아야함 -->
+<mapper namespace="com.fleamarket.mapper.PaymentMapper">
 	<cache />
 	
-	
-	<insert id="insertBoard" parameterType="Board">
-		insert into board(
-			seq, title, writer, contents, regdate, hitcount, fname
-		)values(
-			board_seq.nextval, #{title},#{writer},#{contents},sysdate,0,#{fname}
-		)
+<!-- 	배송 정보 입력 -->
+	<insert id="insertDelivery" parameterType="DeliveryDTO">
+		insert into delivery
+    ( delivery_no, delivery_name, delivery_ph, delivery_address, delivery_address, delivery_contents, order_no)
+    values
+    ( delivery_seq.nextval, #{delivery_name},#{delivery_ph},#{delivery_address},#{delivery_address2},#{delivery_contents},#{order_no});
 	</insert>
 
 
