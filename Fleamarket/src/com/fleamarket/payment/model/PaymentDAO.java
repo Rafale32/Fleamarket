@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.fleamarket.mapper.BoardMapper;
 
+
 public class PaymentDAO {
 	private static PaymentDAO dao = new PaymentDAO();
 	
@@ -37,10 +38,29 @@ public class PaymentDAO {
 	
 	
 	
-	public int insertBoard(){
-		
-		return 0;
-	}
+//insertBoard
+// public int insertDeliveryDTO(DeliveryDTO deliveryDTO) {
+//   int re = -1;
+//   SqlSession sqlSession = getSqlSessionFactory().openSession();
+//
+//   try {
+////     re = sqlSession.getMapper(BoardMapper.class).insertBoard(deliveryDTO);
+//
+//     // 트랜잭션 처리
+//     if (re > 0) {
+//       sqlSession.commit();
+//     } else {
+//       sqlSession.rollback();
+//     }
+//
+//   } catch (Exception e) {
+//     e.printStackTrace();
+//   } finally {
+//     sqlSession.close();
+//   }
+//
+//   return re;
+// }//insertBoard
 	
 	
 }
