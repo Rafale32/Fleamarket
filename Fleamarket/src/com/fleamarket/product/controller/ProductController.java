@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.fleamarket.bean.Action;
 import com.fleamarket.bean.ActionForward;
 import com.fleamarket.bean.Bean;
-import com.fleamarket.product.service.ProductAction;
-import com.fleamarket.product.service.ProductListAction;
 
 
 //경로관련된 문자는 모두 무조건 소문자로  /맡은페이지경로/원하는작업.do  식으로 처리하기

@@ -1,4 +1,4 @@
-package com.fleamarket.product.service;
+package com.fleamarket.product.controller;
 
 import java.util.List;
 
@@ -11,6 +11,7 @@ import com.fleamarket.bean.ActionForward;
 import com.fleamarket.bean.Bean;
 import com.fleamarket.memManage.model.MemManageDTO;
 import com.fleamarket.product.model.ItemDTO;
+import com.fleamarket.product.service.ProductListService;
 
 public class ProductListAction implements Action {
 
