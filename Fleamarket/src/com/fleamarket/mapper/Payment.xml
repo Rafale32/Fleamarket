@@ -14,7 +14,13 @@
     values
     ( delivery_seq.nextval, #{delivery_name},#{delivery_ph},#{delivery_address},#{delivery_address2},#{delivery_contents},#{order_no});
 	</insert>
-
+	
+		<select id="listPuerchaseBoard" resultType="PuerchaseDTO_gy">
+	select distinct A.Title , S.Store_Name , Im.Thum_Img , Pa.Pay_Date
+	from pay pa, spell sp, itemBoard a , store s, itemimg im where
+	A.Store_No = S.Store_No and Im.Itemboard_No = A.Itemboard_No and Sp.Email = S.Email and
+	Pa.Spell_No = Sp.Spell_No
+	</select>
 
 	
 </mapper>
