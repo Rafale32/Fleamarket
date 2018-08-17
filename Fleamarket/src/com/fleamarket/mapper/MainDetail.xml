@@ -21,7 +21,7 @@
 	</select>
 
 	<select id="recommendItem" resultType="TemDTO">
-		select * from item where item_no in(select item_no from itemboard where RECOMMEND_ORNOT = 'TRUE')
+		select * from item where item_no in(select item_no from itemboard where RECOMMEND_ORNOT = 'true')
 	</select>
 	
 	<select id="categoryList" resultType="CategoryDTO"></select>

@@ -51,7 +51,12 @@ public class ProductDAO {
 			for(ItemDTO  tmp : list){
 				if(tmp.getItemboard_No() != 0){
 					tmp.setItemImgList(sqlsession.getMapper(ProductMapper.class).itemImgList(tmp.getItemboard_No()));
-				}
+				}	
+					
+					tmp.setPrice(sqlsession.getMapper(ProductMapper.class).itemPrice(tmp.getItem_No()));
+					tmp.setFavCount(sqlsession.getMapper(ProductMapper.class).favCount(tmp.getItemboard_No()));
+					tmp.setItemQnaCount(sqlsession.getMapper(ProductMapper.class).itemQnaCount(tmp.getItemboard_No()));
+					//itemQnaCount
 			}
 			
 		} catch (Exception e) {
@@ -77,6 +82,9 @@ public class ProductDAO {
 				if(tmp.getItemboard_No() != 0){
 					tmp.setItemImgList(sqlsession.getMapper(ProductMapper.class).itemImgList(tmp.getItemboard_No()));
 				}
+				
+				tmp.setPrice(sqlsession.getMapper(ProductMapper.class).itemPrice(tmp.getItem_No()));
+				tmp.setFavCount(sqlsession.getMapper(ProductMapper.class).favCount(tmp.getItemboard_No()));
 			}
 			
 		} catch (Exception e) {

@@ -29,7 +29,7 @@ public class ProductListAction implements Action {
 		
 		request.setAttribute("forward", forward); // 컨테이너 경로 사용하기위한 등록
 		
-		System.out.println("프로덕트리스트 액션 들어옴?");
+		
 		
 		ProductListService plService = ProductListService.getInstance();
 		
@@ -38,8 +38,12 @@ public class ProductListAction implements Action {
 		HttpSession session = request.getSession();
 		MemManageDTO mmDTO = (MemManageDTO)session.getAttribute("member");
 		
-		//끝나면 빈에 등록
-		List<ItemDTO> resultList = plService.productListService(mmDTO.getEmail(), storeName);
+		List<ItemDTO> resultList;
+		if(mmDTO == null){
+			resultList = plService.productListService(null, storeName);
+		}else{
+			resultList = plService.productListService(mmDTO.getEmail(), storeName);
+		}
 		
 		Bean bean = (Bean)request.getAttribute("bean");
 		bean.setItemList(resultList);

@@ -11,5 +11,7 @@ public interface ProductMapper {
 	List<ItemDTO> itemList(String email);
 	List<ItemDTO> itemListByStore(String storeName);
 	List<ItemImg> itemImgList(int itemboard_no);
-	
+	int itemPrice(int item_No);
+	int favCount(int itemBoard_No);
+	int itemQnaCount(int itemboard_no);
 }

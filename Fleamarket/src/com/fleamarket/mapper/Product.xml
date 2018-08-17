@@ -34,6 +34,16 @@
 		select * from itemimg where ITEMBOARD_NO = #{itemboard_No }
 	</select>
 
-
+	<select id="itemPrice" parameterType="int" resultType="int">
+		select price from item where ITEM_NO=#{item_No }
+	</select>
+	
+	<select id="favCount" parameterType="int" resultType="int">
+		select count(*) from fav where ITEMBOARD_NO = #{itemboard_No }
+	</select>
+	
+	<select id="itemQnaCount" parameterType="int" resultType="int">
+		select count(*) from ITEM_QNA where ITEMBOARD_NO = #{itemboard_No }
+	</select>
 	
 </mapper>

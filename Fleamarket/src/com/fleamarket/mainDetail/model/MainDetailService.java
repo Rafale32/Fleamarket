@@ -12,7 +12,7 @@ public class MainDetailService {
     return service;
   }
   
-  public List<MainDetailDTO> recommendItemList(){
+/*  public List<MainDetailDTO> recommendItemList(){
     List<MainDetailDTO> mainList = new ArrayList<MainDetailDTO>();
     List<TemDTO> itemList = new ArrayList<TemDTO>();
     mainList = dao.recommendList();
@@ -20,7 +20,7 @@ public class MainDetailService {
     for(int i=0; i<mainList.size(); i++){
       mainList.get(i).setTem(itemList.get(i));
     }
-    return mainList;
-  }
+    return null;
+  }*/
   
 }
