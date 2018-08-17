@@ -44,7 +44,7 @@ public class CheckloginAction implements Action {
 	    forward.setRedirect(true); //완전 새로운 페이지로 갈거냐 안갈거냐
 	    
 	    System.out.println("컨테이너 까지 왔나요?");
-	    forward.setConPath("/memmanage/login=.do"); //원하는 container 파일 경로
+	    forward.setConPath("/Fleamarket/memmanage/login=.do"); //원하는 container 파일 경로
 	    System.out.println("컨테이너 까지 나갔?");
 	    session.removeAttribute("member");
 	    session.invalidate();

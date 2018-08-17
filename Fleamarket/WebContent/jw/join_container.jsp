@@ -5,32 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원가입 화면</title>
-</head>
-<body>
-
-	<!-- div 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
-	<div id="warp_jw">
-		<br><br>
-		<b><font size="6" color="gray">회원가입</font></b>
-		<br><br><br>
-		
-	<!-- 입력한 값을 전송하기 위해 form 태그를 사용  -->
-	<!-- 값 전송은 post방식, 전송할 페이지는  -->
-	<form>
-	EMAIL : <input type="text" name="email"/><br><br>
-	비밀번호 : <input type="password" name="password" onblur="checkps()"/>  4자이상 12자리까지<br><br>
-	비밀번호 확인 : <input type="password" name="password" onblur="checksame()"/><br><br> 
-	이름 : <input type="text" name="name"/><br><br>
-	전화번호 : <input type="text" name="phone"/><br><br>
-	
-	<input type="button" onclick="Postcode()" value="주소 찾기"><br>
-	<input type="text" id="address" placeholder="주소">
-	<input type="text" id="address2" placeholder="상세주소">
-	<br><br>
-	
-	<input type="submit" value="회원가입">
-	<input type="reset" value="다시입력">
-
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script>
     function Postcode() {
@@ -74,6 +48,34 @@
         }).open();
     }
 </script>
+
+</head>
+<body>
+
+	<!-- div 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
+	<div id="warp_jw">
+		<br><br>
+		<b><font size="6" color="gray">회원가입</font></b>
+		<br><br><br>
+		
+	<!-- 입력한 값을 전송하기 위해 form 태그를 사용  -->
+	<!-- 값 전송은 post방식, 전송할 페이지는  -->
+	<form>
+	EMAIL : <input type="text" name="email"/><br><br>
+	비밀번호 : <input type="password" name="password" onblur="checkps()"/>  4자이상 12자리까지<br><br>
+	비밀번호 확인 : <input type="password" name="password" onblur="checksame()"/><br><br> 
+	이름 : <input type="text" name="name"/><br><br>
+	전화번호 : <input type="text" name="phone"/><br><br>
+	
+	<input type="button" onclick="Postcode()" value="주소 찾기"><br>
+	<input type="text" id="address" placeholder="주소">
+	<input type="text" id="address2" placeholder="상세주소">
+	<br><br>
+	
+	<input type="submit" value="회원가입">
+	<input type="reset" value="다시입력">
+
+
 	
 	</form>
 	</div>
