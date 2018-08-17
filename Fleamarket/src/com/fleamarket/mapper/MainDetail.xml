@@ -6,16 +6,26 @@
 
 <mapper namespace="com.fleamarket.mapper.MainDetailMapper">
 	<cache />
-	
-	
-	<insert id="insertBoard" parameterType="Board">
+
+
+	<!-- <insert id="insertBoard" parameterType="Board">
 		insert into board(
-			seq, title, writer, contents, regdate, hitcount, fname
+		seq, title, writer, contents, regdate, hitcount, fname
 		)values(
-			board_seq.nextval, #{title},#{writer},#{contents},sysdate,0,#{fname}
+		board_seq.nextval, #{title},#{writer},#{contents},sysdate,0,#{fname}
 		)
-	</insert>
+	</insert> -->
 
+	<select id="recommendList" resultType="MainDetailDTO">
+		select * from itemboard where recommend_ornot = 1
+	</select>
 
+	<select id="recommendItem" resultType="TemDTO">
+		select * from item where item_no in(select item_no from itemboard where RECOMMEND_ORNOT = 1)
+	</select>
+	
+	<select id="categoryList" resultType="CategoryDTO"></select>
+	
+	<select id="subCategoryList" resultType="SubCategoryDTO"></select>
 	
 </mapper>

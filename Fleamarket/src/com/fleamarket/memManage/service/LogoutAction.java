@@ -11,7 +11,7 @@ public class LogoutAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		 
 		HttpSession session = request.getSession();
 		session.removeAttribute("member");
 		session.invalidate();

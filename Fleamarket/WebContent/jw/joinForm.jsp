@@ -55,12 +55,12 @@
 	<!-- div 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
 	<div id="warp_jw">
 		<br><br>
-		<b><font size="6" color="gray">회원가입</font></b>
+		<b><font size="6"color="gray">회원가입</font></b>
 		<br><br><br>
 		
 	<!-- 입력한 값을 전송하기 위해 form 태그를 사용  -->
 	<!-- 값 전송은 post방식, 전송할 페이지는  -->
-	<form>
+	<form action="/Fleamarket/memmanage/joinAction.do" method="post" >
 	EMAIL : <input type="text" name="email"/><br><br>
 	비밀번호 : <input type="password" name="password" onblur="checkps()"/>  4자이상 12자리까지<br><br>
 	비밀번호 확인 : <input type="password" name="password" onblur="checksame()"/><br><br> 
@@ -75,8 +75,6 @@
 	<input type="submit" value="회원가입">
 	<input type="reset" value="다시입력">
 
-
-	
 	</form>
 	</div>
 

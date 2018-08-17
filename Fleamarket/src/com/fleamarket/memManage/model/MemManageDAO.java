@@ -1,6 +1,11 @@
 package com.fleamarket.memManage.model;
 
 import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -10,6 +15,7 @@ import com.fleamarket.mapper.BoardMapper;
 import com.fleamarket.mapper.MemManageMapper;
 
 public class MemManageDAO {
+	
 	private static MemManageDAO dao = new MemManageDAO();
 	
 	public static MemManageDAO getInstance(){
@@ -49,9 +55,24 @@ public class MemManageDAO {
 	}//loginMember
 	
 
-	public boolean joinBoard(MemManageDTO dto){//회원가입
+	public int joinBoard(MemManageDTO dto){//회원가입
+		int re = -1;
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
-		return false;
+		try {
+			re = sqlSession.getMapper(MemManageMapper.class).joinMember(dto);
+			if(re > 0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
+	
+		return re;
 	}
 	
 	

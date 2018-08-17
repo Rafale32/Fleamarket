@@ -8,13 +8,31 @@
 	<cache />
 	
 	
-	<insert id="insertBoard" parameterType="Board">
+<!-- 	<insert id="insertBoard" parameterType="Board">
 		insert into board(
 			seq, title, writer, contents, regdate, hitcount, fname
 		)values(
 			board_seq.nextval, #{title},#{writer},#{contents},sysdate,0,#{fname}
 		)
-	</insert>
+	</insert> -->
+	
+	
+	
+	<select id="itemList" resultType="ItemDTO" parameterType="String">
+		select * from itemboard ite 
+		inner Join store st on ite.STORE_NO = st.STORE_NO
+		where email=#{email }
+	</select>
+	
+	<select id="itemListByStore" resultType="ItemDTO" parameterType="String">
+		select * from itemboard ite 
+		inner Join store st on ite.STORE_NO = st.STORE_NO
+		where st.STORE_NAME=#{storeName }
+	</select>
+	
+	<select id="itemImgList" parameterType="int" resultType="ItemImg">
+		select * from itemimg where ITEMBOARD_NO = #{itemboard_No }
+	</select>
 
 
 	

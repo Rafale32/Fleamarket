@@ -16,20 +16,13 @@ public class CheckloginAction implements Action {
 	//false 사용할때는 .jsp 를 사용 해서 보내는것임 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		/*String id =  "1111";
-		String pw =  "1111";
-		String nickName = "젠장조낸 어렵내";
-		
-		//임시 아이디 확인해서 로긴
-		if(id.equals(request.getParameter("id")) && pw.equals(request.getParameter("pw"))){
-			MemberDTO member = new MemberDTO(); //아디 비번 맞으면 세션에 아이디와 닉네임 member 에 담아서 세션에 저장
-			HttpSession session = request.getSession();
-			member.setId(id);
-			member.setNickname(nickName);
-			session.setAttribute("member", member);
-		}*/
+
 	  String email = request.getParameter("email");
+
+
+
 	  //System.out.println("email" + email);
+
 	  String password = request.getParameter("password");
 	  
 	  MemManageDAO dao = MemManageDAO.getInstance();
@@ -40,20 +33,22 @@ public class CheckloginAction implements Action {
 	  
 		ActionForward forward = new ActionForward();
 		if(member == null){
-		  forward.setPath("/Fleamarket/maindetail/main=.do"); //원하는 경로가 완전 새로운 페이지가 아니라면 템플릿으로 가야겟지 템플릿이 헤더및 푸터 있으니까
+		  forward.setPath("login.do"); //원하는 경로가 완전 새로운 페이지가 아니라면 템플릿으로 가야겟지 템플릿이 헤더및 푸터 있으니까
 	    forward.setRedirect(true); //완전 새로운 페이지로 갈거냐 안갈거냐
 	    
-	    System.out.println("컨테이너 까지 왔나요?");
-	    forward.setConPath("/Fleamarket/memmanage/login=.do"); //원하는 container 파일 경로
-	    System.out.println("컨테이너 까지 나갔?");
+	    forward.setConPath("login.do"); //원하는 container 파일 경로
+	    System.out.println("로그인 실패");
+
+	    forward.setConPath("/memmanage/login=.do"); //원하는 container 파일 경로
+
+
 	    session.removeAttribute("member");
 	    session.invalidate();
-	    
-	    System.out.println("로그인 실패");
+
 		} 
 		
 		else{
-			System.out.println("양쪽에 다물리나?");
+			
 		  forward.setPath("/Fleamarket/maindetail/main.do"); //원하는 경로가 완전 새로운 페이지가 아니라면 템플릿으로 가야겟지 템플릿이 헤더및 푸터 있으니까
 	    forward.setRedirect(true); //완전 새로운 페이지로 갈거냐 안갈거냐
 	    forward.setConPath("./jy/main_container.jsp"); //원하는 container 파일 경로
@@ -62,9 +57,6 @@ public class CheckloginAction implements Action {
 	    
 	    System.out.println("로그인 성공");
 		}
-		
-		
-		
 		
 		return forward;
 	}
