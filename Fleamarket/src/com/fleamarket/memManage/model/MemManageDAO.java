@@ -16,7 +16,7 @@ public class MemManageDAO {
 		
 		return dao;
 		
-	}
+	}//MemManageDAO
 	
 	public SqlSessionFactory getSqlSessionFactory(){
 		
@@ -32,7 +32,7 @@ public class MemManageDAO {
 		}
 		
 		return new SqlSessionFactoryBuilder().build(in);
-	}
+	}//SqlSessionFactory getSqlSessionFactory()
 	
 	public MemManageDTO loginMember(String email, String password){
 	  SqlSession sqlSession = getSqlSessionFactory().openSession();
@@ -46,13 +46,12 @@ public class MemManageDAO {
       sqlSession.close();
     }
 	  return member;
-	}
+	}//loginMember
 	
-	
-	
-	public int insertBoard(){
+
+	public boolean joinBoard(MemManageDTO dto){//회원가입
 		
-		return 0;
+		return false;
 	}
 	
 	
