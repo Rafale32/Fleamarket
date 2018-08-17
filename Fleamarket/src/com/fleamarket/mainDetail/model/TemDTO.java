@@ -1,6 +1,8 @@
 package com.fleamarket.mainDetail.model;
 
-public class ProductDTO {
+import java.io.Serializable;
+
+public class TemDTO implements Serializable{
   private int item_no;
   private int price;
   private int amount;
@@ -9,9 +11,9 @@ public class ProductDTO {
   private int delivery_state;
   private int item_state;
   
-  public ProductDTO(){}
+  public TemDTO(){}
 
-  public ProductDTO(int item_no, int price, int amount, String delivery_fee, int delivery_no, int delivery_state,
+  public TemDTO(int item_no, int price, int amount, String delivery_fee, int delivery_no, int delivery_state,
       int item_state) {
     super();
     this.item_no = item_no;

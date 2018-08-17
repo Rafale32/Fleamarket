@@ -21,7 +21,6 @@ public class MainDetailDAO {
 	}
 	
 	public SqlSessionFactory getSqlSessionFactory(){
-		
 		String resource = "mybatis-config-mainDetail.xml";
 		
 		InputStream in = null;
@@ -49,6 +48,18 @@ public class MainDetailDAO {
 	  return list;
 	}
 	
+	public List<TemDTO> recommendItem(){
+	  SqlSession sqlSession = getSqlSessionFactory().openSession();
+	  List<TemDTO> itemList = null;
+	  try {
+      itemList = sqlSession.getMapper(MainDetailMapper.class).recommendItem();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      sqlSession.close();
+    }
+	  return itemList;
+	}
 	
 	
 	public int insertBoard(){

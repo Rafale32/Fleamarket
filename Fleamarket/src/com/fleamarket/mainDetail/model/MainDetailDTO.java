@@ -2,7 +2,9 @@ package com.fleamarket.mainDetail.model;
 
 import java.io.Serializable;
 
+
 import com.fleamarket.product.model.ItemDTO;
+
 
 public class MainDetailDTO implements Serializable{ //마이바티스는 DTO 로 사용하는 객체 무조건 시리얼라이즈 필수적으로 해줘야함  
 	private int sub_no;
@@ -17,13 +19,17 @@ public class MainDetailDTO implements Serializable{ //마이바티스는 DTO 로
 	private int item_no;
 	private int itemboard_no;
 	private int store_no;
-	private ItemDTO product;
+
+	private TemDTO tem;
+
 	
 	public MainDetailDTO() {}
 
   public MainDetailDTO(int sub_no, String itemboard_date, String local, String title, String itemboard_contents,
       String tag, int hits, String recommend_ornot, String change_ornot, int item_no, int itemboard_no, int store_no,
-      ItemDTO product) {
+
+      TemDTO product) {
+
     super();
     this.sub_no = sub_no;
     this.itemboard_date = itemboard_date;
@@ -37,7 +43,7 @@ public class MainDetailDTO implements Serializable{ //마이바티스는 DTO 로
     this.item_no = item_no;
     this.itemboard_no = itemboard_no;
     this.store_no = store_no;
-    this.product = product;
+    this.tem = tem;
   }
 
   public int getSub_no() {
@@ -136,12 +142,15 @@ public class MainDetailDTO implements Serializable{ //마이바티스는 DTO 로
     this.store_no = store_no;
   }
 
-  public ItemDTO getProduct() {
-    return product;
+
+  public TemDTO getTem() {
+    return tem;
+
   }
 
-  public void setProduct(ItemDTO product) {
-    this.product = product;
+  public void setTem(TemDTO tem) {
+    this.tem = tem;
+
   }
 	
 	
