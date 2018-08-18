@@ -3,6 +3,7 @@ package com.fleamarket.mainDetail.model;
 import java.io.Serializable;
 
 public class HotItemDTO implements Serializable{
+  private int itemboard_no; //상품번호
   private String category_title;  //대 카테고리 이름
   private String sub_title; //소 카테고리 이름
   private String thum_img; // 썸네일 이미지
@@ -15,9 +16,10 @@ public class HotItemDTO implements Serializable{
   
   public HotItemDTO(){}
 
-  public HotItemDTO(String category_title, String sub_title, String thum_img, String title, int price,
+  public HotItemDTO(int itemboard_no, String category_title, String sub_title, String thum_img, String title, int price,
       String itemboard_date, int delivery_fee, int hits, int ranking) {
     super();
+    this.itemboard_no = itemboard_no;
     this.category_title = category_title;
     this.sub_title = sub_title;
     this.thum_img = thum_img;
@@ -27,6 +29,14 @@ public class HotItemDTO implements Serializable{
     this.delivery_fee = delivery_fee;
     this.hits = hits;
     this.ranking = ranking;
+  }
+
+  public int getitemboard_no() {
+    return itemboard_no;
+  }
+
+  public void setitemboard_no(int itemboard_no) {
+    this.itemboard_no = itemboard_no;
   }
 
   public String getCategory_title() {

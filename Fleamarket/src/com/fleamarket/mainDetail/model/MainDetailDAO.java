@@ -64,6 +64,19 @@ public class MainDetailDAO {
 	}
 	
 	//큰카테고리 리스트
+	public List<HotListDTO> hotList(){
+	  SqlSession sqlSession = getSqlSessionFactory().openSession();
+	  List<HotListDTO> categoryList = null;
+	  try {
+      categoryList = sqlSession.getMapper(MainDetailMapper.class).hotList();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      sqlSession.close();
+    }
+	  return categoryList;
+	}
+	
 	public List<CategoryDTO> categoryList(){
 	  SqlSession sqlSession = getSqlSessionFactory().openSession();
 	  List<CategoryDTO> categoryList = null;
@@ -75,6 +88,32 @@ public class MainDetailDAO {
       sqlSession.close();
     }
 	  return categoryList;
+	}
+	
+	public List<SubCategoryDTO> subCategoryList(){
+	  SqlSession sqlSession = getSqlSessionFactory().openSession();
+	  List<SubCategoryDTO> subCategoryList = null;
+	  try {
+      subCategoryList = sqlSession.getMapper(MainDetailMapper.class).subCategoryList();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      sqlSession.close();
+    }
+	  return subCategoryList;
+	}
+	
+	public ItemDetailDTO itemDetail(int itemboard_no){
+	  SqlSession sqlSession = getSqlSessionFactory().openSession();
+	  ItemDetailDTO itemDetail = null;
+	  try {
+      itemDetail = sqlSession.getMapper(MainDetailMapper.class).itemDetail(itemboard_no);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      sqlSession.close();
+    }
+	  return itemDetail;
 	}
 	
 }

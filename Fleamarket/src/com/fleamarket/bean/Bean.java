@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.fleamarket.mainDetail.model.CategoryDTO;
 import com.fleamarket.mainDetail.model.HotItemDTO;
+import com.fleamarket.mainDetail.model.HotListDTO;
 import com.fleamarket.memManage.model.MemManageDTO;
 import com.fleamarket.payment.model.DeliveryDTO_jh;
 import com.fleamarket.payment.model.PaymentDTO;
@@ -12,6 +13,7 @@ import com.fleamarket.payment.model.SpellDTO_jh;
 import com.fleamarket.product.model.ItemDTO;
 
 import com.fleamarket.mainDetail.model.RecommendDTO;
+import com.fleamarket.mainDetail.model.SubCategoryDTO;
 
 
 public class Bean {
@@ -33,7 +35,9 @@ public class Bean {
 	private List<RecommendDTO> recommend;
 	//인기상품리스트 추가(주영)
 	private List<HotItemDTO> hotItemList;
+	private List<HotListDTO> hotList;
 	private List<CategoryDTO> categoryList;
+	private List<SubCategoryDTO> subCategoryList;
 	
 	
 	public Bean(HttpServletRequest request) {
@@ -94,27 +98,49 @@ public class Bean {
 	public void setHotItemList(List<HotItemDTO> hotItemList) {
 		this.hotItemList = hotItemList;
 	}
-	public List<CategoryDTO> getCategoryList() {
-		return categoryList;
+	public List<HotListDTO> getHotList() {
+		return hotList;
 	}
-	public void setCategoryList(List<CategoryDTO> categoryList) {
-		this.categoryList = categoryList;
+	public void setHotList(List<HotListDTO> hotList) {
+		this.hotList = hotList;
 	}
-	public Bean(DeliveryDTO_jh deliveryDTO_jh, PaymentDTO paymentDTO, SpellDTO_jh spellDTO_jh, ItemDTO itemDTO,
-			MemManageDTO memManageDTO, List<ItemDTO> itemList, HttpServletRequest request, List<RecommendDTO> recommend,
-			List<HotItemDTO> hotItemList, List<CategoryDTO> categoryList) {
-		super();
-		this.deliveryDTO_jh = deliveryDTO_jh;
-		this.paymentDTO = paymentDTO;
-		this.spellDTO_jh = spellDTO_jh;
-		this.itemDTO = itemDTO;
-		this.memManageDTO = memManageDTO;
-		this.itemList = itemList;
-		this.request = request;
-		this.recommend = recommend;
-		this.hotItemList = hotItemList;
-		this.categoryList = categoryList;
-	}
+
+  public List<CategoryDTO> getCategoryList() {
+    return categoryList;
+  }
+
+  public void setCategoryList(List<CategoryDTO> categoryList) {
+    this.categoryList = categoryList;
+  }
+
+  public List<SubCategoryDTO> getSubCategoryList() {
+    return subCategoryList;
+  }
+
+  public void setSubCategoryList(List<SubCategoryDTO> subCategoryList) {
+    this.subCategoryList = subCategoryList;
+  }
+
+  public Bean(DeliveryDTO_jh deliveryDTO_jh, PaymentDTO paymentDTO, SpellDTO_jh spellDTO_jh, ItemDTO itemDTO,
+      MemManageDTO memManageDTO, List<ItemDTO> itemList, HttpServletRequest request, List<RecommendDTO> recommend,
+      List<HotItemDTO> hotItemList, List<HotListDTO> hotList, List<CategoryDTO> categoryList,
+      List<SubCategoryDTO> subCategoryList) {
+    super();
+    this.deliveryDTO_jh = deliveryDTO_jh;
+    this.paymentDTO = paymentDTO;
+    this.spellDTO_jh = spellDTO_jh;
+    this.itemDTO = itemDTO;
+    this.memManageDTO = memManageDTO;
+    this.itemList = itemList;
+    this.request = request;
+    this.recommend = recommend;
+    this.hotItemList = hotItemList;
+    this.hotList = hotList;
+    this.categoryList = categoryList;
+    this.subCategoryList = subCategoryList;
+  }
+	
+	
  
 
 }
