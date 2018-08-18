@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.fleamarket.bean.Action;
 import com.fleamarket.bean.ActionForward;
 import com.fleamarket.bean.Bean;
-import com.fleamarket.payment.service.InsertDeliveryAction;
+import com.fleamarket.payment.service.InsertDeliveryAction_jh;
+import com.fleamarket.payment.service.PaymentAction;
 
 //경로관련된 문자는 모두 무조건 소문자로  /맡은페이지경로/원하는작업.do  식으로 처리하기
 @WebServlet("/payment/*")
@@ -41,7 +42,15 @@ public class PaymentController extends HttpServlet {
     }
 
     if (command.equals("insertDelivery.do")) {
-      action = new InsertDeliveryAction();
+      action = new InsertDeliveryAction_jh();
+      // action = new 원하는작업클래스();
+      try {
+        forward = action.execute(request, response);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    } else if(command.equals("payment.do")) {
+      action = new PaymentAction();
       // action = new 원하는작업클래스();
       try {
         forward = action.execute(request, response);

@@ -27,6 +27,9 @@
 	   
 	   <div id="container"> <!-- container 시작 -->
 	      <div> 컨테이너 <jsp:include page="${forward.conPath }"/> </div>
+        <div>
+        <a href="/Fleamarket/payment/payment.do">안심결제</a>
+        </div>
 	   </div> <!-- container 끝 -->
 	   <hr>
 	   
