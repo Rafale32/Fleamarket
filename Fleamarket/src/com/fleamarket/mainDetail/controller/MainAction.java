@@ -1,4 +1,4 @@
-package com.fleamarket.mainDetail.service;
+package com.fleamarket.mainDetail.controller;
 
 import java.util.List;
 
@@ -7,10 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fleamarket.bean.Action;
 import com.fleamarket.bean.ActionForward;
+import com.fleamarket.bean.Bean;
 import com.fleamarket.mainDetail.model.MainDetailDAO;
-import com.fleamarket.mainDetail.model.MainDetailDTO;
-import com.fleamarket.mainDetail.model.MainDetailService;
-import com.fleamarket.mainDetail.model.TemDTO;
+import com.fleamarket.mainDetail.service.MainDetailService;
 
 
 public class MainAction implements Action {
@@ -19,12 +18,12 @@ public class MainAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-	  //board 객체에 item 객체를 넣은 서비스 호출
+	  Bean bean = (Bean) request.getAttribute("bean");
     MainDetailService service = MainDetailService.getInstance();
-    List<MainDetailDTO> recommendList = service.recommendItemList();
-		
-    request.setAttribute("recommendList", recommendList);
-    
+    bean.setRecommend(service.recommend());
+    bean.setHotItemList(service.hotItemList());
+		//bean.setCategoryList(service.hotList());
+    bean.setCategoryList(service.hotList());
 		ActionForward forward = new ActionForward();
 		forward.setPath("/template.jsp"); //원하는 경로가 완전 새로운 페이지가 아니라면 템플릿으로 가야겟지 템플릿이 헤더및 푸터 있으니까
 		forward.setRedirect(false); //완전 새로운 페이지로 갈거냐 안갈거냐
