@@ -8,24 +8,45 @@
 	<cache />
 
 
-	<!-- <insert id="insertBoard" parameterType="Board">
-		insert into board(
-		seq, title, writer, contents, regdate, hitcount, fname
-		)values(
-		board_seq.nextval, #{title},#{writer},#{contents},sysdate,0,#{fname}
-		)
-	</insert> -->
-
-	<select id="recommendList" resultType="MainDetailDTO">
-		select * from itemboard where recommend_ornot = 'TRUE'
+	<!-- <insert id="insertBoard" parameterType="Board"> insert into board( 
+		seq, title, writer, contents, regdate, hitcount, fname )values( board_seq.nextval, 
+		#{title},#{writer},#{contents},sysdate,0,#{fname} ) </insert> -->
+	
+	<!-- 추천상품 정보 가져오는 쿼리 -->
+	<select id="recommend" resultType="RecommendDTO">
+		select distinct a.item_no,
+		b.title, a.price, b.itemboard_date, a.delivery_fee, c.thum_img
+		from
+		item a, itemboard b, itemimg c
+		where a.item_no=b.item_no
+		and
+		b.itemboard_no=c.itemboard_no
+		and b.recommend_ornot=1
+	</select>
+	
+	<!-- 대 카테고리별 상품들의 hits 수를 내림차순 정렬하여 10개 씩 잘라 상품정보를 받아오는 쿼리문 -->
+	<select id="hotItemList" resultType="HotItemDTO">
+		<![CDATA[
+		select category_title, sub_title, thum_img, title, price, itemboard_date, delivery_fee, hits, ranking
+		from(select a.category_title, b.sub_title, e.thum_img,
+		d.title, c.price, d.itemboard_date, c.delivery_fee, d.hits,
+		rank() over(partition by a.category_title order by hits desc)as ranking
+		from category a, category_sub b, item c, itemboard d, itemimg e
+		where a.category_no = b.category_no
+		and b.sub_no = d.sub_no
+		and c.item_no = d.item_no
+		and d.itemboard_no = e.itemboard_no
+		group by a.category_title, b.sub_title, e.thum_img,
+		d.title, c.price, d.itemboard_date, c.delivery_fee, d.hits)
+		where ranking <= 10
+		]]>
+	</select>
+	
+	<!-- 대 카테고리 목록 가져옴 -->
+	<select id="categoryList" resultType="CategoryDTO">
+		select category_no, category_title
+    from category
+    order by category_no	
 	</select>
 
-	<select id="recommendItem" resultType="TemDTO">
-		select * from item where item_no in(select item_no from itemboard where RECOMMEND_ORNOT = 'true')
-	</select>
-	
-	<select id="categoryList" resultType="CategoryDTO"></select>
-	
-	<select id="subCategoryList" resultType="SubCategoryDTO"></select>
-	
 </mapper>
