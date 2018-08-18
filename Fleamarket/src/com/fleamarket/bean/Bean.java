@@ -29,7 +29,7 @@ public class Bean {
 	List<ItemDTO> itemList;
 	private HttpServletRequest request;
 	
-	//추천상품리스트 추가(주영)
+	//추천상품리스트 추가
 	private List<RecommendDTO> recommend;
 	//인기상품리스트 추가(주영)
 	private List<HotItemDTO> hotItemList;
@@ -115,6 +115,6 @@ public class Bean {
 		this.hotItemList = hotItemList;
 		this.categoryList = categoryList;
 	}
-
+ 
 
 }
