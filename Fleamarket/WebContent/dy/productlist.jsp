@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,6 +8,26 @@
 <title>Insert title here</title>
 </head>
 <body>
-	프러덕트 리스트
+	
+	<table border="1">
+		<tr> <td>상품사진</td> <td>물품명</td> <td>가격</td> <td>찜/댓글</td> <td>최근 수정일</td> <td>기능</td> </tr>
+		<c:forEach items="${bean.itemList }" var="tmp">
+			<tr> <td width="200px" height="200px"> <c:forEach items="${tmp.itemImgList }" var="tmp2">
+				${tmp2.thum_Img }
+			</c:forEach> </td> 
+			 <td>${tmp.title }</td>  <td>${tmp.price }</td> <td>${tmp.favCount } / ${tmp.itemQnaCount }</td> <td>${tmp.itemboard_Date }</td> 
+		<c:choose>
+			<c:when test="${param.store_name != null}">
+				
+			</c:when>
+			<c:when test="${param.email != '' }">
+				<td><a href="/Fleamarket/product/productmodify.do">수정</a> 
+				<a href="/Fleamarket/product/productdelete.do">삭제</a> </td> </tr>
+			</c:when>
+		</c:choose>
+			 
+		</c:forEach>
+	</table>
+	
 </body>
 </html>

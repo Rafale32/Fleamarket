@@ -2,6 +2,7 @@ package com.fleamarket.memManage.controller;
 
 import java.io.IOException;
 
+import javax.print.attribute.standard.JobImpressionsCompleted;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,12 +14,15 @@ import com.fleamarket.bean.Action;
 import com.fleamarket.bean.ActionForward;
 import com.fleamarket.bean.Bean;
 import com.fleamarket.memManage.service.CheckloginAction;
+import com.fleamarket.memManage.service.JoinAction;
+import com.fleamarket.memManage.service.JoinFormAction;
 import com.fleamarket.memManage.service.LoginAction;
 import com.fleamarket.memManage.service.LogoutAction;
 
 //경로관련된 문자는 모두 무조건 소문자로  /맡은페이지경로/원하는작업.do  식으로 처리하기
 @WebServlet("/memmanage/*")
 public class MemManageController extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 	
 	public MemManageController() {
@@ -73,13 +77,21 @@ public class MemManageController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			}
-    	}/*else if(command.equals("join.do")){
-    		action = new JoinAction();
-    	}try {
-			forward = 
+    	}else if(command.equals("joinform.do")){
+    		action = new JoinFormAction();
+    	try {
+			forward = action.execute(request, response);
 		} catch (Exception e) {
-			// TODO: handle exception
-		}*/
+			e.printStackTrace();
+			}
+    	}else if(command.equals("joinAction.do")){
+    		action = new JoinAction();
+    	try {
+			forward = action.execute(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			}
+    	}
     	
     	
     	
@@ -102,10 +114,9 @@ public class MemManageController extends HttpServlet {
 		doProcess(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		doProcess(request, response);
-	}
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    doProcess(request, response);
+  }
 
 }

@@ -1,4 +1,4 @@
-package com.fleamarket.product.service;
+package com.fleamarket.product.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
