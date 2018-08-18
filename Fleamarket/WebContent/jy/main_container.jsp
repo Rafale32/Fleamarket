@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -8,6 +8,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-	메인화면 컨테이너 부분
+	<div class="recommend-title">
+		<h3>플리마켓 추천상품</h3>
+	</div>
+	<div class="recomend-item">
+		<c:forEach var="list" items="${recommendList}">
+			<a href="">${list.title}</a>
+			<a href="">${list.tem.price}</a>
+		</c:forEach>
+	</div>
+	<br><br>
+	<div class="hot-title">
+		<h3>카테고리별 인기 상품</h3>
+		
+	</div>
 </body>
 </html>
