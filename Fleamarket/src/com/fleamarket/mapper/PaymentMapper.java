@@ -20,5 +20,7 @@ public interface PaymentMapper {
 	
 	// 상품 정보 가져오기 - 20180817 재헌
 	ItemDTO selectItem(int item_no);
+	
+	
 
 }

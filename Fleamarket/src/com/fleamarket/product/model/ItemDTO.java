@@ -30,6 +30,10 @@ public class ItemDTO implements Serializable{ //마이바티스는 DTO 로 사�
 	private int favCount; // 다른사람이 찜 한 횟수
 	
 	private int itemQnaCount; //상품문의 리플 수
+	
+	//20180818 재헌 상점이름, 배송 유무
+	private String store_name;
+	private String delivery_fee;
 	 
 	public ItemDTO() { }
 	
@@ -150,21 +154,30 @@ public class ItemDTO implements Serializable{ //마이바티스는 DTO 로 사�
 		this.store_no = store_no;
 	}
 
-
-
 	public String getEmail() {
 		return email;
 	}
 
-
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
-	
-	
+
+  public String getStore_name() {
+    return store_name;
+  }
+
+  public void setStore_name(String store_name) {
+    this.store_name = store_name;
+  }
+
+  public String getDelivery_fee() {
+    return delivery_fee;
+  }
+
+  public void setDelivery_fee(String delivery_fee) {
+    this.delivery_fee = delivery_fee;
+  }
+
 	
 }
  
