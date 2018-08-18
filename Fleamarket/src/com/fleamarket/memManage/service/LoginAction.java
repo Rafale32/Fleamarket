@@ -21,7 +21,6 @@ public class LoginAction implements Action {
 		
 		System.out.println("로그인 액션 들어옴?");
 		
-		
 		return forward;
 	}
 

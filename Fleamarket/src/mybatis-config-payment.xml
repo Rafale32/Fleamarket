@@ -5,15 +5,20 @@
 
 <configuration>
 	<typeAliases>
-		<!-- <typeAlias type="kosta.bean.Board" alias="Board"/> -->
+		<typeAlias type="com.fleamarket.payment.model.DeliveryDTO_jh" alias="DeliveryDTO_jh"/>
+		<typeAlias type="com.fleamarket.payment.model.PuerchaseDTO_gy" alias ="PuerchaseDTO_gy"/>
+    
+<!--     20180817 재헌 추가 -->
+		<typeAlias type="com.fleamarket.payment.model.PaymentDTO" alias ="PaymentDTO"/>
+		<typeAlias type="com.fleamarket.payment.model.SpellDTO_jh" alias ="SpellDTO_jh"/>
+		<typeAlias type="com.fleamarket.product.model.ItemDTO" alias ="ItemDTO"/>
+		<typeAlias type="com.fleamarket.memManage.model.MemManageDTO" alias ="MemManageDTO"/>
 
 	</typeAliases>
 	
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC"/>
-
-
 			<dataSource type="JNDI">
 				<property name="data_source" value="java:comp/env/jdbc/oracle"/>
 			</dataSource>

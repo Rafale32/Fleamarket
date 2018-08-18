@@ -8,17 +8,20 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<a href="http://localhost:8081/Fleamarket/maindetail/main.do">Fleamarket</a>
 	<c:choose>
 		<c:when test="${member.name == null }">
 			<a href="/Fleamarket/memmanage/login.do">로그인</a>
+			<a href="/Fleamarket/memmanage/joinform.do">회원가입</a>
 		</c:when>
 		<c:when test="${member.name != null }">
 			${member.name } 님 환영합니다.
 			<a href="/Fleamarket/memmanage/logout.do">로그아웃</a>
 		</c:when>
 	</c:choose>
-	<a href="" class="btn">판매하기</a> 
-	<a href="" class="btn">내 상점</a> 
-	<a href="" class="btn">내 정보보기</a>
+	<c:if test="${member != null }">
+		<a href="/Fleamarket/product/productlist.do?email=${member.email }" class="btn">My Store</a>
+		<a href="" class="btn">내 정보보기</a>
+	</c:if>
 </body>
 </html>
