@@ -8,11 +8,24 @@
 <title>Insert title here</title>
 </head>
 <body>
-	프러덕트 리스트
+	
 	<table border="1">
-		<tr> <td>a</td> <td>b</td> <td>c</td> </tr>
+		<tr> <td>상품사진</td> <td>물품명</td> <td>가격</td> <td>찜/댓글</td> <td>최근 수정일</td> <td>기능</td> </tr>
 		<c:forEach items="${bean.itemList }" var="tmp">
-			<tr> <td>${tmp.title }</td> <td>${tmp.hits }</td> <td>${tmp.itemboard_Contents }</td></tr>
+			<tr> <td width="200px" height="200px"> <c:forEach items="${tmp.itemImgList }" var="tmp2">
+				${tmp2.thum_Img }
+			</c:forEach> </td> 
+			 <td>${tmp.title }</td>  <td>${tmp.price }</td> <td>${tmp.favCount } / ${tmp.itemQnaCount }</td> <td>${tmp.itemboard_Date }</td> 
+		<c:choose>
+			<c:when test="${param.store_name != null}">
+				
+			</c:when>
+			<c:when test="${param.email != '' }">
+				<td><a href="/Fleamarket/product/productmodify.do">수정</a> 
+				<a href="/Fleamarket/product/productdelete.do">삭제</a> </td> </tr>
+			</c:when>
+		</c:choose>
+			 
 		</c:forEach>
 	</table>
 	

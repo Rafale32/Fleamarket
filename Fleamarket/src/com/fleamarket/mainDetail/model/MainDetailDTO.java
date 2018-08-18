@@ -20,15 +20,12 @@ public class MainDetailDTO implements Serializable{ //마이바티스는 DTO 로
 	private int itemboard_no;
 	private int store_no;
 
-	private TemDTO tem;
 
 	
 	public MainDetailDTO() {}
 
   public MainDetailDTO(int sub_no, String itemboard_date, String local, String title, String itemboard_contents,
-      String tag, int hits, String recommend_ornot, String change_ornot, int item_no, int itemboard_no, int store_no,
-
-      TemDTO product) {
+      String tag, int hits, String recommend_ornot, String change_ornot, int item_no, int itemboard_no, int store_no) {
 
     super();
     this.sub_no = sub_no;
@@ -43,7 +40,6 @@ public class MainDetailDTO implements Serializable{ //마이바티스는 DTO 로
     this.item_no = item_no;
     this.itemboard_no = itemboard_no;
     this.store_no = store_no;
-    this.tem = tem;
   }
 
   public int getSub_no() {
@@ -142,16 +138,6 @@ public class MainDetailDTO implements Serializable{ //마이바티스는 DTO 로
     this.store_no = store_no;
   }
 
-
-  public TemDTO getTem() {
-    return tem;
-
-  }
-
-  public void setTem(TemDTO tem) {
-    this.tem = tem;
-
-  }
 	
 	
 }

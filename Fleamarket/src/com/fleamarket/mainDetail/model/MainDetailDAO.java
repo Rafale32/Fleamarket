@@ -35,36 +35,46 @@ public class MainDetailDAO {
 		return new SqlSessionFactoryBuilder().build(in);
 	}
 	
-	public List<MainDetailDTO> recommendList(){
+	//추천 상품
+	public List<RecommendDTO> recommend(){
 	  SqlSession sqlSession = getSqlSessionFactory().openSession();
-	  List<MainDetailDTO> list = null;
-	  try{
-	    list = sqlSession.getMapper(MainDetailMapper.class).recommendList();  
-	  } catch (Exception e) {
-      e.printStackTrace();
-    } finally {
-      sqlSession.close();
-    }
-	  return list;
-	}
-	
-	public List<TemDTO> recommendItem(){
-	  SqlSession sqlSession = getSqlSessionFactory().openSession();
-	  List<TemDTO> itemList = null;
+	  List<RecommendDTO> recommend = null;
 	  try {
-      itemList = sqlSession.getMapper(MainDetailMapper.class).recommendItem();
+      recommend = sqlSession.getMapper(MainDetailMapper.class).recommend();
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
       sqlSession.close();
     }
-	  return itemList;
+	  return recommend;
 	}
 	
+	//인기상품 리스트
+	public List<HotItemDTO> hotItemList(){
+	  SqlSession sqlSession = getSqlSessionFactory().openSession();
+	  List<HotItemDTO> hotItemList = null;
+	  try {
+      hotItemList = sqlSession.getMapper(MainDetailMapper.class).hotItemList();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      sqlSession.close();
+    }
+	  return hotItemList;
+	}
 	
-	public int insertBoard(){
-		
-		return 0;
+	//큰카테고리 리스트
+	public List<CategoryDTO> categoryList(){
+	  SqlSession sqlSession = getSqlSessionFactory().openSession();
+	  List<CategoryDTO> categoryList = null;
+	  try {
+      categoryList = sqlSession.getMapper(MainDetailMapper.class).categoryList();
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      sqlSession.close();
+    }
+	  return categoryList;
 	}
 	
 	

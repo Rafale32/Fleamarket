@@ -36,6 +36,7 @@
                     // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
                     fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
                 }
+                
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('delivery_address').value = fullAddr;
@@ -55,12 +56,13 @@
   <div>
 <!--    enctype="multipart/form-data"> -->
     <form action="insertDelivery.do" method="post">
-      수령인 <input type="text" name="delivery_name"><br>
-      연락처 <input type="text" name="delivery_ph"><br>
-      배송지 <input type="text" name="delivery_address" placeholder="주소"><input type="button" value="주소검색" onclick="search_address()"><br>
-      배송지 <input type="text" name="delivery_address2" placeholder="상세주소"><br>
+      수령인 <input type="text" name="delivery_name" value="${bean.memManageDTO.name}"><br>
+      연락처 <input type="text" name="delivery_ph" value="${bean.memManageDTO.phone}"><br>
+<!--       스크립트에 getElementById 때문에 id추가 -20180817 천재헌 -->
+      배송지 <input type="text" name="delivery_address" id="delivery_address"  value="${bean.memManageDTO.address}" placeholder="주소"><input type="button" value="주소검색" onclick="search_address()"><br>
+      배송지 <input type="text" name="delivery_address2" id="delivery_address2"  value="${bean.memManageDTO.address2}" placeholder="상세주소"><br>
       배송요청사항 <br>
-      <textarea rows="1" cols="50" name="contents"></textarea><br>
+      <textarea rows="1" cols="50" name="contents" placeholder="경비실에 맡겨주세요"></textarea><br>
     </form>
 
   </div>
@@ -70,26 +72,27 @@
     <hr><h2>주문상품</h2><hr>
     판매자이름<hr>
     물품목록 보이는곳<br>
-    50000원<br><br>
+    
+    가격 : ${bean.itemDTO.price}원<br><br>
   </div>
   
   <!-- 포인트 -->
   <div>
     <hr><h2>포인트</h2><hr>
-    잔여포인트 2000원<br>
+    잔여포인트 : ${bean.memManageDTO.point}<br>
     사용 <input type="text"/><br>
-    <input type="button" value="전액 사용"/>
+    <input type="button" value="전액 사용" onclick="alert('앙 기모찌')"/>
   </div>
   
   <!-- 결제금액 -->
   <div>
     <hr><h2>결제금액</h2><hr>
     <table border="1">
-      <tr><td>상품금액</td><td>50000원</td></tr>
+      <tr><td>상품금액</td><td>${bean.itemDTO.price}원</td></tr>
       <tr><td>배송비</td><td>무료배송</td></tr>
       <tr><td>포인트</td><td>-0원</td></tr>
-      <tr><td>수수료</td><td>2500원</td></tr>
-      <tr><td>최종결제금액</td><td>52500원</td></tr>
+      <tr><td>수수료</td><td>1000원</td></tr>
+      <tr><td>최종결제금액</td><td>${bean.itemDTO.price+1000}원</td></tr>
     </table>
   </div>
   

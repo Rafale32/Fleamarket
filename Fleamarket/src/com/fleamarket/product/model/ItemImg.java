@@ -21,7 +21,4 @@ public class ItemImg implements Serializable{
 		this.big_Img = big_Img;
 	}
 	
-	
-	
-	
 }
