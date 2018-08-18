@@ -75,5 +75,20 @@ public class MemManageDAO {
 		return re;
 	}//joinBoard
 	
+	public MemManageDTO detailMember(String email){
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		MemManageDTO dto = null;
+		
+		try {
+			dto = sqlSession.getMapper(MemManageMapper.class).detailMember(email);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
+		return dto;
+	}//detailMember
+	
+	
 	
 }

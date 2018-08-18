@@ -9,6 +9,7 @@ public class MemberService {
 	private static MemberService service = new MemberService();
 	private static MemManageDAO dao;
 	
+	
 	public static MemberService getInstance(){
 		dao = MemManageDAO.getInstance();
 		return service;
@@ -16,6 +17,8 @@ public class MemberService {
 	
 	public int joinBoardService(HttpServletRequest request)throws Exception{
 		MemManageDTO dto = new MemManageDTO();
+		
+		boolean result = false;
 		
 		dto.setEmail(request.getParameter("email"));
 		//System.out.println(dto.getEmail()+"메일이 들어온다");
@@ -26,6 +29,7 @@ public class MemberService {
 		System.out.println(dto.getAddress()+"주소가 들오온다");
 		dto.setAddress2(request.getParameter("address2"));
 		System.out.println(dto.getAddress2()+"주소야주소야!!!!!!");
+		
 		
 		return dao.joinBoard(dto);
 	}//joinBoardService

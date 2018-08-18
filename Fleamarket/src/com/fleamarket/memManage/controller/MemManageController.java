@@ -18,6 +18,7 @@ import com.fleamarket.memManage.service.JoinAction;
 import com.fleamarket.memManage.service.JoinFormAction;
 import com.fleamarket.memManage.service.LoginAction;
 import com.fleamarket.memManage.service.LogoutAction;
+import com.fleamarket.memManage.service.detailAction;
 
 //경로관련된 문자는 모두 무조건 소문자로  /맡은페이지경로/원하는작업.do  식으로 처리하기
 @WebServlet("/memmanage/*")
@@ -91,8 +92,13 @@ public class MemManageController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			}
-    	}
-    	
+    	}else if(command.equals("detailAction.do")){
+    		action = new detailAction();
+    	}try{
+    		forward = action.execute(request, response);
+    	}catch (Exception e) {
+			e.printStackTrace();
+		}
     	
     	
     	if(forward != null){

@@ -9,4 +9,11 @@ public interface MemManageMapper {
 	MemManageDTO loginMember(@Param("email")String email, @Param("password")String password); 
 	
 	int joinMember(MemManageDTO dto);
+	
+	MemManageDTO detailMember(String email);
+	
+	int updateMember(MemManageDTO dto);
+	
+	int deleteMember(MemManageDTO dto);
+	
 }

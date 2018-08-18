@@ -48,7 +48,6 @@
         }).open();
     }
 </script>
-
 </head>
 <body>
 
@@ -60,8 +59,13 @@
 		
 	<!-- 입력한 값을 전송하기 위해 form 태그를 사용  -->
 	<!-- 값 전송은 post방식, 전송할 페이지는 login페이지 -->
+	
 	<form action="/Fleamarket/memmanage/joinAction.do" method="post" >
-	EMAIL : <input type="text" name="email"/><br><br>
+	
+	EMAIL : <input type="text" name="email" onkeydown="inputEamilCheck()"/>
+			<input type="button" value="중복확인" onclick="openEmailCheck()">
+			<input type="hidden" name="emailDuplication" value="emailUncheck">
+			<br><br>
 	비밀번호 : <input type="password" name="password" onblur="checkps()"/>  4자이상 12자리까지<br><br>
 	비밀번호 확인 : <input type="password" name="password" onblur="checksame()"/><br><br> 
 	이름 : <input type="text" name="name"/><br><br>
@@ -74,6 +78,7 @@
 	
 	<input type="submit" value="회원가입">
 	<input type="reset" value="다시입력">
+	<input type="button" value ="취소">
 
 	</form>
 	</div>
