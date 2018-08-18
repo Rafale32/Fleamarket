@@ -1,12 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset="UTF-8">
-    <script type="text/javascript" src="jquery-3.1.0.js" charset="utf-8"></script>
-    <script type="text/javascript" src="imgadd.js" charset="utf-8"></script>
-
+    <meta charset="utf-8">
+    
+    <title>Start Up</title>
+ 
     <style type="text/css">
         .imgs_wrap {
             width: 600px;
@@ -18,33 +16,32 @@
         }
  
     </style>
-    
-    <script type="text/javascript">
-    	$("#subcate").on("change", function () {
-			alert("asdf");
-		});
-    </script>
+ 
+    <script type="text/javascript" src="../jquery-3.1.0.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./imgadd.js" charset="utf-8"></script>
     
 </head>
-
+ 
 <body>
-	<br>
 
-		<form action="">
-		
-		   <div>
-		       <p class="title">업로드할 이미지를 선택해 주세요</p>
-		       <div id="imgfiles">
-		       	<input type="file" id="input_imgs0" multiple/>
-		       </div>
-		   </div>
-		   <div>
-		       <div class="imgs_wrap">
-		           
-		       </div>
-		   </div>
-		
-			<div>
+<form action="">
+    <div>
+        <p class="title">업로드할 이미지를 선택해 주세요</p>
+        <div id="imgfiles">
+        	<input type="file" id="input_imgs0" multiple/>
+        </div>
+    </div>
+
+    <div>
+        <div class="imgs_wrap">
+            
+        </div>
+    </div>
+ 
+ 
+ 
+ 
+ 			<div>
 				<label >카테고리:</label>
 				<div>
 					<select name="sub_cate" id="subcate">
@@ -141,7 +138,9 @@
 				<input type="text" placeholder="1" value="1" name=""/>
 				
 				<input type="submit" value="등록">
-		</form>
-
+ 
+ 
+ </form>
+ 
 </body>
 </html>

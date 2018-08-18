@@ -33,7 +33,7 @@ var cnt = 0;
 $(document).ready(function() {
 	$("#imgfiles").on("change", handleImgsFilesSelect);
 	
-	$(".imgs_wrap").on("click", deletefile);
+	$(".imgs_wrap img").on("click", deletefile);
 	
 });
 
@@ -71,7 +71,6 @@ function handleImgsFilesSelect(e) {
 
 function deletefile(e){
 	var files = e.target.files;
-	var filesArr = Array.prototype.slice.call(files);
-	alert("asdf");
+	alert(files);
 	
 }
