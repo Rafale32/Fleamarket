@@ -32,6 +32,12 @@ public class MainAction implements Action {
 		request.setAttribute("forward", forward); // 컨테이너 경로 사용하기위한 등록
 		
 		System.out.println("메인 액션 들어옴?");
+		for(int i=0; i<bean.getCategoryList().size(); i++){
+		  System.out.println(bean.getCategoryList().get(i).getCategory_title());
+		  for(int j=0; j<bean.getCategoryList().get(i).getHotList().size(); j++){
+		    System.out.println(bean.getCategoryList().get(i).getHotList().get(j).getTitle());
+		  }
+		}
 		
 		return forward;
 	}

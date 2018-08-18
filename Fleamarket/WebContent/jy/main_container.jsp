@@ -23,32 +23,24 @@
 	</div>
 	<br>
 
-	<%-- <div class="category-list">
+	<div class="category-list">
 		<h3>카테고리 목록</h3>
 		<c:forEach var="categoryList" items="${bean.categoryList}">
 			<a href="">${categoryList.category_title}</a>
 		</c:forEach>
-	</div> --%>
-
-	<%-- <div class="category-list">
-		<h3>카테고리 목록</h3>
-		<c:forEach var="list" items="${bean.categoryList}">
-			<a href="">${list.category_title}</a>
-			<c:forEach var="itemList" items="${bean.categoryList.hotItemList}">
-				<a href="">${itemList.title}</a>
-			</c:forEach>
-		</c:forEach>
-	</div> --%>
+	</div>
 
 
 	<div class="hot-title">
 		<h3>카테고리별 인기 상품</h3>
 	</div>
-	<div class="hot-item">
-		<c:forEach var="hotList" items="${bean.hotItemList}" begin="0" end="2"
-			step="1">
-			<a href="">${hotList.category_title}</a>
+	<c:forEach var="list" items="${bean.categoryList}">
+		<a href="">${list.category_title}</a>
+		<br>
+		<c:forEach var="itemList" items="${list.hotList}">
+			<a href="">${itemList.title}</a>
 		</c:forEach>
-	</div>
+		<br>
+	</c:forEach>
 </body>
 </html>
