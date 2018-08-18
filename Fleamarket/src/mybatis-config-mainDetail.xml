@@ -5,10 +5,9 @@
 
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.fleamarket.mainDetail.model.MainDetailDTO" alias="MainDetailDTO"/>
-		<typeAlias type="com.fleamarket.mainDetail.model.TemDTO" alias="TemDTO"/>
+		<typeAlias type="com.fleamarket.mainDetail.model.RecommendDTO" alias="RecommendDTO"/>
+		<typeAlias type="com.fleamarket.mainDetail.model.HotItemDTO" alias="HotItemDTO"/>
 		<typeAlias type="com.fleamarket.mainDetail.model.CategoryDTO" alias="CategoryDTO"/>
-		<typeAlias type="com.fleamarket.mainDetail.model.SubCategoryDTO" alias="SubCategoryDTO"/>
 
 	</typeAliases>
 	
