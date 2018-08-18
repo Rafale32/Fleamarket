@@ -19,8 +19,6 @@ public class CheckloginAction implements Action {
 
 	  String email = request.getParameter("email");
 
-
-
 	  //System.out.println("email" + email);
 
 	  String password = request.getParameter("password");

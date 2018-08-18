@@ -27,8 +27,6 @@ public class ItemDTO implements Serializable{ //마이바티스는 DTO 로 사�
 	
 	public ItemDTO() { }
 	
-	
-	
 	public ItemDTO(List<ItemImg> itemImgList, int sub_No, String cateName, String subName, String itemboard_Date,
 			String local, String title, String itemboard_Contents, String tag, int hits, String recommend_Ornot,
 			String change_Ornot, int item_No, int itemboard_No, int store_no) {

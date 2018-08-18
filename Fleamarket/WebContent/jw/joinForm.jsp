@@ -59,7 +59,7 @@
 		<br><br><br>
 		
 	<!-- 입력한 값을 전송하기 위해 form 태그를 사용  -->
-	<!-- 값 전송은 post방식, 전송할 페이지는  -->
+	<!-- 값 전송은 post방식, 전송할 페이지는 login페이지 -->
 	<form action="/Fleamarket/memmanage/joinAction.do" method="post" >
 	EMAIL : <input type="text" name="email"/><br><br>
 	비밀번호 : <input type="password" name="password" onblur="checkps()"/>  4자이상 12자리까지<br><br>
@@ -68,8 +68,8 @@
 	전화번호 : <input type="text" name="phone"/><br><br>
 	
 	<input type="button" onclick="Postcode()" value="주소 찾기"><br>
-	<input type="text" id="address" placeholder="주소">
-	<input type="text" id="address2" placeholder="상세주소">
+	<input type="text" id="address" name="address" placeholder="주소">
+	<input type="text" id="address2" name="address2" placeholder="상세주소">
 	<br><br>
 	
 	<input type="submit" value="회원가입">

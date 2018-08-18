@@ -73,7 +73,7 @@ public class MemManageDAO {
 		}
 	
 		return re;
-	}
+	}//joinBoard
 	
 	
 }

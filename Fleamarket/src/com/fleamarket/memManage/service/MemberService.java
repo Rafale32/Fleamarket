@@ -18,15 +18,15 @@ public class MemberService {
 		MemManageDTO dto = new MemManageDTO();
 		
 		dto.setEmail(request.getParameter("email"));
-		System.out.println(dto.getEmail()+"asdfasdfcfghjxfgh");
+		//System.out.println(dto.getEmail()+"메일이 들어온다");
 		dto.setPassword(request.getParameter("password"));
 		dto.setName(request.getParameter("name"));
 		dto.setPhone(request.getParameter("phone"));
 		dto.setAddress(request.getParameter("address"));
-		System.out.println(dto.getAddress()+"주소야");
+		System.out.println(dto.getAddress()+"주소가 들오온다");
 		dto.setAddress2(request.getParameter("address2"));
-		System.out.println(dto.getAddress2()+"주소야주소야");
+		System.out.println(dto.getAddress2()+"주소야주소야!!!!!!");
 		
 		return dao.joinBoard(dto);
-	}
+	}//joinBoardService
 }
