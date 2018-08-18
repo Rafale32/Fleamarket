@@ -13,9 +13,9 @@ public class Bean {
 	
 	private HttpServletRequest request;
 	private MemberDTO memberDTO;
-	//추천상품리스트 추가(주영)
+	//추천상품리스트 추가
 	private List<RecommendDTO> recommend;
-	//인기상품리스트 추가(주영)
+	//인기상품리스트 추가
 	private List<HotItemDTO> hotItemList;
 	private List<CategoryDTO> categoryList;
 	
