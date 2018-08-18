@@ -2,6 +2,7 @@ package com.fleamarket.memManage.controller;
 
 import java.io.IOException;
 
+import javax.print.attribute.standard.JobImpressionsCompleted;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,7 @@ import com.fleamarket.bean.ActionForward;
 import com.fleamarket.bean.Bean;
 import com.fleamarket.memManage.service.CheckloginAction;
 import com.fleamarket.memManage.service.JoinAction;
+import com.fleamarket.memManage.service.JoinFormAction;
 import com.fleamarket.memManage.service.LoginAction;
 import com.fleamarket.memManage.service.LogoutAction;
 
@@ -75,13 +77,21 @@ public class MemManageController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			}
-    	}else if(command.equals("join.do")){
-    		action = new JoinAction();
-    	}try {
+    	}else if(command.equals("joinform.do")){
+    		action = new JoinFormAction();
+    	try {
 			forward = action.execute(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+			}
+    	}else if(command.equals("joinAction.do")){
+    		action = new JoinAction();
+    	try {
+			forward = action.execute(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			}
+    	}
     	
     	
     	

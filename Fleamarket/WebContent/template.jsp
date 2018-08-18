@@ -28,13 +28,12 @@
 	   <div id="container"> <!-- container 시작 -->
 	      <div> 컨테이너 <jsp:include page="${forward.conPath }"/> </div>
         <div>
-        <a href="/Fleamarket/payment/payment.do">안심결제</a>
         </div>
 	   </div> <!-- container 끝 -->
 	   <hr>
 	   
 	   <div id="footer"> <jsp:include page="./footer.jsp"/> </div> <!-- footer -->
 	</div> <!-- 전체 레이아웃 끝 -->
-
+<a href="/Fleamarket/payment/payment.do">안심결제</a>
 </body>
 </html>
