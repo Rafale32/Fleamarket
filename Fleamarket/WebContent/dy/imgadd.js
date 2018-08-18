@@ -33,7 +33,34 @@ var cnt = 0;
 $(document).ready(function() {
 	$("#imgfiles").on("change", handleImgsFilesSelect);
 	
-	$(".imgs_wrap").on("click", deletefile);
+	$(".imgs_wrap").on("click", function() {
+		alert("ASdf");
+	});
+	
+	
+	$("#subname").on("change", function(e) {
+		
+		var tmp = $("#subname").val();
+		
+		$.ajax({
+			url: "/Fleamarket/product/addproductform.do?catename="+tmp,
+			type: "post",
+			dataType: "json",
+			success: function(data){
+				$("#cate").append("<select name='subsubname' id='subsubname'>");
+				$.each(data,function(key,value) {
+					
+				//	$("#subsubname").empty();
+				//	alert('key:'+key+', name:'+value.cate);
+					$("#subsubname").append( "<option value='"+ value.cate +"'>"+ value.cate +"</option>" );
+					
+				});
+				$("#cate").append("</select>");
+			}
+		});
+		
+	});
+	
 	
 });
 
@@ -41,7 +68,7 @@ function handleImgsFilesSelect(e) {
 	var files = e.target.files;
 	var filesArr = Array.prototype.slice.call(files);
 	
-
+	
 	filesArr.forEach(function(f) {
 		if (!f.type.match("image.*")) {
 			alert("확장자는 이미지 확장자만 가능합니다.");
@@ -56,7 +83,7 @@ function handleImgsFilesSelect(e) {
 			$(".imgs_wrap").append(img_html);
 			
 			cnt++;
-			var img_input = "<input type='file' id='input_imgs"+ cnt +"' multiple/>";
+			var img_input = "<input type='file' id='input_imgs"+ cnt +"' name='input_imgs"+cnt+"'/>";
 			$("#imgfiles").append(img_input);
 			
 			//disabled="disabled"
@@ -68,10 +95,3 @@ function handleImgsFilesSelect(e) {
 	});
 }
 
-
-function deletefile(e){
-	var files = e.target.files;
-	var filesArr = Array.prototype.slice.call(files);
-	alert("asdf");
-	
-}

@@ -10,7 +10,7 @@ public class ItemDTO implements Serializable{ //마이바티스는 DTO 로 사�
 	List<ItemImg> itemImgList;
 	
 	private String email;// 현재 사용자 아이디
-	private int sub_No; //섭카테고리 넘버 
+	private int sub_No; //섭카테고리 넘버
 	private String cateName; //대 카테고리 이름
 	private String subName; // 소 카테고리 이름
 	private Date itemboard_Date; //등록일자
@@ -30,7 +30,11 @@ public class ItemDTO implements Serializable{ //마이바티스는 DTO 로 사�
 	private int favCount; // 다른사람이 찜 한 횟수
 	
 	private int itemQnaCount; //상품문의 리플 수
-	 
+	
+	private int item_State; // 상품의 상태 새상품 상중하
+	private int delivery_Fee;// 배송비 포함 여부
+	private int amount; //상품 수량
+	
 	public ItemDTO() { }
 	
 	
@@ -47,6 +51,12 @@ public class ItemDTO implements Serializable{ //마이바티스는 DTO 로 사�
 
 
 
+	public int getItem_State() {
+		return item_State;
+	}
+	public void setItem_State(int item_State) {
+		this.item_State = item_State;
+	}
 	public int getFavCount() {
 		return favCount;
 	}

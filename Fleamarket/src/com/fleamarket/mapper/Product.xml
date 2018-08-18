@@ -45,5 +45,18 @@
 	<select id="itemQnaCount" parameterType="int" resultType="int">
 		select count(*) from ITEM_QNA where ITEMBOARD_NO = #{itemboard_No }
 	</select>
+	<!-- select category_title from category -->
+	<select id="cateList" resultType="String" parameterType="String">
+		
+		<if test="category_title == null">
+			select category_title from category
+		</if>
+		
+		<if test="category_title != null">
+			select su.SUB_TITLE from category ca inner join category_sub su on ca.CATEGORY_NO = su.CATEGORY_NO
+			where ca.category_no=(select CATEGORY_NO from CATEGORY where CATEGORY_TITLE = #{category_title })
+		</if>
+	</select>
+	
 	
 </mapper>

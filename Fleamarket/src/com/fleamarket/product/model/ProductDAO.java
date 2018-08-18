@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import com.fleamarket.mainDetail.model.CategoryDTO;
 import com.fleamarket.mapper.BoardMapper;
 import com.fleamarket.mapper.ProductMapper;
 
@@ -95,6 +96,29 @@ public class ProductDAO {
 		
 		return list;
 	}
+	
+	
+	
+	public List<String> cateList(CategoryDTO catename){
+		
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		
+		List<String> list = null;
+		
+		try {
+			
+			list = sqlsession.getMapper(ProductMapper.class).cateList(catename);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlsession.close();
+		}
+		
+		
+		return list;
+	}
+	
 	
 	
 }

@@ -28,6 +28,7 @@ public class Bean {
 	//두연
 	List<ItemDTO> itemList;
 	private HttpServletRequest request;
+	List<String> cateList; //카테고리 리스트
 	
 	//추천상품리스트 추가(주영)
 	private List<RecommendDTO> recommend;
@@ -36,6 +37,15 @@ public class Bean {
 	private List<CategoryDTO> categoryList;
 	
 	
+	
+	public List<String> getCateList() {
+		return cateList;
+	}
+
+	public void setCateList(List<String> cateList) {
+		this.cateList = cateList;
+	}
+
 	public Bean(HttpServletRequest request) {
 		this.request = request;
 	}

@@ -2,6 +2,7 @@ package com.fleamarket.mapper;
 
 import java.util.List;
 
+import com.fleamarket.mainDetail.model.CategoryDTO;
 import com.fleamarket.product.model.ItemDTO;
 import com.fleamarket.product.model.ItemImg;
 
@@ -14,4 +15,6 @@ public interface ProductMapper {
 	int itemPrice(int item_No);
 	int favCount(int itemBoard_No);
 	int itemQnaCount(int itemboard_no);
+	
+	List<String> cateList(CategoryDTO catename);
 }

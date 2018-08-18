@@ -8,6 +8,7 @@
 		<!-- <typeAlias type="kosta.bean.Board" alias="Board"/> -->
 		<typeAlias type="com.fleamarket.product.model.ItemDTO" alias="ItemDTO"/>
 		<typeAlias type="com.fleamarket.product.model.ItemImg" alias="ItemImg"/>
+		<typeAlias type="com.fleamarket.mainDetail.model.CategoryDTO" alias="CategoryDTO"/>
 	</typeAliases>
 	
 	<environments default="development">
