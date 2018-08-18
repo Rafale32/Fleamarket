@@ -8,4 +8,5 @@ public interface MemManageMapper {
 	//int insertBoard(Board board); 
 	MemManageDTO loginMember(@Param("email")String email, @Param("password")String password); 
 	
+	int joinMember(MemManageDTO dto);
 }

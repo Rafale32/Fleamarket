@@ -46,8 +46,15 @@ public class ProductController extends HttpServlet {
     	}
     	
     	
-    	if(command.equals("원하는작업.do")){
-    		//action  = new 원하는작업클래스();
+    	if(command.equals("product.do")){
+    		action  = new ProductAction();
+    		try {
+    			forward = action.execute(request, response);//포워드 리턴 해주지
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    	}else if(command.equals("productlist.do")){
+    		action  = new ProductListAction();
     		try {
     			forward = action.execute(request, response);//포워드 리턴 해주지
 			} catch (Exception e) {

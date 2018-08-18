@@ -5,7 +5,10 @@
 
 <configuration>
 	<typeAliases>
-		<!-- <typeAlias type="kosta.bean.Board" alias="Board"/> -->
+		<typeAlias type="com.fleamarket.mainDetail.model.MainDetailDTO" alias="MainDetailDTO"/>
+		<typeAlias type="com.fleamarket.mainDetail.model.TemDTO" alias="TemDTO"/>
+		<typeAlias type="com.fleamarket.mainDetail.model.CategoryDTO" alias="CategoryDTO"/>
+		<typeAlias type="com.fleamarket.mainDetail.model.SubCategoryDTO" alias="SubCategoryDTO"/>
 
 	</typeAliases>
 	
