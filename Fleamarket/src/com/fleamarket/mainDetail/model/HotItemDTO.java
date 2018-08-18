@@ -3,15 +3,15 @@ package com.fleamarket.mainDetail.model;
 import java.io.Serializable;
 
 public class HotItemDTO implements Serializable{
-  private String category_title;
-  private String sub_title;
-  private String thum_img;
-  private String title;
-  private int price;
-  private String itemboard_date;
-  private int delivery_fee;
-  private int hits;
-  private int ranking;
+  private String category_title;  //대 카테고리 이름
+  private String sub_title; //소 카테고리 이름
+  private String thum_img; // 썸네일 이미지
+  private String title; //상품 이름
+  private int price; //가격
+  private String itemboard_date; //작성일자
+  private int delivery_fee; //무료배송 여부
+  private int hits; //조회수
+  private int ranking; //조회수 순위
   
   public HotItemDTO(){}
 

@@ -35,7 +35,7 @@ public class MainDetailDAO {
 		return new SqlSessionFactoryBuilder().build(in);
 	}
 	
-	
+	//추천 상품
 	public List<RecommendDTO> recommend(){
 	  SqlSession sqlSession = getSqlSessionFactory().openSession();
 	  List<RecommendDTO> recommend = null;
@@ -49,6 +49,7 @@ public class MainDetailDAO {
 	  return recommend;
 	}
 	
+	//인기상품 리스트
 	public List<HotItemDTO> hotItemList(){
 	  SqlSession sqlSession = getSqlSessionFactory().openSession();
 	  List<HotItemDTO> hotItemList = null;
@@ -62,6 +63,7 @@ public class MainDetailDAO {
 	  return hotItemList;
 	}
 	
+	//큰카테고리 리스트
 	public List<CategoryDTO> categoryList(){
 	  SqlSession sqlSession = getSqlSessionFactory().openSession();
 	  List<CategoryDTO> categoryList = null;

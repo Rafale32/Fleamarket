@@ -17,6 +17,7 @@ public class MainDetailService {
     return service;
   }
   
+  
   public List<RecommendDTO> recommend(){
     List<RecommendDTO> recoList = new ArrayList<RecommendDTO>();
     recoList = dao.recommend();
@@ -29,6 +30,7 @@ public class MainDetailService {
     return hotItemList;
   }
   
+  //큰 카테고리 서비스 목록에 인기상품 리스트를 큰카테고리에 맞게 리스트로 나눠서 각각 분류하는 메소드
   public List<CategoryDTO> hotList(){
     List<CategoryDTO> categoryList = new ArrayList<CategoryDTO>();
     categoryList = dao.categoryList();
