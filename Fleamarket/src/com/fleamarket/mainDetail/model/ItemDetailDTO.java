@@ -7,7 +7,8 @@ import com.fleamarket.product.model.ItemDTO;
 
 
 public class ItemDetailDTO implements Serializable{ //마이바티스는 DTO 로 사용하는 객체 무조건 시리얼라이즈 필수적으로 해줘야함  
-	private String title;
+	private int itemboard_no;
+  private String title;
 	private int price;
 	private int fav_no;
 	private int hits;
@@ -20,14 +21,15 @@ public class ItemDetailDTO implements Serializable{ //마이바티스는 DTO 로
 	private String category_title;
 	private String sub_title;
 	private String tag;
-	private List<ItemImgDTO> imgList;
+	private String thum_img;
 	
 	public ItemDetailDTO(){}
 
-  public ItemDetailDTO(String title, int price, int fav_no, int hits, String itemboard_date, int item_state,
-      int change_ornot, int delivery_fee, String local, String itemboard_contents, String category_title,
-      String sub_title, String tag, List<ItemImgDTO> imgList) {
+  public ItemDetailDTO(int itemboard_no, String title, int price, int fav_no, int hits, String itemboard_date,
+      int item_state, int change_ornot, int delivery_fee, String local, String itemboard_contents,
+      String category_title, String sub_title, String tag, String thum_img) {
     super();
+    this.itemboard_no = itemboard_no;
     this.title = title;
     this.price = price;
     this.fav_no = fav_no;
@@ -41,8 +43,10 @@ public class ItemDetailDTO implements Serializable{ //마이바티스는 DTO 로
     this.category_title = category_title;
     this.sub_title = sub_title;
     this.tag = tag;
-    this.imgList = imgList;
+    this.thum_img = thum_img;
   }
+
+
 
   public String getTitle() {
     return title;
@@ -148,14 +152,21 @@ public class ItemDetailDTO implements Serializable{ //마이바티스는 DTO 로
     this.tag = tag;
   }
 
-  public List<ItemImgDTO> getImgList() {
-    return imgList;
+  public int getItemboard_no() {
+    return itemboard_no;
   }
 
-  public void setImgList(List<ItemImgDTO> imgList) {
-    this.imgList = imgList;
+  public void setItemboard_no(int itemboard_no) {
+    this.itemboard_no = itemboard_no;
   }
-	
-	
+
+  public String getThum_img() {
+    return thum_img;
+  }
+
+  public void setThum_img(String thum_img) {
+    this.thum_img = thum_img;
+  }
+
 	
 }

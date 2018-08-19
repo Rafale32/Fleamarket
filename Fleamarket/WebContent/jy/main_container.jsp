@@ -38,6 +38,8 @@
 		<a href="">${list.category_title}</a>
 		<br>
 		<c:forEach var="itemList" items="${list.hotList}">
+			<a href="">${itemList.itemboard_no }</a>
+			<a href="">${itemList.thum_img }</a>
 			<a href="detailAction.do?itemboard_no=${itemList.itemboard_no}">${itemList.title}</a>
 		</c:forEach>
 		<br>

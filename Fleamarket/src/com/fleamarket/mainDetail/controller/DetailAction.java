@@ -20,13 +20,13 @@ public class DetailAction implements Action{
     if(str != null){
       itemboard_no = Integer.parseInt(str);
     }
-    MainDetailDAO dao = MainDetailDAO.getInstance();
-    ItemDetailDTO itemDetail = dao.itemDetail(itemboard_no);
-    request.setAttribute("itemDetail", itemDetail);
     
     Bean bean = (Bean) request.getAttribute("bean");
     MainDetailService service = MainDetailService.getInstance();
     bean.setCategoryList(service.categoryList());
+    bean.setItemDetail(service.itemDetail(itemboard_no));
+    bean.setItemImgList(service.itemImgList(itemboard_no));
+    bean.setStoreInfo(service.storeInfo(itemboard_no));
     
     ActionForward forward = new ActionForward();
     forward.setPath("/template.jsp");

@@ -12,6 +12,7 @@
 		<typeAlias type="com.fleamarket.mainDetail.model.SubCategoryDTO" alias="SubCategoryDTO"/>
 		<typeAlias type="com.fleamarket.mainDetail.model.ItemDetailDTO" alias="ItemDetailDTO"/>
 		<typeAlias type="com.fleamarket.mainDetail.model.ItemImgDTO" alias="ItemImgDTO"/>
+		<typeAlias type="com.fleamarket.mainDetail.model.StoreInfoDTO" alias="StoreInfoDTO"/>
 
 	</typeAliases>
 	

@@ -31,14 +31,6 @@ public class HotItemDTO implements Serializable{
     this.ranking = ranking;
   }
 
-  public int getitemboard_no() {
-    return itemboard_no;
-  }
-
-  public void setitemboard_no(int itemboard_no) {
-    this.itemboard_no = itemboard_no;
-  }
-
   public String getCategory_title() {
     return category_title;
   }
@@ -110,6 +102,13 @@ public class HotItemDTO implements Serializable{
   public void setRanking(int ranking) {
     this.ranking = ranking;
   }
-  
-  
+
+  public int getItemboard_no() {
+    return itemboard_no;
+  }
+
+  public void setItemboard_no(int itemboard_no) {
+    this.itemboard_no = itemboard_no;
+  }
+
 }

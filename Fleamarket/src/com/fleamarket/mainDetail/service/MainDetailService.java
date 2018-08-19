@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fleamarket.mainDetail.model.HotListDTO;
+import com.fleamarket.mainDetail.model.ItemDetailDTO;
+import com.fleamarket.mainDetail.model.ItemImgDTO;
 import com.fleamarket.mainDetail.model.CategoryDTO;
 import com.fleamarket.mainDetail.model.HotItemDTO;
 import com.fleamarket.mainDetail.model.MainDetailDAO;
 import com.fleamarket.mainDetail.model.RecommendDTO;
+import com.fleamarket.mainDetail.model.StoreInfoDTO;
 import com.fleamarket.mainDetail.model.SubCategoryDTO;
 
 public class MainDetailService {
@@ -49,7 +52,18 @@ public class MainDetailService {
     }
     return categoryList;
   }
- 
+  
+  public List<ItemImgDTO> itemImgList(int itemboard_no){
+    List<ItemImgDTO> itemImgList = new ArrayList<ItemImgDTO>();
+    itemImgList = dao.itemImgList(itemboard_no);
+    return itemImgList;
+  }
+  
+  public ItemDetailDTO itemDetail(int itemboard_no){
+    ItemDetailDTO itemDetail = new ItemDetailDTO();
+    itemDetail = dao.itemDetail(itemboard_no);
+    return itemDetail;
+  }
   
   //큰 카테고리 서비스 목록에 인기상품 리스트를 큰카테고리에 맞게 리스트로 나눠서 각각 분류하는 메소드
   public List<HotListDTO> hotList(){
@@ -70,4 +84,12 @@ public class MainDetailService {
     return hotList;
   }
   
+  public StoreInfoDTO storeInfo(int itemboard_no){
+    StoreInfoDTO storeInfo = new StoreInfoDTO();
+    storeInfo = dao.storeInfo(itemboard_no);
+    List<ItemDetailDTO> storeItemList = new ArrayList<ItemDetailDTO>();
+    storeItemList = dao.storeItemList(storeInfo.getStore_no());
+    storeInfo.setItemList(storeItemList);
+    return storeInfo;
+  }
 }

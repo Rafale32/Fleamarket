@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import com.fleamarket.mainDetail.model.CategoryDTO;
 import com.fleamarket.mainDetail.model.HotItemDTO;
 import com.fleamarket.mainDetail.model.HotListDTO;
+import com.fleamarket.mainDetail.model.ItemDetailDTO;
+import com.fleamarket.mainDetail.model.ItemImgDTO;
 import com.fleamarket.memManage.model.MemManageDTO;
 import com.fleamarket.payment.model.DeliveryDTO_jh;
 import com.fleamarket.payment.model.PaymentDTO;
@@ -13,6 +15,7 @@ import com.fleamarket.payment.model.SpellDTO_jh;
 import com.fleamarket.product.model.ItemDTO;
 
 import com.fleamarket.mainDetail.model.RecommendDTO;
+import com.fleamarket.mainDetail.model.StoreInfoDTO;
 import com.fleamarket.mainDetail.model.SubCategoryDTO;
 
 
@@ -38,6 +41,9 @@ public class Bean {
 	private List<HotListDTO> hotList;
 	private List<CategoryDTO> categoryList;
 	private List<SubCategoryDTO> subCategoryList;
+	private List<ItemImgDTO> itemImgList;
+	private ItemDetailDTO itemDetail;
+	private StoreInfoDTO storeInfo;
 	
 	
 	public Bean(HttpServletRequest request) {
@@ -120,11 +126,36 @@ public class Bean {
   public void setSubCategoryList(List<SubCategoryDTO> subCategoryList) {
     this.subCategoryList = subCategoryList;
   }
+  
+  public List<ItemImgDTO> getItemImgList() {
+    return itemImgList;
+  }
+
+  public void setItemImgList(List<ItemImgDTO> itemImgList) {
+    this.itemImgList = itemImgList;
+  }
+
+  public ItemDetailDTO getItemDetail() {
+    return itemDetail;
+  }
+
+  public void setItemDetail(ItemDetailDTO itemDetail) {
+    this.itemDetail = itemDetail;
+  }
+
+  public StoreInfoDTO getStoreInfo() {
+    return storeInfo;
+  }
+
+  public void setStoreInfo(StoreInfoDTO storeInfo) {
+    this.storeInfo = storeInfo;
+  }
 
   public Bean(DeliveryDTO_jh deliveryDTO_jh, PaymentDTO paymentDTO, SpellDTO_jh spellDTO_jh, ItemDTO itemDTO,
       MemManageDTO memManageDTO, List<ItemDTO> itemList, HttpServletRequest request, List<RecommendDTO> recommend,
       List<HotItemDTO> hotItemList, List<HotListDTO> hotList, List<CategoryDTO> categoryList,
-      List<SubCategoryDTO> subCategoryList) {
+      List<SubCategoryDTO> subCategoryList, List<ItemImgDTO> itemImgList, ItemDetailDTO itemDetail,
+      StoreInfoDTO storeInfo) {
     super();
     this.deliveryDTO_jh = deliveryDTO_jh;
     this.paymentDTO = paymentDTO;
@@ -138,9 +169,11 @@ public class Bean {
     this.hotList = hotList;
     this.categoryList = categoryList;
     this.subCategoryList = subCategoryList;
+    this.itemImgList = itemImgList;
+    this.itemDetail = itemDetail;
+    this.storeInfo = storeInfo;
   }
-	
-	
- 
+
+  
 
 }

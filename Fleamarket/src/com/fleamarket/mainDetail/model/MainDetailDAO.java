@@ -37,9 +37,13 @@ public class MainDetailDAO {
 	
 	//추천 상품
 	public List<RecommendDTO> recommend(){
+	  //이 메소드에서 sql문 쓸거야
 	  SqlSession sqlSession = getSqlSessionFactory().openSession();
+	  
+	  //가져온 데이터를 넣을 공간을 만듬
 	  List<RecommendDTO> recommend = null;
 	  try {
+	    //sql문을 이용하여 DB에서 가져온 데이터를 리스트에 넣음~~~.(select id)();
       recommend = sqlSession.getMapper(MainDetailMapper.class).recommend();
     } catch (Exception e) {
       e.printStackTrace();
@@ -114,6 +118,45 @@ public class MainDetailDAO {
       sqlSession.close();
     }
 	  return itemDetail;
+	}
+	
+	public List<ItemImgDTO> itemImgList(int itemboard_no){
+	  SqlSession sqlSession = getSqlSessionFactory().openSession();
+	  List<ItemImgDTO> itemImgList = null;
+	  try {
+      itemImgList = sqlSession.getMapper(MainDetailMapper.class).itemImgList(itemboard_no);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      sqlSession.close();
+    }
+	  return itemImgList;
+	}
+	
+	public StoreInfoDTO storeInfo(int itemboard_no){
+	  SqlSession sqlSession = getSqlSessionFactory().openSession();
+	  StoreInfoDTO storeInfo = null;
+	  try {
+      storeInfo = sqlSession.getMapper(MainDetailMapper.class).storeInfo(itemboard_no);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      sqlSession.close();
+    }
+	  return storeInfo;
+	}
+	
+	public List<ItemDetailDTO> storeItemList(int store_no){
+	  SqlSession sqlSession = getSqlSessionFactory().openSession();
+	  List<ItemDetailDTO> storeItemList = null;
+	  try {
+      storeItemList = sqlSession.getMapper(MainDetailMapper.class).storeItem(store_no);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      sqlSession.close();
+    }
+	  return storeItemList;
 	}
 	
 }

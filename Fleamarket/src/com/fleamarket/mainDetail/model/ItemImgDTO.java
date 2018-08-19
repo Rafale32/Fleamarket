@@ -1,17 +1,19 @@
 package com.fleamarket.mainDetail.model;
 
-public class ItemImgDTO {
+import java.io.Serializable;
+
+public class ItemImgDTO implements Serializable{
   private int itemboard_no;
-  private int imb_no;
+  private int img_no;
   private String thum_img;
-  private String big_img;
+  private String big_img; 
   
   public ItemImgDTO(){}
 
-  public ItemImgDTO(int itemboard_no, int imb_no, String thum_img, String big_img) {
+  public ItemImgDTO(int itemboard_no, int img_no, String thum_img, String big_img) {
     super();
     this.itemboard_no = itemboard_no;
-    this.imb_no = imb_no;
+    this.img_no = img_no;
     this.thum_img = thum_img;
     this.big_img = big_img;
   }
@@ -24,12 +26,12 @@ public class ItemImgDTO {
     this.itemboard_no = itemboard_no;
   }
 
-  public int getImb_no() {
-    return imb_no;
+  public int getimg_no() {
+    return img_no;
   }
 
-  public void setImb_no(int imb_no) {
-    this.imb_no = imb_no;
+  public void setimg_no(int img_no) {
+    this.img_no = img_no;
   }
 
   public String getThum_img() {
