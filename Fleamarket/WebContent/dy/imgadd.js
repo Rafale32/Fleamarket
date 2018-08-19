@@ -41,6 +41,7 @@ $(document).ready(function() {
 	$("#subname").on("change", function(e) {
 		
 		var tmp = $("#subname").val();
+		$("#cate").empty();
 		
 		$.ajax({
 			url: "/Fleamarket/product/addproductform.do?catename="+tmp,
@@ -83,11 +84,11 @@ function handleImgsFilesSelect(e) {
 			$(".imgs_wrap").append(img_html);
 			
 			cnt++;
-			var img_input = "<input type='file' id='input_imgs"+ cnt +"' name='input_imgs"+cnt+"'/>";
+			var img_input = "<input type='file' id='inputimgs"+ cnt +"' name='inputimgs"+cnt+"'/>";
 			$("#imgfiles").append(img_input);
 			
 			//disabled="disabled"
-			var inputName = "input_imgs"+(cnt-1);
+			var inputName = "inputimgs"+(cnt-1);
 			$("#"+inputName).attr("disabled","disabled");
 			
 		}

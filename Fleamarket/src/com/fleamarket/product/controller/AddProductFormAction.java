@@ -31,14 +31,12 @@ public class AddProductFormAction implements Action {
 		request.setAttribute("forward", forward); // 컨테이너 경로 사용하기위한 등록
 		
 		String catename = request.getParameter("catename");
-		System.out.println(catename);
 		CategoryDTO cate = new CategoryDTO();
 		cate.setCategory_title(catename);
 		
 		
 		Bean bean = (Bean)request.getAttribute("bean");
 		bean.setCateList(ProductDAO.getInstance().cateList(cate));
-		System.out.println(bean.getCateList().toString());
 		
 		
 		JSONArray ja = new JSONArray();

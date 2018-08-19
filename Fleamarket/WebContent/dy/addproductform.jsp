@@ -26,18 +26,24 @@
 
 		<form action="/Fleamarket/product/addproduct.do" method="post" enctype="multipart/form-data" name="multipleUpload">
 		
-		   <div>
-		       <p class="title">업로드할 이미지를 선택해 주세요</p>
+ 		   
+ 		       <p class="title">업로드할 이미지를 선택해 주세요</p>
 		       <div id="imgfiles">
-		       	<input type="file" id="input_imgs0" name="input_imgs0"/>
+		       		<input type="file" id="inputimgs0" name="inputimgs0"/>
 		       </div>
-		   </div>
+		   
 		   <div>
 		       <div class="imgs_wrap">
 		           
 		       </div>
 		   </div>
-		
+		   
+		   <!-- <div>
+ 		   <input type="file" id="inputimg1" name="inputimg1"/>
+		   <input type="file" id="inputimg2" name="inputimg2"/>
+		   <input type="file" id="inputimg3" name="inputimg3"/>  이건 들어가는대 왜 위에거는 안됨?
+			</div> -->
+			
 			<div>
 				<label >카테고리:</label>
 				<div>
