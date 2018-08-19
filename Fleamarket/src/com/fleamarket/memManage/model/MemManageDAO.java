@@ -75,7 +75,7 @@ public class MemManageDAO {
 		return re;
 	}//joinBoard
 	
-	public MemManageDTO detailMember(String email){
+	public MemManageDTO detailMember(String email){ //회원 상세 보기
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		MemManageDTO dto = null;
 		
@@ -89,6 +89,42 @@ public class MemManageDAO {
 		return dto;
 	}//detailMember
 	
+	public int updateMember(MemManageDTO dto){
+		int re = -1;
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			re = sqlSession.getMapper(MemManageMapper.class).updateMember(dto);
+			if(re>0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
+		
+		return re;
+	}//updateMember
 	
-	
+	public int deleteMember(MemManageDTO dto){//회원삭제
+		
+		int re = 0;
+		SqlSession sqlSession = getSqlSessionFactory().openSession();		
+		try {
+			re = sqlSession.getMapper(MemManageMapper.class).updateMember(dto);
+			if(re>0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
+		
+		return re;
+	}//deleteMember
 }

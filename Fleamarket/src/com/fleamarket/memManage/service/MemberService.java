@@ -26,11 +26,30 @@ public class MemberService {
 		dto.setName(request.getParameter("name"));
 		dto.setPhone(request.getParameter("phone"));
 		dto.setAddress(request.getParameter("address"));
-		System.out.println(dto.getAddress()+"주소가 들오온다");
+//		System.out.println(dto.getAddress()+"주소가 들오온다");
 		dto.setAddress2(request.getParameter("address2"));
-		System.out.println(dto.getAddress2()+"주소야주소야!!!!!!");
+//		System.out.println(dto.getAddress2()+"주소야주소야!!!!!!");
 		
 		
 		return dao.joinBoard(dto);
 	}//joinBoardService
+	
+	public int updateMemberService(HttpServletRequest request)throws Exception{
+		MemManageDTO dto = new MemManageDTO();
+		
+		dto.setPassword(request.getParameter("password"));
+		dto.setName(request.getParameter("name"));
+		dto.setPhone(request.getParameter("phone"));
+		dto.setAddress(request.getParameter("address"));
+		dto.setAddress2(request.getParameter("address2"));
+		
+		System.out.println(dto.getName()+"이름이 수정된다.");
+		
+		return dao.updateMember(dto);
+	}//updateMember
+	
+	public void deleteMember(String email){
+		
+	}
+	
 }
