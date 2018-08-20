@@ -21,13 +21,13 @@
 	<select id="itemList" resultType="ItemDTO" parameterType="String">
 		select * from itemboard ite 
 		inner Join store st on ite.STORE_NO = st.STORE_NO
-		where email=#{email }
+		where email=#{email } order by ite.ITEMBOARD_NO
 	</select>
 	
 	<select id="itemListByStore" resultType="ItemDTO" parameterType="String">
 		select * from itemboard ite 
 		inner Join store st on ite.STORE_NO = st.STORE_NO
-		where st.STORE_NAME=#{storeName }
+		where st.STORE_NAME=#{storeName } order by ite.ITEMBOARD_NO
 	</select>
 	
  	<select id="itemImgList" parameterType="int" resultType="ItemImg">
@@ -110,5 +110,10 @@
 		  #{thum_Img }
 		)
 	</insert>
+	
+	
+	<select id="countItemBoard" resultType="int">
+		select count(ITEMBOARD_NO) from itemboard
+	</select>
 	
 </mapper>

@@ -10,7 +10,7 @@ import com.fleamarket.payment.model.DeliveryDTO_jh;
 import com.fleamarket.payment.model.PaymentDTO;
 import com.fleamarket.payment.model.SpellDTO_jh;
 import com.fleamarket.product.model.ItemDTO;
-
+import com.fleamarket.product.model.PageModel;
 import com.fleamarket.mainDetail.model.RecommendDTO;
 
 
@@ -29,6 +29,7 @@ public class Bean {
 	List<ItemDTO> itemList;
 	private HttpServletRequest request;
 	List<String> cateList; //카테고리 리스트
+	PageModel pageModel;//페이지 처리위한넘
 	
 	//추천상품리스트 추가(주영)
 	private List<RecommendDTO> recommend;
@@ -36,16 +37,20 @@ public class Bean {
 	private List<HotItemDTO> hotItemList;
 	private List<CategoryDTO> categoryList;
 	
-	
-	
+
+
+	public PageModel getPageModel() {
+		return pageModel;
+	}
+	public void setPageModel(PageModel pageModel) {
+		this.pageModel = pageModel;
+	}
 	public List<String> getCateList() {
 		return cateList;
 	}
-
 	public void setCateList(List<String> cateList) {
 		this.cateList = cateList;
 	}
-
 	public Bean(HttpServletRequest request) {
 		this.request = request;
 	}

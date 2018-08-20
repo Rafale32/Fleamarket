@@ -25,12 +25,26 @@
 			</c:when>
 			<c:when test="${param.email != '' }">
 				<td><a href="/Fleamarket/product/productmodify.do">수정</a> 
-				<a href="/Fleamarket/product/productdelete.do">삭제</a> </td> </tr>
+				<a href="/Fleamarket/product/productdelete.do?itemboard_No=${tmp.itemboard_No }">삭제</a> </td> </tr>
 			</c:when>
 		</c:choose>
 			 
 		</c:forEach>
 	</table>
+	
+	<c:if test="${bean.pageModel.startPage>5 }">
+		<a href="/Fleamarket/product/productlist.do?email=${member.email }&pageNum=${bean.pageModel.startPage - 1 }">[이전]</a>
+	</c:if>
+	
+	<c:forEach var="pageNo"  begin="${bean.pageModel.startPage}" end="${bean.pageModel.endPage }">
+		<c:if test="${bean.pageModel.requestPage == pageNo }"><b></c:if>
+		<a href="/Fleamarket/product/productlist.do?email=${member.email }&pageNum=${pageNo }">[${pageNo }]</a>
+		<c:if test="${bean.pageModel.requestPage == pageNo }"></b></c:if>
+	</c:forEach>
+	
+	<c:if test="${bean.pageModel.endPage < bean.pageModel.totalPageCount}">
+		<a href="/Fleamarket/product/productlist.do?email=${member.email }&pageNum=${bean.pageModel.startPage + 5 }">[이후]</a>
+	</c:if>
 	
 </body>
 </html>

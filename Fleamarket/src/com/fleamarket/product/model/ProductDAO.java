@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -11,6 +12,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import com.fleamarket.mainDetail.model.CategoryDTO;
 import com.fleamarket.mapper.BoardMapper;
 import com.fleamarket.mapper.ProductMapper;
+import com.fleamarket.product.service.ProductListService;
 
 
 public class ProductDAO {
@@ -40,7 +42,7 @@ public class ProductDAO {
 	}
 	
 	//로그인한 상태의 아이디로 찾아야하는 상태이기 때문에 그 이메일로 검색해서 찾아야함
-	public List<ItemDTO> productList(String email){
+	public List<ItemDTO> productList(String email, int startRow){
 		
 		SqlSession sqlsession = getSqlSessionFactory().openSession();
 		
@@ -48,17 +50,17 @@ public class ProductDAO {
 		
 		try {
 			
-			list = sqlsession.getMapper(ProductMapper.class).itemList(email);
+			list = sqlsession.getMapper(ProductMapper.class).itemList(new RowBounds(startRow, ProductListService.PAGE_SIZE),email);
 			
 			for(ItemDTO  tmp : list){
 				if(tmp.getItemboard_No() != 0){
 					tmp.setItemImgList(sqlsession.getMapper(ProductMapper.class).itemImgList(tmp.getItemboard_No()));
 				}	
 					
-					tmp.setPrice(sqlsession.getMapper(ProductMapper.class).itemPrice(tmp.getItem_No()));
-					tmp.setFavCount(sqlsession.getMapper(ProductMapper.class).favCount(tmp.getItemboard_No()));
-					tmp.setItemQnaCount(sqlsession.getMapper(ProductMapper.class).itemQnaCount(tmp.getItemboard_No()));
-					//itemQnaCount
+				tmp.setPrice(sqlsession.getMapper(ProductMapper.class).itemPrice(tmp.getItem_No()));
+				tmp.setFavCount(sqlsession.getMapper(ProductMapper.class).favCount(tmp.getItemboard_No()));
+				tmp.setItemQnaCount(sqlsession.getMapper(ProductMapper.class).itemQnaCount(tmp.getItemboard_No()));
+				//itemQnaCount
 			}
 			
 		} catch (Exception e) {
@@ -70,7 +72,7 @@ public class ProductDAO {
 		return list;
 	}
 	
-	public List<ItemDTO> productListByStore(String storeName){
+	public List<ItemDTO> productListByStore(String storeName, int startRow){
 		
 		SqlSession sqlsession = getSqlSessionFactory().openSession();
 		
@@ -78,7 +80,7 @@ public class ProductDAO {
 		
 		try {
 			
-			list = sqlsession.getMapper(ProductMapper.class).itemListByStore(storeName);
+			list = sqlsession.getMapper(ProductMapper.class).itemListByStore(new RowBounds(startRow, ProductListService.PAGE_SIZE) , storeName);
 			
 			for(ItemDTO  tmp : list){
 				if(tmp.getItemboard_No() != 0){
@@ -148,5 +150,24 @@ public class ProductDAO {
 		
 		return re3;
 	}
+	
+	
+	
+	public int countItemBoard(){ //페이징 처리 위한 아이템 전체 갯수 
+		int max = 0;
+		
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+				max= sqlSession.getMapper(ProductMapper.class).countItemBoard();
+			} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
+		
+		return max;
+	}
+	
 	
 }

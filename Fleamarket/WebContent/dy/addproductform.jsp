@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset="UTF-8">
     <script type="text/javascript" src="/Fleamarket/dy/jquery-3.1.0.js" charset="utf-8"></script>
     <script type="text/javascript" src="/Fleamarket/dy/imgadd.js" charset="utf-8"></script>
-
+    
     <style type="text/css">
         .imgs_wrap {
             width: 600px;
@@ -23,7 +23,7 @@
 
 <body>
 	<br>
-
+	
 		<form action="/Fleamarket/product/addproduct.do" method="post" enctype="multipart/form-data" name="multipleUpload">
 		
  		   
@@ -149,7 +149,6 @@
 					<input type="text" placeholder="선택 사항 (예: 아이폰, 케이스)" width="140px" name="tag"/>
 				</div>
 			</div>
-			
 				<label>수량:</label>
 				<input type="number" placeholder="1" value="1" name="amount"/>
 				
