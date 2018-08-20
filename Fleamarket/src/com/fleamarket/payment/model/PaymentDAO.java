@@ -40,9 +40,9 @@ public class PaymentDAO {
     SqlSession sqlSession = getSqlSessionFactory().openSession();
 
     try {
-      
-      re=sqlSession.getMapper(PaymentMapper.class).insertDelivery(deliveryDTO_jh);
-       
+
+      re = sqlSession.getMapper(PaymentMapper.class).insertDelivery(deliveryDTO_jh);
+
       if (re > 0) {
         sqlSession.commit();
       } else {
@@ -55,16 +55,15 @@ public class PaymentDAO {
     }
     return re;
   } // insertDeliveryDTO
-  
 
   // 20180817 천재헌, 회원정보 받아올거
   public MemManageDTO selectMember(String email) {
     SqlSession sqlSession = getSqlSessionFactory().openSession();
     MemManageDTO memManageDTO = null;
-    
+
     try {
-      
-      memManageDTO =sqlSession.getMapper(PaymentMapper.class).selectMember(email);
+
+      memManageDTO = sqlSession.getMapper(PaymentMapper.class).selectMember(email);
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
@@ -72,14 +71,13 @@ public class PaymentDAO {
     }
     return memManageDTO;
   } // selectMember
-  
 
   // 20180817 천재헌, 상품정보 받아올거
   public ItemDTO selectItem(int item_no) {
     SqlSession sqlSession = getSqlSessionFactory().openSession();
     ItemDTO itemDTO = null;
     try {
-      
+
       itemDTO = sqlSession.getMapper(PaymentMapper.class).selectItem(item_no);
 
     } catch (Exception e) {

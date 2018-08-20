@@ -5,14 +5,18 @@
 
 <configuration>
 	<typeAliases>
+<!--   20180816 재헌 -->
 		<typeAlias type="com.fleamarket.payment.model.DeliveryDTO_jh" alias="DeliveryDTO_jh"/>
-		<typeAlias type="com.fleamarket.payment.model.PuerchaseDTO_gy" alias ="PuerchaseDTO_gy"/>
-    
-<!--     20180817 재헌 추가 -->
+<!--   20180817 재헌 추가 -->
 		<typeAlias type="com.fleamarket.payment.model.PaymentDTO" alias ="PaymentDTO"/>
 		<typeAlias type="com.fleamarket.payment.model.SpellDTO_jh" alias ="SpellDTO_jh"/>
 		<typeAlias type="com.fleamarket.product.model.ItemDTO" alias ="ItemDTO"/>
 		<typeAlias type="com.fleamarket.memManage.model.MemManageDTO" alias ="MemManageDTO"/>
+    
+<!--     건엽 -->
+    <typeAlias type="com.fleamarket.payment.model.PuerchaseDTO_gy" alias ="PuerchaseDTO_gy"/>
+    <typeAlias type="com.fleamarket.payment.model.SellProductDTO_gy" alias ="SellProductDTO_gy"/>
+    <typeAlias type="com.fleamarket.payment.model.DeliveryDTO_gy" alias ="DeliveryDTO_gy"/>
 
 	</typeAliases>
 	

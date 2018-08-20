@@ -61,27 +61,21 @@
   
   //20180818 재헌 포인트전액사용
   function allPoint(point) {
-    document.getElementById('setUsePoint').value = point;
+    document.getElementById('usePoint').value = point;
   }
   //20180818 재헌 포인트 적용
-//   function inputPoint(use) {
+  function inputPoint(use) {
+    document.getElementById('finalPoint').text() = use;
 //     $('#getUsePoint').text(use);
-//   }
+  }
   
 </script>
 
 
 
 <script>
-$(function(){
-  var total=0;
-  $('#allUseButton').click(function() {
-//     alert(1);
-    var allPoint = parseInt($(this).find('#havePoint').text().replace(/^[^\d.]/,''));
-    alert(allPoint);
-//     document.getElementById('#usePoint').value = document.getElementById('#havePoint').value;
-  });
-  
+// $(function(){
+//   var total=0;
 //   $('#setUsePoint').change(function() {
     
     
@@ -89,7 +83,7 @@ $(function(){
   
   
   
-});
+// });
 </script>
 <title>주문/결제</title>
 </head>
@@ -147,24 +141,20 @@ $(function(){
     <table border="1">
       <tr>
         <td>잔여포인트</td>
-        <td id="havePoint">${bean.memManageDTO.point}</td>
+        <c:set var="point" value="${bean.memManageDTO.point}"></c:set>
+        <td id="havePoint"><fmt:formatNumber value="${point}" />원</td>
       </tr>
       <tr>
         <td>사용</td>
         <td>
-<%--           <input type="text" id="usePoint" value="${use}" --%>
-<!--                  onchange="inputPoint(value)"> -->
-          <input type="text"  id="usePoint" value="${use}">
+          <!--         버튼 클릭시 포인트 보이는 부분 변경 20180818 재헌 -->
+              <c:set var="use" value="0"></c:set>
+          <input type="text" id="usePoint" value="${use}" onchange="inputPoint(value)">
         </td>
       </tr>
     </table>
-    <%--     <c:set var="point" value="${bean.memManageDTO.point}"></c:set> --%>
-    <%--     잔여포인트 : <fmt:formatNumber value="${point}" />원<br> --%>
-    <%--     <c:set var="use" value="0"></c:set> --%>
-    <%--     사용 <input type="text" id="setUsePoint" value="${use}" onchange="inputPoint(value)"> --%>
-    <!--         버튼 클릭시 포인트 보이는 부분 변경 20180818 재헌 -->
-    <input type="button" id="allUseButton" value="전액 사용">
-<%--     <input type="button" value="전액 사용" onclick="allPoint(${point})"> --%>
+
+    <input type="button" id="allUseButton" value="전액 사용" onclick="allPoint(${point})">
   </div>
 
   <!-- 결제금액 -->
@@ -176,38 +166,41 @@ $(function(){
       <tr>
         <td>상품금액</td>
         <td id="price">
-          <%--         <fmt:formatNumber value="${price}" />원 --%>
-
+          <fmt:formatNumber value="${price}" />원
         </td>
       </tr>
       <tr>
         <td>배송비</td>
         <td id="delivery_fee">
-          <!--  배송 유무 확인 --> <%--           <c:choose> --%> <%--             <c:when test="${bean.itemDTO.delivery_fee == '1'}"> --%>
-          <%--               <c:set var="deli_fee" value="2500"></c:set> --%>
-          <%--               <fmt:formatNumber value="${deli_fee}" />원 --%>
-          <%--           </c:when> --%> <%--             <c:otherwise> --%>
-          <%--               <c:set var="deli_fee" value="0"></c:set> --%>
-          <!--               무료배송 --> <%--           </c:otherwise> --%>
-          <%--           </c:choose> --%>
+          <!--  배송 유무 확인 -->
+          <c:choose>
+            <c:when test="${bean.itemDTO.delivery_fee == '1'}">
+              <c:set var="deli_fee" value="2500"></c:set>
+              <fmt:formatNumber value="${deli_fee}" />원
+                    </c:when>
+            <c:otherwise>
+              <c:set var="deli_fee" value="0"></c:set>
+               무료배송
+            </c:otherwise>
+          </c:choose>
 
         </td>
       </tr>
 
       <tr>
         <td>포인트</td>
-        <td id="point">0원</td>
+        <td id="finalPoint">0원</td>
       </tr>
       <tr>
         <td>수수료</td>
-        <%--         <td id="fee"><fmt:formatNumber value="1000" />원</td> --%>
-        <td id="fee"></td>
+        <td id="fee"><fmt:formatNumber value="1000" />원</td>
+        <!--         <td id="fee"></td> -->
       </tr>
       <tr>
         <td>최종결제금액</td>
-        <%--         <td id="total"><fmt:formatNumber --%>
-        <%--             value="${price+1000+deli_fee}" />원</td> --%>
-        <td id="total"></td>
+        <td id="total"><fmt:formatNumber
+            value="${price+1000+deli_fee}" />원</td>
+        <!--         <td id="total"></td> -->
       </tr>
     </table>
   </div>

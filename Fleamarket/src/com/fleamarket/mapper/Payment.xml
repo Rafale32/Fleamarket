@@ -30,11 +30,40 @@
 <!--    select * from itemboard where item_no= #{item_no}; -->
   </select>
   
+  
+<!-- 건엽 -->
   <select id="listPuerchaseBoard" resultType="PuerchaseDTO_gy">
-	 select distinct A.Title , S.Store_Name , Im.Thum_Img , Pa.Pay_Date
-	 from pay pa, spell sp, itemBoard a , store s, itemimg im where
-	 A.Store_No = S.Store_No and Im.Itemboard_No = A.Itemboard_No and Sp.Email = S.Email and
-	 Pa.Spell_No = Sp.Spell_No
+	select distinct Itb.Title ,St.Store_Name,It.Delivery_State,It.Item_No,Ite.Thum_Img,It.Price,Pa.Pay_Date
+      from item it, Spell sp,Delivery de,Itemboard itb,Store st,Itemimg ite, pay pa
+      where It.Item_No = Sp.Item_No
+      and De.Spell_No = Sp.Spell_No
+      and Itb.Item_No = It.Item_No
+      and St.Store_No = Itb.Store_No
+      and Ite.Itemboard_No = Itb.Itemboard_No
+      and Pa.Spell_No = Sp.Spell_No
 	</select>
 	
+	<!--밑에건 판매 내역에서 값 이미지 제목 날자를 뽑아오는 쿼리 내용 - 건엽 -->
+
+	<select id="listSellBoard" resultType="SellProductDTO_gy">
+	    select distinct Itb.Title ,St.Store_Name,It.Delivery_State,It.Item_No,Ite.Thum_Img,It.Price,Pa.Pay_Date
+      from item it, Spell sp,Delivery de,Itemboard itb,Store st,Itemimg ite, pay pa
+      where It.Item_No = Sp.Item_No
+      and De.Spell_No = Sp.Spell_No
+      and Itb.Item_No = It.Item_No
+      and St.Store_No = Itb.Store_No
+      and Ite.Itemboard_No = Itb.Itemboard_No
+      and Pa.Spell_No = Sp.Spell_No
+	</select>
+	
+	<!-- 업데이트 문 입니다. 딜리버리 스테이트 라고 쳤지만 물품 아이디 입니다.-->
+	
+	<update id="changeDelieryState" parameterType="DeliveryDTO_gy">
+	update item set Delivery_State =4  where item_no = #{item_no}
+	</update>
+	
+	<update id="changeDelieryStateSell" parameterType="DeliveryDTO_gy">
+	update item set Delivery_State =3  where item_no = #{item_no}
+	</update>
+  
 </mapper>
