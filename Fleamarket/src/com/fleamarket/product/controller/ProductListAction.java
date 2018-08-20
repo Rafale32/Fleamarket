@@ -11,6 +11,7 @@ import com.fleamarket.bean.ActionForward;
 import com.fleamarket.bean.Bean;
 import com.fleamarket.memManage.model.MemManageDTO;
 import com.fleamarket.product.model.ItemDTO;
+import com.fleamarket.product.model.ItemImg;
 import com.fleamarket.product.service.ProductListService;
 
 public class ProductListAction implements Action {
@@ -45,9 +46,16 @@ public class ProductListAction implements Action {
 			resultList = plService.productListService(mmDTO.getEmail(), storeName);
 		}
 		
+		//이미지 경로는 이렇게 전체 리얼패스를 쓰는게 아니라 프로젝트 상의 경로로 써야함  /Fleamarket/productimg/${tmp2.thum_Img } 이런식으로
+/*		String realPath = request.getRealPath("/productimg");
+		for(ItemDTO tmp : resultList){
+			for(ItemImg tmp2 : tmp.getItemImgList()){
+				tmp2.setRealThumImg(realPath+"\\"+tmp2.getThum_Img());
+			}
+		}*/
+		
 		Bean bean = (Bean)request.getAttribute("bean");
 		bean.setItemList(resultList);
-		
 		
 		return forward;
 		

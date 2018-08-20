@@ -7,6 +7,8 @@ import com.fleamarket.product.model.ProductDAO;
 
 public class ProductListService {
 	
+	public static final int PAGE_SIZE = 2;//페이지당 2개씩 나중에 값늘어나면 5개씩
+	
 	private static ProductListService service = new ProductListService();
 	private static ProductDAO dao;
 	

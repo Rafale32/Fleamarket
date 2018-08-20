@@ -17,4 +17,8 @@ public interface ProductMapper {
 	int itemQnaCount(int itemboard_no);
 	
 	List<String> cateList(CategoryDTO catename);
+	
+	int insertItem(ItemDTO itemDTO);
+	int insertItemBoard(ItemDTO itemDTO);
+	int insertImgs(ItemImg itemImg);
 }

@@ -12,10 +12,13 @@
 	<table border="1">
 		<tr> <td>상품사진</td> <td>물품명</td> <td>가격</td> <td>찜/댓글</td> <td>최근 수정일</td> <td>기능</td> </tr>
 		<c:forEach items="${bean.itemList }" var="tmp">
-			<tr> <td width="200px" height="200px"> <c:forEach items="${tmp.itemImgList }" var="tmp2">
-				${tmp2.thum_Img }
-			</c:forEach> </td> 
-			 <td>${tmp.title }</td>  <td>${tmp.price }</td> <td>${tmp.favCount } / ${tmp.itemQnaCount }</td> <td>${tmp.itemboard_Date }</td> 
+			<tr> <td width="100px" height="100px"> 
+				<c:forEach items="${tmp.itemImgList }" var="tmp2" begin="0" end="0">
+					<img src="/Fleamarket/productimg/${tmp2.thum_Img }" width="200px" height="150">
+				</c:forEach> 
+			</td> 
+			 <td><a href="/Fleamarket/maindetail/detailAction.do?itemboard_no=${tmp.itemboard_No }" >${tmp.title }</a></td>  
+			 <td>${tmp.price }</td> <td>${tmp.favCount } / ${tmp.itemQnaCount }</td> <td>${tmp.itemboard_Date }</td> 
 		<c:choose>
 			<c:when test="${param.store_name != null}">
 				

@@ -30,9 +30,14 @@
 		where st.STORE_NAME=#{storeName }
 	</select>
 	
-	<select id="itemImgList" parameterType="int" resultType="ItemImg">
+ 	<select id="itemImgList" parameterType="int" resultType="ItemImg">
 		select * from itemimg where ITEMBOARD_NO = #{itemboard_No }
 	</select>
+	
+<!-- 	<select id="itemImgList" parameterType="int" resultType="ItemImg">
+		select * from itemimg where ITEMBOARD_NO = #{itemboard_No } and IMG_NO=(select min(img_no) 
+		from itemimg where ITEMBOARD_NO = #{itemboard_No });
+	</select> 일단 아이템 이미지만 하나씩만 가지고 오게 할려고 아래걸로 바꿈 썸네일 이미지 하나만 있으면 되니까 근대에러왜남 -->
 
 	<select id="itemPrice" parameterType="int" resultType="int">
 		select price from item where ITEM_NO=#{item_No }
@@ -58,5 +63,52 @@
 		</if>
 	</select>
 	
+	
+	
+	
+	
+	<insert id="insertItem" parameterType="ItemDTO">
+		INSERT  into item(item_no, price, amount, delivery_fee, delivery_state, item_state) 
+			values (
+			  (select max(ITEM_NO) from item)+1,
+			  #{price },
+			  #{amount },
+			  #{delivery_Fee },
+			  1,
+			  #{item_State }
+			)
+	</insert>
+	
+	<!-- 이거 수정해놔봐 메인카테고리 cateName 이름 디비랑 똑같이 -->
+	<insert id="insertItemBoard" parameterType="ItemDTO">
+		INSERT  into itemboard (sub_no, itemboard_date, local, title, itemboard_contents, tag, 
+		hits, recommend_ornot, change_ornot, item_no, itemboard_no, store_no)
+			values(
+			  (select sub_no from CATEGORY_SUB su inner join  CATEGORY ma
+				on su.CATEGORY_NO = ma.CATEGORY_NO 
+				where su.SUB_TITLE = #{sub_Title } and ma.CATEGORY_TITLE = #{category_Title } ),
+			  sysdate,
+			  #{local },
+			  #{title },
+			  #{itemboard_Contents },
+			  #{tag },
+			  0,
+			  0,
+			  #{change_Ornot },
+			  (select max(ITEM_NO) from item),
+			  (select max(itemboard_no) from itemboard)+1,
+			  (select store_no from store where email = #{email })
+			)
+	</insert>
+	
+
+	<insert id="insertImgs" parameterType="ItemImg">
+		insert into itemimg(img_no, itemboard_no, big_img, thum_img ) values(
+		  (select max(IMG_NO) from itemimg)+1,
+		  (select max(itemboard_no) from itemboard),
+		  #{big_Img },
+		  #{thum_Img }
+		)
+	</insert>
 	
 </mapper>

@@ -12,6 +12,7 @@ import com.fleamarket.mainDetail.model.CategoryDTO;
 import com.fleamarket.mapper.BoardMapper;
 import com.fleamarket.mapper.ProductMapper;
 
+
 public class ProductDAO {
 	
 	private static ProductDAO dao = new ProductDAO();
@@ -120,5 +121,32 @@ public class ProductDAO {
 	}
 	
 	
+	public int insertItemNBoard(ItemDTO itemDTO){
+		int re1 = -1;
+		int re2 = -1;
+		int re3 = -1;
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			re1 = sqlSession.getMapper(ProductMapper.class).insertItem(itemDTO);
+			re2 = sqlSession.getMapper(ProductMapper.class).insertItemBoard(itemDTO);
+			for(ItemImg tmp : itemDTO.getItemImgList()){
+				re3 = sqlSession.getMapper(ProductMapper.class).insertImgs(tmp);
+			}
+			if(re1>0 && re2>0 && re3>0){//정상처리
+				sqlSession.commit();
+				re3 = 1;
+			}else{//비정상 처리
+				sqlSession.rollback();
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
+		
+		return re3;
+	}
 	
 }

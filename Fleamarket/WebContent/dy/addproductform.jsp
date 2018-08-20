@@ -28,10 +28,15 @@
 		
  		   
  		       <p class="title">업로드할 이미지를 선택해 주세요</p>
-		       <div id="imgfiles">
+ 		       
+ 		       
+		      <div id="imgfiles">
 		       		<input type="file" id="inputimgs0" name="inputimgs0"/>
+		       		<input type="file" id="inputimgs1" name="inputimgs1"/>
+		       		<input type="file" id="inputimgs2" name="inputimgs2"/>
+		       		<input type="file" id="inputimgs3" name="inputimgs3"/>
+		       		<input type="file" id="inputimgs4" name="inputimgs4"/>
 		       </div>
-		   
 		   <div>
 		       <div class="imgs_wrap">
 		           
@@ -81,8 +86,7 @@
 				<label>거래지역:</label>
 
 				<div>
-					<input type="text" placeholder="선호 거래 지역" autocomplete="on" value="" disabled=""
-					name="local">
+					<input type="text" placeholder="선호 거래 지역" autocomplete="on" value="" name="local">
 
 				</div>
 				<div >
@@ -108,17 +112,18 @@
 				</div>
 			</div>
 			<div>
-				<label >제목:</label>
+				<label >제목(상품명):</label>
 
 				<div>
-					<input type="text" class="form-control" id="input_name" placeholder="제목 (최대 40자)" autocomplete="on" />
+					<input type="text" class="form-control" id="input_name" placeholder="제목 (최대 100자)" autocomplete="on" 
+					name="title"/>
 				</div>
 			</div>
 			<div>
 				<label>가격:</label>
 
 				<div >
-					<input placeholder="10000 (가격은 숫자로 만 입력)" >
+					<input type="number" placeholder="10000 (가격은 숫자로 만 입력)"  name="price">
 
 					<div>
 						<label> <input type="checkbox" name="delivery_fee">택배비포함
@@ -146,8 +151,9 @@
 			</div>
 			
 				<label>수량:</label>
-				<input type="text" placeholder="1" value="1" name="amount"/>
+				<input type="number" placeholder="1" value="1" name="amount"/>
 				
+				<br>
 				<input type="submit" value="등록">
 		</form>
 

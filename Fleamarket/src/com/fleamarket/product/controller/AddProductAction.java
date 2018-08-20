@@ -1,5 +1,10 @@
 package com.fleamarket.product.controller;
 
+
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,11 +25,12 @@ public class AddProductAction implements Action {
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("/Fleamarket/product/productlist.do?email="+email); 
-		forward.setRedirect(true); 
+		forward.setRedirect(true);
 		
-		new AddProductService(request, response);
+		AddProductService addpro = AddProductService.getInstance();
+		addpro.insertItemNBoard(request, response);
 		
-		return null; //실험 해보고 null 값 바꿔줘라 
+		return forward; //실험 해보고 null 값 바꿔줘라 
 	}
 
 }
