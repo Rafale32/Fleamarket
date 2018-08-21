@@ -1,6 +1,7 @@
 package com.fleamarket.memManage.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 public class MemManageDTO implements Serializable{ //마이바티스는 DTO 로 사용하는 객체 무조건 시리얼라이즈 필수적으로 해줘야함  
@@ -15,6 +16,7 @@ public class MemManageDTO implements Serializable{ //마이바티스는 DTO 로 
 	private String stop_start; //정지 시작일
 	private String stop_end;	// 정지 종료일
 	private int admin;	//관리자 상태확인
+	
 
   public MemManageDTO() {
   }

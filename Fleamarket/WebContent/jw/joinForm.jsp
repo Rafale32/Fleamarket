@@ -63,7 +63,7 @@
 	
 	<form action="/Fleamarket/memmanage/joinAction.do" method="post" name="frm">
 	
-	EMAIL : <input type="text" name="email">
+	EMAIL : <input type="email" id="email" name="email">
 			<input type="button" value="중복 확인" onclick="emailCheck()">
 			<input type="hidden" name="emailDuplication">
 			<br><br>
@@ -83,8 +83,6 @@
 
 	</form>
 	</div>
-
-
 
 </body>
 </html>

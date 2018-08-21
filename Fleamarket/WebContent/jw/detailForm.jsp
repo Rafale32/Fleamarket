@@ -13,30 +13,30 @@
 	<table width="500" border="2" cellpadding="0.5" cellspacing="0">
 		<tr> 
 			<th>이메일</th>	
-		 	<td>${member.email }</td>
+		 	<td>${bean.memManageDTO.email }</td>
 		</tr>
 		<tr>
 			<th> 이   름</th> 
-		 	<td> ${member.name}</td>
+		 	<td> ${bean.memManageDTO.name}</td>
 		</tr>
 		<tr> 
 			<th>전화번호</th>
-			<td> ${member.phone }</td>
+			<td> ${bean.memManageDTO.phone }</td>
 		</tr>
 		<tr> 
 			<th>주소</th>
-		 	<td>${member.address }</td>
+		 	<td>${bean.memManageDTO.address }</td>
 		</tr>
 		<tr> 
 			<th>상세주소</th>
-		 	<td>${member.address2 }</td>
+		 	<td>${bean.memManageDTO.address2 }</td>
 		</tr> 
 	</table>
 		
 	<input type="button" value="뒤로" >
-    <input type="button" value="회원정보 변경" onclick="updateForm.jsp" >
-    <a href="/Fleamarket/memmanage/updateAction.do?email=${member.email }">회원정보 </a>
-    <input type="button" value="회원탈퇴" >
+    <a href="/Fleamarket/memmanage/updateAction.do?email=${bean.memManageDTO.email }">회원정보 </a>
+
+    <a href="/Fleamarket/memmanage/deleteAction.do?email=${bean.memManageDTO.email }">회원탈퇴 </a>	
     
 	</form>
 </body>

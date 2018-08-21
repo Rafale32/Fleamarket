@@ -12,7 +12,7 @@
 		<table>
 			<tr> 
 			<td>아이디</td>
-			<td><input type="text" name="email" value="${email }"></td>
+			<td><input type="email" id="email" name="email" value="${email }"></td>
 			</tr>
 			<tr>
 			<td>비번 </td>
@@ -20,7 +20,7 @@
 			</tr>
 			<tr>
 			<td colspan="2" aling="center">
-			<input type="submit" value="로그인" onclick="return loginCheck()">
+			<input type="submit" value="로그인" onclick="loginCheck()">
 			</td>
 			</tr>
 		</table>
