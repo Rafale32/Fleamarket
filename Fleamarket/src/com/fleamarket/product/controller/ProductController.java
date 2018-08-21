@@ -83,6 +83,13 @@ public class ProductController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+    	}else if(command.equals("productmodifyform.do")){ //물품 수정폼 으로 가서 디비 저장값 불러오게끔 
+    		action  = new ProductModifyFormAction();
+    		try {
+    			forward = action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
     	}
     	
     	

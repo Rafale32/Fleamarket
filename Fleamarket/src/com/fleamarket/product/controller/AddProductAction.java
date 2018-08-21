@@ -30,7 +30,7 @@ public class AddProductAction implements Action {
 		AddProductService addpro = AddProductService.getInstance();
 		addpro.insertItemNBoard(request, response);
 		
-		return forward; //실험 해보고 null 값 바꿔줘라 
+		return forward; 
 	}
 
 }

@@ -24,7 +24,7 @@
 				
 			</c:when>
 			<c:when test="${param.email != '' }">
-				<td><a href="/Fleamarket/product/productmodify.do">수정</a> 
+				<td><a href="/Fleamarket/product/productmodifyform.do?itemboard_No=${tmp.itemboard_No }">수정</a> 
 				<a href="/Fleamarket/product/productdelete.do?itemboard_No=${tmp.itemboard_No }">삭제</a> </td> </tr>
 			</c:when>
 		</c:choose>

@@ -21,15 +21,15 @@
 	<select id="itemList" resultType="ItemDTO" parameterType="String">
 		select * from itemboard ite 
 		inner Join store st on ite.STORE_NO = st.STORE_NO
-		where email=#{email } order by ite.ITEMBOARD_NO
+		where email=#{email } and ite.DELETE_STATE = 0 order by ite.ITEMBOARD_NO
 	</select>
 	
 	<select id="itemListByStore" resultType="ItemDTO" parameterType="String">
 		select * from itemboard ite 
 		inner Join store st on ite.STORE_NO = st.STORE_NO
-		where st.STORE_NAME=#{storeName } order by ite.ITEMBOARD_NO
+		where st.STORE_NAME=#{storeName } and ite.DELETE_STATE = 0 order by ite.ITEMBOARD_NO;
 	</select>
-	
+	 
  	<select id="itemImgList" parameterType="int" resultType="ItemImg">
 		select * from itemimg where ITEMBOARD_NO = #{itemboard_No }
 	</select>
@@ -51,7 +51,7 @@
 		select count(*) from ITEM_QNA where ITEMBOARD_NO = #{itemboard_No }
 	</select>
 	<!-- select category_title from category -->
-	<select id="cateList" resultType="String" parameterType="String">
+	<select id="cateList" resultType="String" parameterType="CateDTO">
 		
 		<if test="category_title == null">
 			select category_title from category
@@ -115,5 +115,24 @@
 	<select id="countItemBoard" resultType="int">
 		select count(ITEMBOARD_NO) from itemboard
 	</select>
+	
+	
+	<!-- 실제 로우의 삭제가 아닌 삭제 상태의 변경이다 1로 바꾸는거지 -->
+	<update id="itemBoardDelete" parameterType="int">
+		UPDATE itemboard set DELETE_STATE = 1  where ITEMBOARD_NO = #{itemboard_No }
+	</update>
+	
+	
+	<select id="getAllFromProduct" parameterType="int" resultType="ItemDTO">
+		select * from ITEMBOARD itb inner join item it on itb.ITEM_NO = it.ITEM_NO
+		where itb.ITEM_NO = #{itemboard_No }
+	</select>
+	
+	<!--물품 수정 폼에서 카테고리명 가지고 오기위해 사용-->
+	<select id="getCatebySubNo" parameterType="int" resultType="ItemDTO">
+		select * from CATEGORY ca inner join CATEGORY_SUB su on
+		ca.CATEGORY_NO = su.CATEGORY_NO where su.SUB_NO= #{sub_no }
+	</select>
+	
 	
 </mapper>

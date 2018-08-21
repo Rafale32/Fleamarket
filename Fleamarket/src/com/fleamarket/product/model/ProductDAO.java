@@ -3,14 +3,15 @@ package com.fleamarket.product.model;
 import java.io.InputStream;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import com.fleamarket.mainDetail.model.CategoryDTO;
-import com.fleamarket.mapper.BoardMapper;
+import com.fleamarket.bean.Bean;
 import com.fleamarket.mapper.ProductMapper;
 import com.fleamarket.product.service.ProductListService;
 
@@ -102,7 +103,7 @@ public class ProductDAO {
 	
 	
 	
-	public List<String> cateList(CategoryDTO catename){
+	public List<String> cateList(CateDTO catename){
 		
 		SqlSession sqlsession = getSqlSessionFactory().openSession();
 		
@@ -169,5 +170,57 @@ public class ProductDAO {
 		return max;
 	}
 	
+	
+	public int itemBoardDelete(int itemboard_No){ //실제 삭제가 아닌 삭제상테를 변경하는것임 delete_state = 0 1  1이 삭제 상태 0이 삭제 아님
+		int state = -1;
+		
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			
+			state = sqlSession.getMapper(ProductMapper.class).itemBoardDelete(itemboard_No);
+			if(state>0){//정상처리
+				sqlSession.commit();
+			}else{//비정상 처리
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
+		return state;
+	}
+	
+	public ItemDTO getAllFromProduct(int itemboard_No, HttpServletRequest request){//상품에 관한 모든 정보 itemdto 에 넣기 수정폼에 원래 있던값 넣기 위해서
+		
+		SqlSession sqlsession = getSqlSessionFactory().openSession();
+		
+		ItemDTO item = null;
+		List<ItemImg> itemImg = null;
+		Bean bean = (Bean)request.getAttribute("bean");
+		
+		try {
+			
+			item = sqlsession.getMapper(ProductMapper.class).getAllFromProduct(itemboard_No);
+			itemImg = sqlsession.getMapper(ProductMapper.class).itemImgList(itemboard_No);
+			item.setItemImgList(itemImg);
+			bean.setCateList(sqlsession.getMapper(ProductMapper.class).cateList(null));//대 카테고리 전부 가져와서 빈에 박기
+			//카테고리번호로 그걸 가지고 카테고리명 가지고 오기
+			System.out.println(item.getSub_No());
+			ItemDTO tmp = sqlsession.getMapper(ProductMapper.class).getCatebySubNo(item.getSub_No());
+			item.setcategory_Title(tmp.getCategory_Title());
+			item.setSub_Title(tmp.getSub_Title()); System.out.println(tmp.getSub_Title()+":aaaaaaa:"+tmp.getCategory_Title());
+			CateDTO cateDTO = new CateDTO(); cateDTO.setCategory_title(tmp.getCategory_Title());
+			List<String> subTitle = sqlsession.getMapper(ProductMapper.class).cateList(cateDTO); //대카테 해당하는 서브카테 전부가져와서 넣기
+			bean.setSub_cateList(subTitle);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlsession.close();
+		}
+		
+		return item;
+	}
 	
 }

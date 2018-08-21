@@ -28,7 +28,8 @@ public class Bean {
 	//두연
 	List<ItemDTO> itemList;
 	private HttpServletRequest request;
-	List<String> cateList; //카테고리 리스트
+	List<String> cateList; //카테고리 리스트  //수정 폼에서는 대 카테로 쓰임
+	List<String> sub_cateList; // 물품 수정폼에서 쓰기위해 만듬
 	PageModel pageModel;//페이지 처리위한넘
 	
 	//추천상품리스트 추가(주영)
@@ -39,6 +40,12 @@ public class Bean {
 	
 
 
+	public List<String> getSub_cateList() {
+		return sub_cateList;
+	}
+	public void setSub_cateList(List<String> sub_cateList) {
+		this.sub_cateList = sub_cateList;
+	}
 	public PageModel getPageModel() {
 		return pageModel;
 	}

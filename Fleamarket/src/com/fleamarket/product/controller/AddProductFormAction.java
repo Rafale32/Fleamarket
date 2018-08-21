@@ -11,7 +11,7 @@ import org.json.simple.JSONObject;
 import com.fleamarket.bean.Action;
 import com.fleamarket.bean.ActionForward;
 import com.fleamarket.bean.Bean;
-import com.fleamarket.mainDetail.model.CategoryDTO;
+import com.fleamarket.product.model.CateDTO;
 import com.fleamarket.product.model.ProductDAO;
 
 public class AddProductFormAction implements Action {
@@ -31,7 +31,7 @@ public class AddProductFormAction implements Action {
 		request.setAttribute("forward", forward); // 컨테이너 경로 사용하기위한 등록
 		
 		String catename = request.getParameter("catename");
-		CategoryDTO cate = new CategoryDTO();
+		CateDTO cate = new CateDTO();
 		cate.setCategory_title(catename);
 		
 		

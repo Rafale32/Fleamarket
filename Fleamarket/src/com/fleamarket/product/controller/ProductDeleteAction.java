@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import com.fleamarket.bean.Action;
 import com.fleamarket.bean.ActionForward;
 import com.fleamarket.memManage.model.MemManageDTO;
+import com.fleamarket.product.service.ProductDeleteService;
 
 public class ProductDeleteAction implements Action {
 
@@ -19,7 +20,9 @@ public class ProductDeleteAction implements Action {
 		forward.setPath("/Fleamarket/product/productlist.do?email="+email);
 		forward.setRedirect(true);
 		
-		
+		int itemboard_No =Integer.parseInt(request.getParameter("itemboard_No"));
+		ProductDeleteService ser = ProductDeleteService.getInstance();
+		ser.itemBoardDelete(itemboard_No);
 		
 		return forward;
 	}
