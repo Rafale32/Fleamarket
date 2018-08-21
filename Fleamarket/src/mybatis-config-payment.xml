@@ -17,7 +17,7 @@
     <typeAlias type="com.fleamarket.payment.model.PuerchaseDTO_gy" alias ="PuerchaseDTO_gy"/>
     <typeAlias type="com.fleamarket.payment.model.SellProductDTO_gy" alias ="SellProductDTO_gy"/>
     <typeAlias type="com.fleamarket.payment.model.DeliveryDTO_gy" alias ="DeliveryDTO_gy"/>
-
+    <typeAlias type="com.fleamarket.payment.service.Search_gy" alias ="Search_gy"/>
 	</typeAliases>
 	
 	<environments default="development">

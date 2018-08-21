@@ -4,10 +4,12 @@ import java.io.InputStream;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import com.fleamarket.mapper.PaymentMapper;
+import com.fleamarket.payment.service.Search_gy;
 
 public class PuerchaseDAO_gy {
 
@@ -66,6 +68,77 @@ public class PuerchaseDAO_gy {
 
 		return list;
 	}
+	
+	
+	
+	
+	
+//// 원하는 갯수만 가져오기 갯수 수정시 건들여야함
+	public List<PuerchaseDTO_gy> listBoard(int startRow) {
+
+		System.out.println("리스트 안으로 들어옴1");
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		System.out.println("리스트 안으로 들어옴2");
+		List<PuerchaseDTO_gy> list = null;
+
+		try {
+			System.out.println("리스트 안의 트라이문");	
+
+			list = sqlSession.getMapper(PaymentMapper.class).listBoardService(new RowBounds(startRow,2));
+
+			System.out.println("리스트 안의 트라이문 종료");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+
+		return list;
+	}
+	
+	
+	// 판매부 원하는 갯수만큼 가져오기
+	
+	public List<PuerchaseDTO_gy> listBoard2(int startRow) {
+
+		System.out.println("리스트 안으로 들어옴1");
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		System.out.println("리스트 안으로 들어옴2");
+		List<PuerchaseDTO_gy> list = null;
+
+		try {
+			System.out.println("리스트 안의 트라이문");
+
+			list = sqlSession.getMapper(PaymentMapper.class).listBoardService2(new RowBounds(startRow,2));
+
+			System.out.println("리스트 안의 트라이문 종료");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+
+		return list;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// 구매부 체인지 딜리버리
 	public int changeDelivery(DeliveryDTO_gy dao) {
 		int re=0;
@@ -107,5 +180,27 @@ public class PuerchaseDAO_gy {
 		return re;
 
 	}
+	
+	//카운트 보드 하는 메소드
+	public int countBoard(){
+		int re=0;
+		System.out.println("카운트 메소드 안으로 들어옴1");
+
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		try {
+			re = sqlSession.getMapper(PaymentMapper.class).countBoard(); 
+			
+			System.out.println("카운트 메소드 안 re값 확인 : " + re);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return re;
+		
+	}
+	
 
 }

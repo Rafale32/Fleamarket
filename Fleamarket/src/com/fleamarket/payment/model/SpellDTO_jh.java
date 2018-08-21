@@ -8,7 +8,7 @@ public class SpellDTO_jh implements Serializable {
   private String email;       // 구매자 이메일
   private int item_no;        // 상품번호
   
-  SpellDTO_jh(){}
+  public SpellDTO_jh(){}
 
   public SpellDTO_jh(int spell_no, String spell_date, String email, int item_no) {
     super();
