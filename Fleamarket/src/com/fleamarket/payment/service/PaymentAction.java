@@ -9,31 +9,34 @@ import com.fleamarket.bean.Bean;
 import com.fleamarket.memManage.model.MemManageDTO;
 import com.fleamarket.product.model.ItemDTO;
 
-
+//결제페이지 들어오는거
 public class PaymentAction implements Action {
-	//리다이렉트 할때는 무조건  가능페이지.do 로 해서 그 쪽페이지로 아예 가버릴때 사용 
-  //false 사용할때는 .jsp 를 사용 해서 보내는것임
-	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-	  
-	  PaymentService service = PaymentService.getInstance();
-//	  MemManageDTO member = service.selectMemberService(request);
-//	  ItemDTO item = service.selectItemService(request);
-	  Bean bean = new Bean(request);
-//	  bean.getMemManageDTO().
-	  bean.setMemManageDTO(service.selectMemberService(request));
-	  bean.setItemDTO(service.selectItemService(request));
-	  
-	  request.setAttribute("bean", bean);
+  // 리다이렉트 할때는 무조건 가능페이지.do 로 해서 그 쪽페이지로 아예 가버릴때 사용
+  // false 사용할때는 .jsp 를 사용 해서 보내는것임
+  @Override
+  public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    ActionForward forward = new ActionForward();
+    PaymentService service = PaymentService.getInstance();
+//     MemManageDTO member = service.selectMemberService(request);
+    // ItemDTO item = service.selectItemService(request);
 
-		ActionForward forward = new ActionForward();
-		forward.setPath("/template.jsp"); //원하는 경로가 완전 새로운 페이지가 아니라면 템플릿으로 가야겟지 템플릿이 헤더및 푸터 있으니까
-		forward.setRedirect(false); //완전 새로운 페이지로 갈거냐 안갈거냐
-		forward.setConPath("./jh_gy/jh_view/order_jh.jsp"); //원하는 container 파일 경로
-		
-		request.setAttribute("forward", forward); // 컨테이너 경로 사용하기위한 등록
-		
-		return forward;
-	}
+    Bean bean = (Bean) request.getAttribute("bean");
+    
+    // bean.getMemManageDTO().
+    bean.setMemManageDTO(service.selectMemberService(request));
+    bean.setItemDTO(service.selectItemService(request));
+    bean.setSpellDTO_jh(service.selectSpellNoService(request));
+    
+    request.setAttribute("bean", bean);
+
+    forward.setPath("/template.jsp"); // 원하는 경로가 완전 새로운 페이지가 아니라면 템플릿으로 가야겟지
+                                      // 템플릿이 헤더및 푸터 있으니까
+    forward.setRedirect(false); // 완전 새로운 페이지로 갈거냐 안갈거냐
+    forward.setConPath("./jh_gy/jh_view/order_jh.jsp"); // 원하는 container 파일 경로
+
+    request.setAttribute("forward", forward); // 컨테이너 경로 사용하기위한 등록
+
+    return forward;
+  }
 
 }

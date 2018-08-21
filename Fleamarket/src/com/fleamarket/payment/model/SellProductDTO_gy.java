@@ -1,12 +1,10 @@
 package com.fleamarket.payment.model;
 
 import java.io.Serializable;
-import java.util.List;
 
-public class PuerchaseDTO_gy implements Serializable {
-
-
+public class SellProductDTO_gy implements Serializable{
 	
+
 	String title =""; // 판매 물품의 제목
 	String store_name =""; // 어떤 상점인지
 	int delivery_state; // 배송상태 1 이전, 2 결제완료후 준비중 , 3 배송중(판매자 판매승인) , 4 구매자 구매완료 =거래완료
@@ -16,7 +14,20 @@ public class PuerchaseDTO_gy implements Serializable {
 	String pay_date= ""; //날자
 	
 	
-	public PuerchaseDTO_gy(){}
+	public SellProductDTO_gy(){}
+
+
+	public SellProductDTO_gy(String title, String store_name, int delivery_state, int item_no, String thum_img,
+			int price, String pay_date) {
+		super();
+		this.title = title;
+		this.store_name = store_name;
+		this.delivery_state = delivery_state;
+		this.item_no = item_no;
+		this.thum_img = thum_img;
+		this.price = price;
+		this.pay_date = pay_date;
+	}
 
 
 	public String getTitle() {
@@ -89,20 +100,5 @@ public class PuerchaseDTO_gy implements Serializable {
 	}
 
 
-	public PuerchaseDTO_gy(String title, String store_name, int delivery_state, int item_no, String thum_img, int price,
-			String pay_date) {
-		super();
-		this.title = title;
-		this.store_name = store_name;
-		this.delivery_state = delivery_state;
-		this.item_no = item_no;
-		this.thum_img = thum_img;
-		this.price = price;
-		this.pay_date = pay_date;
-	}
-
-	
-	
-	
 
 }
