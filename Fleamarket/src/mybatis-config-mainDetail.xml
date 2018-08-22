@@ -7,7 +7,12 @@
 	<typeAliases>
 		<typeAlias type="com.fleamarket.mainDetail.model.RecommendDTO" alias="RecommendDTO"/>
 		<typeAlias type="com.fleamarket.mainDetail.model.HotItemDTO" alias="HotItemDTO"/>
+		<typeAlias type="com.fleamarket.mainDetail.model.HotListDTO" alias="HotListDTO"/>
 		<typeAlias type="com.fleamarket.mainDetail.model.CategoryDTO" alias="CategoryDTO"/>
+		<typeAlias type="com.fleamarket.mainDetail.model.SubCategoryDTO" alias="SubCategoryDTO"/>
+		<typeAlias type="com.fleamarket.mainDetail.model.ItemDetailDTO" alias="ItemDetailDTO"/>
+		<typeAlias type="com.fleamarket.mainDetail.model.ItemImgDTO" alias="ItemImgDTO"/>
+		<typeAlias type="com.fleamarket.mainDetail.model.StoreInfoDTO" alias="StoreInfoDTO"/>
 
 	</typeAliases>
 	

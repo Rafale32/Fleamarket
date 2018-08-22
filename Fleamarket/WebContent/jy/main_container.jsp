@@ -25,7 +25,7 @@
 
 	<div class="category-list">
 		<h3>카테고리 목록</h3>
-		<c:forEach var="categoryList" items="${bean.categoryList}">
+		<c:forEach var="categoryList" items="${bean.hotList}">
 			<a href="">${categoryList.category_title}</a>
 		</c:forEach>
 	</div>
@@ -34,13 +34,17 @@
 	<div class="hot-title">
 		<h3>카테고리별 인기 상품</h3>
 	</div>
-	<c:forEach var="list" items="${bean.categoryList}">
+	<c:forEach var="list" items="${bean.hotList}">
 		<a href="">${list.category_title}</a>
 		<br>
 		<c:forEach var="itemList" items="${list.hotList}">
-			<a href="">${itemList.title}</a>
+			<a href="">${itemList.itemboard_no }</a>
+			<a href="">${itemList.thum_img }</a>
+			<a href="detailAction.do?itemboard_no=${itemList.itemboard_no}">${itemList.title}</a>
 		</c:forEach>
 		<br>
 	</c:forEach>
+	
+	
 </body>
 </html>
