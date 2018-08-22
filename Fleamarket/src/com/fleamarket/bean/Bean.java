@@ -14,7 +14,7 @@ import com.fleamarket.payment.model.DeliveryDTO_jh;
 import com.fleamarket.payment.model.PaymentDTO;
 import com.fleamarket.payment.model.SpellDTO_jh;
 import com.fleamarket.product.model.ItemDTO;
-
+import com.fleamarket.product.model.PageModel;
 import com.fleamarket.mainDetail.model.RecommendDTO;
 import com.fleamarket.mainDetail.model.StoreInfoDTO;
 import com.fleamarket.mainDetail.model.SubCategoryDTO;
@@ -25,15 +25,19 @@ public class Bean {
 
 	// 20180816,재헌 DeliveryDTO 추가
 	DeliveryDTO_jh deliveryDTO_jh; // 배송정보
-	// 20180817,재헌 PaymentDTO, orderDTO 추가
+	// 20180817,재헌 PaymentDTO, SpellDTO_jh 추가
 	PaymentDTO paymentDTO; // 결제정보
 	SpellDTO_jh spellDTO_jh; //주문정보
 	ItemDTO itemDTO; // 상품정보
 	MemManageDTO memManageDTO; //회원정보
 	
+	
 	//두연
 	List<ItemDTO> itemList;
 	private HttpServletRequest request;
+	List<String> cateList; //카테고리 리스트  //수정 폼에서는 대 카테로 쓰임
+	List<String> sub_cateList; // 물품 수정폼에서 쓰기위해 만듬
+	PageModel pageModel;//페이지 처리위한넘
 	
 	//추천상품리스트 추가
 	private List<RecommendDTO> recommend;
@@ -49,9 +53,12 @@ public class Bean {
 	private List<ItemDetailDTO> categoryItemList;
 	
 	
+	//--------------------------
+	public Bean() {	}
 	public Bean(HttpServletRequest request) {
-		this.request = request;
+		this.request=request;
 	}
+	//--------------------------
 	
 	public DeliveryDTO_jh getDeliveryDTO_jh() {
 		return deliveryDTO_jh;
@@ -95,6 +102,24 @@ public class Bean {
 	public void setRequest(HttpServletRequest request) {
 		this.request = request;
 	}
+	public List<String> getCateList() {
+		return cateList;
+	}
+	public void setCateList(List<String> cateList) {
+		this.cateList = cateList;
+	}
+	public List<String> getSub_cateList() {
+		return sub_cateList;
+	}
+	public void setSub_cateList(List<String> sub_cateList) {
+		this.sub_cateList = sub_cateList;
+	}
+	public PageModel getPageModel() {
+		return pageModel;
+	}
+	public void setPageModel(PageModel pageModel) {
+		this.pageModel = pageModel;
+	}
 	public List<RecommendDTO> getRecommend() {
 		return recommend;
 	}
@@ -113,90 +138,49 @@ public class Bean {
 	public void setHotList(List<HotListDTO> hotList) {
 		this.hotList = hotList;
 	}
+	public List<CategoryDTO> getCategoryList() {
+		return categoryList;
+	}
+	public void setCategoryList(List<CategoryDTO> categoryList) {
+		this.categoryList = categoryList;
+	}
+	public List<SubCategoryDTO> getSubCategoryList() {
+		return subCategoryList;
+	}
+	public void setSubCategoryList(List<SubCategoryDTO> subCategoryList) {
+		this.subCategoryList = subCategoryList;
+	}
+	public List<ItemImgDTO> getItemImgList() {
+		return itemImgList;
+	}
+	public void setItemImgList(List<ItemImgDTO> itemImgList) {
+		this.itemImgList = itemImgList;
+	}
+	public ItemDetailDTO getItemDetail() {
+		return itemDetail;
+	}
+	public void setItemDetail(ItemDetailDTO itemDetail) {
+		this.itemDetail = itemDetail;
+	}
+	public StoreInfoDTO getStoreInfo() {
+		return storeInfo;
+	}
+	public void setStoreInfo(StoreInfoDTO storeInfo) {
+		this.storeInfo = storeInfo;
+	}
+	public List<ItemQnaDTO> getItemQnaList() {
+		return itemQnaList;
+	}
+	public void setItemQnaList(List<ItemQnaDTO> itemQnaList) {
+		this.itemQnaList = itemQnaList;
+	}
+	public List<ItemDetailDTO> getCategoryItemList() {
+		return categoryItemList;
+	}
+	public void setCategoryItemList(List<ItemDetailDTO> categoryItemList) {
+		this.categoryItemList = categoryItemList;
+	}
+	
 
-  public List<CategoryDTO> getCategoryList() {
-    return categoryList;
-  }
-
-  public void setCategoryList(List<CategoryDTO> categoryList) {
-    this.categoryList = categoryList;
-  }
-
-  public List<SubCategoryDTO> getSubCategoryList() {
-    return subCategoryList;
-  }
-
-  public void setSubCategoryList(List<SubCategoryDTO> subCategoryList) {
-    this.subCategoryList = subCategoryList;
-  }
-  
-  public List<ItemImgDTO> getItemImgList() {
-    return itemImgList;
-  }
-
-  public void setItemImgList(List<ItemImgDTO> itemImgList) {
-    this.itemImgList = itemImgList;
-  }
-
-  public ItemDetailDTO getItemDetail() {
-    return itemDetail;
-  }
-
-  public void setItemDetail(ItemDetailDTO itemDetail) {
-    this.itemDetail = itemDetail;
-  }
-
-  public StoreInfoDTO getStoreInfo() {
-    return storeInfo;
-  }
-
-  public void setStoreInfo(StoreInfoDTO storeInfo) {
-    this.storeInfo = storeInfo;
-  }
-  
-  public List<ItemQnaDTO> getItemQnaList() {
-    return itemQnaList;
-  }
-
-  public void setItemQnaList(List<ItemQnaDTO> itemQnaList) {
-    this.itemQnaList = itemQnaList;
-  }
-
-  public List<ItemDetailDTO> getCategoryItemList() {
-    return categoryItemList;
-  }
-
-  public void setCategoryItemList(List<ItemDetailDTO> categoryItemList) {
-    this.categoryItemList = categoryItemList;
-  }
-
-  public Bean(DeliveryDTO_jh deliveryDTO_jh, PaymentDTO paymentDTO, SpellDTO_jh spellDTO_jh, ItemDTO itemDTO,
-      MemManageDTO memManageDTO, List<ItemDTO> itemList, HttpServletRequest request, List<RecommendDTO> recommend,
-      List<HotItemDTO> hotItemList, List<HotListDTO> hotList, List<CategoryDTO> categoryList,
-      List<SubCategoryDTO> subCategoryList, List<ItemImgDTO> itemImgList, ItemDetailDTO itemDetail,
-      StoreInfoDTO storeInfo, List<ItemQnaDTO> itemQnaList, List<ItemDetailDTO> categoryItemList) {
-    super();
-    this.deliveryDTO_jh = deliveryDTO_jh;
-    this.paymentDTO = paymentDTO;
-    this.spellDTO_jh = spellDTO_jh;
-    this.itemDTO = itemDTO;
-    this.memManageDTO = memManageDTO;
-    this.itemList = itemList;
-    this.request = request;
-    this.recommend = recommend;
-    this.hotItemList = hotItemList;
-    this.hotList = hotList;
-    this.categoryList = categoryList;
-    this.subCategoryList = subCategoryList;
-    this.itemImgList = itemImgList;
-    this.itemDetail = itemDetail;
-    this.storeInfo = storeInfo;
-    this.itemQnaList = itemQnaList;
-    this.categoryItemList = categoryItemList;
-  }
-
-  
-
-  
 
 }

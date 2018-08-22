@@ -13,8 +13,10 @@ public class JoinFormAction implements Action {
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("./jw/joinForm.jsp ");
+		forward.setPath("/jw/joinForm.jsp");
+		//forward.setPath("/Fleamarket/memmanage/joinform.do");
 		
+		System.out.println("조인폼으로 왔다.");
 		return forward;
 	}
 
