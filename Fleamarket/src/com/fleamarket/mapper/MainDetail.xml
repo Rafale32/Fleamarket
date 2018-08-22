@@ -73,7 +73,7 @@
 		e.change_ornot, d.delivery_fee,
 		e.local, e.itemboard_contents,
 		a.category_title, b.sub_title, e.tag,
-		e.store_no, f.thum_img
+		e.store_no, f.thum_img, d.item_no
 		from category a,
 		category_sub b, fav c, item d,
 		itemboard e, itemimg f

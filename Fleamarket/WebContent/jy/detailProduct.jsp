@@ -52,7 +52,8 @@
 			</c:if>
 		</ul>
 	</div>
-	<a href="/Fleamarket/payment/payment.do">안심결제</a>
+  <!-- 연결 물품번호 넘김 20180822 재헌 -->
+	<a href="/Fleamarket/payment/payment.do?item_no=${bean.itemDetail.item_no }">안심결제</a>
 	<br>
 	<div class="storeInfo">
 		<h3>상점정보</h3>

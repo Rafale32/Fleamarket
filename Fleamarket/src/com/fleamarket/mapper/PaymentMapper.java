@@ -59,9 +59,9 @@ public interface PaymentMapper {
   // 주문내역
   SpellDTO_jh findSpell(int item_no);
   // 결제내역
-  PaymentDTO findPayment(int spell_no);
+  PaymentDTO findPayment(int item_no);
   // 배송정보
-  DeliveryDTO_jh findDeli(int spell_no);
+  DeliveryDTO_jh findDeli(int item_no);
   // 내상점
 //  StoreDTO_jh findStore();
 	

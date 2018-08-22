@@ -109,7 +109,7 @@ function changePoint() {
   document.getElementById('point').value = parseInt(totalPoint);
 }
 
-// 20180820 천재헌 쉼표 세팅 함수
+// 20180820 재헌 쉼표 세팅 함수
 function setComma(n) {
   // 정규표현식 : (+- 존재하거나 존재 안함, 숫자가 1개 이상), (숫자가 3개씩 반복)
   var reg = /(^[+-]?\d+)(\d{3})/;
@@ -121,3 +121,22 @@ function setComma(n) {
   }
   return n;
 }// setComma
+
+// 20180822 재헌 결제시 확인창
+function payCheck(e) {
+  
+  if($('input:checkbox[id="chk"]').is(":checked") == true){
+    if (confirm("결제 하시겠습니까?")){
+      alert('결제 되었습니다.');
+      return true;
+    } else {
+      alert("취소하셨습니다.");
+      return false;
+    } 
+  } else {
+    alert("약관에 동의해주세요.");
+    return false;
+  }
+  
+  
+}

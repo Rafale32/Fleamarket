@@ -23,6 +23,7 @@ public class ItemDetailDTO implements Serializable{ //마이바티스는 DTO 로
 	private String tag;
 	private List<String> tagList;
 	private String thum_img;
+	private int item_no; //재헌 요청으로 추가
 	
 	public ItemDetailDTO(){}
 
@@ -178,4 +179,13 @@ public class ItemDetailDTO implements Serializable{ //마이바티스는 DTO 로
     this.tagList = tagList;
   }
 
+  public int getItem_no() {
+    return item_no;
+  }
+
+  public void setItem_no(int item_no) {
+    this.item_no = item_no;
+  }
+
+  
 }

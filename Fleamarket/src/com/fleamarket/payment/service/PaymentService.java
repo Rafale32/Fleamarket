@@ -1,6 +1,7 @@
 package com.fleamarket.payment.service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.fleamarket.memManage.model.MemManageDTO;
 import com.fleamarket.payment.model.DeliveryDTO_jh;
@@ -21,7 +22,10 @@ public class PaymentService {
 
   // 회원정보 가져오기
   public MemManageDTO selectMemberService(HttpServletRequest request) throws Exception {
-    String email = request.getParameter("email");
+    HttpSession session = request.getSession();
+    String email = (String)session.getAttribute("member.email");
+//    String email = request.getParameter("email");
+    
     MemManageDTO memManageDTO = dao.selectMember(email);
     return memManageDTO;
   } // selectMemberService
@@ -34,6 +38,7 @@ public class PaymentService {
     if (str != null) {
       item_no = Integer.parseInt(str);
     }
+    
     ItemDTO itemDTO = dao.selectItem(item_no);
 
     return itemDTO;

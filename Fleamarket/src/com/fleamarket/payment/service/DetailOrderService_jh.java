@@ -26,6 +26,7 @@ public class DetailOrderService_jh {
    if (str != null) {
      item_no = Integer.parseInt(str);
    }
+   
    ItemDTO item = dao.findItem(item_no);
 
    return item;
@@ -46,27 +47,27 @@ public SpellDTO_jh findSpellService(HttpServletRequest request) throws Exception
   
 //결제내역
 public PaymentDTO findPaymentService(HttpServletRequest request) throws Exception {
- String str = request.getParameter("spell_no");
+ String str = request.getParameter("item_no");
 
- int spell_no = 0;
+ int item_no = 0;
  if (str != null) {
-   spell_no = Integer.parseInt(str);
+   item_no = Integer.parseInt(str);
  }
- PaymentDTO payment = dao.findPayment(spell_no);
+ PaymentDTO payment = dao.findPayment(item_no);
 
  return payment;
 }// findPaymentService
   
 //배송정보
 public DeliveryDTO_jh findDeliService(HttpServletRequest request) throws Exception {
- String str = request.getParameter("spell_no");
+ String str = request.getParameter("item_no");
 
- int spell_no = 0;
+ int item_no = 0;
  if (str != null) {
-   spell_no = Integer.parseInt(str);
+   item_no = Integer.parseInt(str);
  }
  
- DeliveryDTO_jh deli = dao.findDeli(spell_no);
+ DeliveryDTO_jh deli = dao.findDeli(item_no);
 
  return deli;
 }// findDeliService

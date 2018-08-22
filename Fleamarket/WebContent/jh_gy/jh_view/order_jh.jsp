@@ -20,28 +20,29 @@
   <h1>주문/결제</h1>
   <!-- 	주문결제 -->
   <div>
-  <form action="insertpayment.do" method="post">
+  <form action="insertpayment.do" method="post" onsubmit="return payCheck()">
      <!--  구매자 이메일 주소 -->
-     <c:set var="email" value="${bean.memManageDTO.email}"></c:set>
-     <input type="text" name="email" value="${email}">
+<%--      <c:set var="email" value="${bean.memManageDTO.email}"></c:set> --%>
+     <c:set var="email" value="${member.email}"></c:set>
+     <input type="hidden" name="email" value="${email}">
      <!--  상품번호 -->
      <c:set var="item_no" value="${bean.itemDTO.item_No}"></c:set>
-     <input type="text"  name="item_No" value="${item_no}"> 
+     <input type="hidden"  name="item_No" value="${item_no}"> 
      <!--  마지막 주문번호를 불러와서 +1 시켜서 현재 페이지의 주문번호를 정한다. -->
      <c:set var="spell_no" value="${bean.spellDTO_jh.spell_no+1}"></c:set>
-     <input type="text" name="spell_no" value="${spell_no}"><br>
+     <input type="hidden" name="spell_no" value="${spell_no}"><br>
       
       수령인 <input type="text"
                     name="delivery_name"
-                    value="${bean.memManageDTO.name}"><br>
+                    value="${member.name}"><br>
       연락처 <input type="text"
                     name="delivery_ph"
-                    value="${bean.memManageDTO.phone}"><br>
+                    value="${member.phone}"><br>
       <!--   다음 api getElementById 때문에 id추가 -20180817 천재헌 -->
       배송지 <input type="text"
                     name="delivery_address"
                     id="delivery_address"
-                    value="${bean.memManageDTO.address}"
+                    value="${member.address}"
                     placeholder="주소" size="50">
              <input type="button"
                     value="주소검색"
@@ -49,7 +50,7 @@
       상세배송지 <input type="text"
                         name="delivery_address2"
                         id="delivery_address2"
-                        value="${bean.memManageDTO.address2}"
+                        value="${member.address2}"
                         placeholder="상세주소"><br>
       배송요청사항 <br> <input type="text"
                         name="delivery_contents"
@@ -90,7 +91,8 @@
     <table border="1">
       <tr>
         <td>잔여포인트</td>
-        <c:set var="havePoint" value="${bean.memManageDTO.point}"></c:set>
+<%--         <c:set var="havePoint" value="${bean.memManageDTO.point}"></c:set> --%>
+        <c:set var="havePoint" value="${member.point}"></c:set>
         <td id="havePoint"><fmt:formatNumber value="${havePoint}" />원</td>
       </tr>
       <tr>
@@ -163,20 +165,20 @@
     <!--     넘긴다 -->
     <!--     소모 포인트 -->
     <fmt:parseNumber var="finalPoint2" value="${finalPoint}" integerOnly="true" />
-    <input type="text" id="finalPoint2" name="finalPoint2" value="${finalPoint2}">
+    <input type="hidden" id="finalPoint2" name="finalPoint2" value="${finalPoint2}">
     <!--     총 금액 -->
     <fmt:parseNumber var="total2" value="${total}" integerOnly="true" />
-    <input type="text" id="total2" name="total2" value="${total2}">
+    <input type="hidden" id="total2" name="total2" value="${total2}">
     <!--     계산된 포인트 -->
     <fmt:parseNumber var="point" value="${startPoint-finalPoint+(total*0.001) }" integerOnly="true" />
-    <input type="text" id="point" name="point" value="${point}">
+    <input type="hidden" id="point" name="point" value="${point}">
     
   </div>
 
   <!-- 결제 하단 -->
   <div>
     
-    <input type="checkbox"> 주문 상품정보 및 서비스 이용약관에 모두 동의합니다.<br>
+    <input id="chk" type="checkbox"> 주문 상품정보 및 서비스 이용약관에 모두 동의합니다.<br>
     <input type="submit" value="결제하기" />
   </div>
   </form>

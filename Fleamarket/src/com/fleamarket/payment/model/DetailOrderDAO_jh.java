@@ -36,58 +36,58 @@ public class DetailOrderDAO_jh {
   // 상품 정보 조회 - 20180821 재헌
   public ItemDTO findItem(int item_no) {
     SqlSession sqlSession = getSqlSessionFactory().openSession();
-    ItemDTO item = null;
+    ItemDTO itemDTO = null;
 
     try {
-      item = sqlSession.getMapper(PaymentMapper.class).findItem(item_no);
+      itemDTO = sqlSession.getMapper(PaymentMapper.class).findItem(item_no);
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
       sqlSession.close();
     }
-    return item;
+    return itemDTO;
   } // findItem
 
   // 주문 내역 조회 - 20180821 재헌
   public SpellDTO_jh findSpell(int item_no) {
     SqlSession sqlSession = getSqlSessionFactory().openSession();
-    SpellDTO_jh spell = null;
+    SpellDTO_jh spellDTO_jh = null;
     try {
-      spell = sqlSession.getMapper(PaymentMapper.class).findSpell(item_no);
+      spellDTO_jh = sqlSession.getMapper(PaymentMapper.class).findSpell(item_no);
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
       sqlSession.close();
     }
-    return spell;
+    return spellDTO_jh;
   } // findSpell
 
   // 주문 내역 조회 - 20180821 재헌
-  public PaymentDTO findPayment(int spell_no) {
+  public PaymentDTO findPayment(int item_no) {
     SqlSession sqlSession = getSqlSessionFactory().openSession();
-    PaymentDTO pay = null;
+    PaymentDTO paymentDTO = null;
     try {
-      pay = sqlSession.getMapper(PaymentMapper.class).findPayment(spell_no);
+      paymentDTO = sqlSession.getMapper(PaymentMapper.class).findPayment(item_no);
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
       sqlSession.close();
     }
-    return pay;
+    return paymentDTO;
   } // findPayment
 
   // 주문 내역 조회 - 20180821 재헌
   public DeliveryDTO_jh findDeli(int spell_no) {
     SqlSession sqlSession = getSqlSessionFactory().openSession();
-    DeliveryDTO_jh deli = null;
+    DeliveryDTO_jh deliveryDTO_jh = null;
     try {
-      deli = sqlSession.getMapper(PaymentMapper.class).findDeli(spell_no);
+      deliveryDTO_jh = sqlSession.getMapper(PaymentMapper.class).findDeli(spell_no);
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
       sqlSession.close();
     }
-    return deli;
+    return deliveryDTO_jh;
   } // findDeli
   
   

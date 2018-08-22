@@ -57,9 +57,7 @@ public class PaymentDAO {
     SqlSession sqlSession = getSqlSessionFactory().openSession();
     ItemDTO itemDTO = null;
     try {
-
       itemDTO = sqlSession.getMapper(PaymentMapper.class).selectItem(item_no);
-
     } catch (Exception e) {
       e.printStackTrace();
     } finally {

@@ -8,20 +8,16 @@
   <!-- 결제정보 가져올 때 -->
   <!-- 결제에 가져올 구매자 회원정보 20180817 재헌 -->
   <select id="selectMember" parameterType="String" resultType="MemManageDTO">
-    <!-- test -->
-    select * from member where email = 'testjwpp@gmail.com'
-    <!-- select * from member where email= #{email}; -->
+    select * from member where email = #{email}
   </select>
 
   <!-- 결제에 가져올 상품정보 및 판매자 정보 20180817 재헌 -->
   <select id="selectItem" parameterType="int" resultType="ItemDTO">
     <!-- test -->
     select * from itemboard ib, item i, store s
-    where ib.item_no =
-    i.item_no
+    where ib.item_no = i.item_no
     and ib.store_no = s.store_no
-    and ib.item_no = 1
-<!--     ${item_no} -->
+    and ib.item_no = #{item_no}
   </select>
   
   <select id="selectSpellNo" parameterType="int" resultType="SpellDTO_jh">
@@ -80,11 +76,13 @@
 
 
 
-  <!--   주문상세내역 들어갈 때 -->
+  <!-- 주문상세내역 들어갈 때-->
+  <!-- 주문내역  -20180821 재헌-->
   <select id="findSpell" parameterType="int" resultType="SpellDTO_jh">
-    select * from spell where item_no=#{item_no};
+    select * from spell where item_no=#{item_no}
   </select>
   
+  <!-- 상품정보 -20180821 재헌 -->
   <select id="findItem" parameterType="int" resultType="ItemDTO">
     select * from itemboard ib, item i, store s
     where ib.item_no = i.item_no
@@ -92,12 +90,18 @@
     and ib.item_no = #{item_no}
   </select>
   
+  <!-- 결제내역 -20180821 재헌 -->
   <select id="findPayment" parameterType="int" resultType="PaymentDTO">
-    select * from pay where spell_no=#{spell_no};
+    select * from pay where spell_no=
+    (select spell_no from spell where item_no=#{item_no})
+<!--     select * from pay where spell_no=#{spell_no} -->
   </select>
   
+  <!-- 배송정보 -20180821 재헌 -->
   <select id="findDeli" parameterType="int" resultType="DeliveryDTO_jh">
-    select * from delivery where spell_no=#{spell_no};
+    select * from delivery where spell_no=
+    (select spell_no from spell where item_no=#{item_no})
+<!--     select * from delivery where spell_no=#{spell_no} -->
   </select>
   
   
