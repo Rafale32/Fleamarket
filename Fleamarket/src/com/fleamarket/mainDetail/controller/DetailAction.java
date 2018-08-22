@@ -2,6 +2,8 @@ package com.fleamarket.mainDetail.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import com.fleamarket.bean.Action;
 import com.fleamarket.bean.ActionForward;
@@ -23,10 +25,20 @@ public class DetailAction implements Action{
     
     Bean bean = (Bean) request.getAttribute("bean");
     MainDetailService service = MainDetailService.getInstance();
+    //카테고리목록
     bean.setCategoryList(service.categoryList());
+    //상품상제정보
     bean.setItemDetail(service.itemDetail(itemboard_no));
+    //상품 이미지
     bean.setItemImgList(service.itemImgList(itemboard_no));
+    //상점 정보
     bean.setStoreInfo(service.storeInfo(itemboard_no));
+    //상품문의
+    bean.setItemQnaList(service.itemQnaList(itemboard_no));
+    
+    request.setAttribute("itemboard_no", itemboard_no);
+    
+    HttpSession session = request.getSession();
     
     ActionForward forward = new ActionForward();
     forward.setPath("/template.jsp");

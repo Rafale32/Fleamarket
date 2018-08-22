@@ -8,6 +8,7 @@ import com.fleamarket.mainDetail.model.HotItemDTO;
 import com.fleamarket.mainDetail.model.HotListDTO;
 import com.fleamarket.mainDetail.model.ItemDetailDTO;
 import com.fleamarket.mainDetail.model.ItemImgDTO;
+import com.fleamarket.mainDetail.model.ItemQnaDTO;
 import com.fleamarket.memManage.model.MemManageDTO;
 import com.fleamarket.payment.model.DeliveryDTO_jh;
 import com.fleamarket.payment.model.PaymentDTO;
@@ -44,6 +45,8 @@ public class Bean {
 	private List<ItemImgDTO> itemImgList;
 	private ItemDetailDTO itemDetail;
 	private StoreInfoDTO storeInfo;
+	private List<ItemQnaDTO> itemQnaList;
+	private List<ItemDetailDTO> categoryItemList;
 	
 	
 	public Bean(HttpServletRequest request) {
@@ -150,12 +153,28 @@ public class Bean {
   public void setStoreInfo(StoreInfoDTO storeInfo) {
     this.storeInfo = storeInfo;
   }
+  
+  public List<ItemQnaDTO> getItemQnaList() {
+    return itemQnaList;
+  }
+
+  public void setItemQnaList(List<ItemQnaDTO> itemQnaList) {
+    this.itemQnaList = itemQnaList;
+  }
+
+  public List<ItemDetailDTO> getCategoryItemList() {
+    return categoryItemList;
+  }
+
+  public void setCategoryItemList(List<ItemDetailDTO> categoryItemList) {
+    this.categoryItemList = categoryItemList;
+  }
 
   public Bean(DeliveryDTO_jh deliveryDTO_jh, PaymentDTO paymentDTO, SpellDTO_jh spellDTO_jh, ItemDTO itemDTO,
       MemManageDTO memManageDTO, List<ItemDTO> itemList, HttpServletRequest request, List<RecommendDTO> recommend,
       List<HotItemDTO> hotItemList, List<HotListDTO> hotList, List<CategoryDTO> categoryList,
       List<SubCategoryDTO> subCategoryList, List<ItemImgDTO> itemImgList, ItemDetailDTO itemDetail,
-      StoreInfoDTO storeInfo) {
+      StoreInfoDTO storeInfo, List<ItemQnaDTO> itemQnaList, List<ItemDetailDTO> categoryItemList) {
     super();
     this.deliveryDTO_jh = deliveryDTO_jh;
     this.paymentDTO = paymentDTO;
@@ -172,7 +191,11 @@ public class Bean {
     this.itemImgList = itemImgList;
     this.itemDetail = itemDetail;
     this.storeInfo = storeInfo;
+    this.itemQnaList = itemQnaList;
+    this.categoryItemList = categoryItemList;
   }
+
+  
 
   
 

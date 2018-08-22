@@ -13,6 +13,7 @@
 		<typeAlias type="com.fleamarket.mainDetail.model.ItemDetailDTO" alias="ItemDetailDTO"/>
 		<typeAlias type="com.fleamarket.mainDetail.model.ItemImgDTO" alias="ItemImgDTO"/>
 		<typeAlias type="com.fleamarket.mainDetail.model.StoreInfoDTO" alias="StoreInfoDTO"/>
+		<typeAlias type="com.fleamarket.mainDetail.model.ItemQnaDTO" alias="ItemQnaDTO"/>
 
 	</typeAliases>
 	
