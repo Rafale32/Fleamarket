@@ -52,10 +52,11 @@
 			</c:if>
 		</ul>
 	</div>
+	<a href="/Fleamarket/payment/payment.do">안심결제</a>
 	<br>
 	<div class="storeInfo">
 		<h3>상점정보</h3>
-		<a href="">${bean.storeInfo.store_name }</a>
+		<a href="/Fleamarket/product/productlist.do?store_name=${bean.storeInfo.store_name }">${bean.storeInfo.store_name }</a>
 		<h4>상점 내 다른 아이템</h4>
 		<c:forEach var="itemList" items="${bean.storeInfo.itemList}">
 			<a href="">${itemList.thum_img }</a>
