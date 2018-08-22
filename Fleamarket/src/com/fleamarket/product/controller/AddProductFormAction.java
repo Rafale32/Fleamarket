@@ -49,7 +49,7 @@ public class AddProductFormAction implements Action {
 				ja.add(json);
 			}
 			
-			PrintWriter out = response.getWriter();
+			PrintWriter out = response.getWriter(); 
 			String jsonString = ja.toJSONString();
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");

@@ -73,6 +73,7 @@ public class ProductDAO {
 		return list;
 	}
 	
+	//상점 이름 으로 그 상점의 등록된 물품을 리스트로
 	public List<ItemDTO> productListByStore(String storeName, int startRow){
 		
 		SqlSession sqlsession = getSqlSessionFactory().openSession();
@@ -90,6 +91,9 @@ public class ProductDAO {
 				
 				tmp.setPrice(sqlsession.getMapper(ProductMapper.class).itemPrice(tmp.getItem_No()));
 				tmp.setFavCount(sqlsession.getMapper(ProductMapper.class).favCount(tmp.getItemboard_No()));
+				tmp.setItemQnaCount(sqlsession.getMapper(ProductMapper.class).itemQnaCount(tmp.getItemboard_No()));
+				
+				
 			}
 			
 		} catch (Exception e) {
@@ -154,20 +158,36 @@ public class ProductDAO {
 	
 	
 	
-	public int countItemBoard(){ //페이징 처리 위한 아이템 전체 갯수 
-		int max = 0;
+	public int countItemBoard(String email){ //페이징 처리 위한 아이템 전체 갯수 이지만 이메일로 검색한 전체 갯수
+		int cnt = 0;
 		
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
 		try {
-				max= sqlSession.getMapper(ProductMapper.class).countItemBoard();
+				cnt= sqlSession.getMapper(ProductMapper.class).countItemBoard(email);
 			} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			sqlSession.close();
 		}
 		
-		return max;
+		return cnt;
+	}
+	
+	public int countItemBoardByStore(String store_name){
+		int cnt = 0;
+		
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+				cnt= sqlSession.getMapper(ProductMapper.class).countItemBoardByStore(store_name);
+			} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
+		
+		return cnt;
 	}
 	
 	
@@ -203,14 +223,14 @@ public class ProductDAO {
 		try {
 			
 			item = sqlsession.getMapper(ProductMapper.class).getAllFromProduct(itemboard_No);
+			//item.setItemboard_Contents(item.getItemboard_Contents().trim()); //앞뒤 트림 처리
 			itemImg = sqlsession.getMapper(ProductMapper.class).itemImgList(itemboard_No);
 			item.setItemImgList(itemImg);
 			bean.setCateList(sqlsession.getMapper(ProductMapper.class).cateList(null));//대 카테고리 전부 가져와서 빈에 박기
 			//카테고리번호로 그걸 가지고 카테고리명 가지고 오기
-			System.out.println(item.getSub_No());
 			ItemDTO tmp = sqlsession.getMapper(ProductMapper.class).getCatebySubNo(item.getSub_No());
 			item.setCategory_Title(tmp.getCategory_Title());
-			item.setSub_Title(tmp.getSub_Title()); System.out.println(tmp.getSub_Title()+":aaaaaaa:"+tmp.getCategory_Title());
+			item.setSub_Title(tmp.getSub_Title()); //System.out.println(tmp.getSub_Title()+":aaaaaaa:"+tmp.getCategory_Title());
 			CateDTO cateDTO = new CateDTO(); cateDTO.setCategory_title(tmp.getCategory_Title());
 			List<String> subTitle = sqlsession.getMapper(ProductMapper.class).cateList(cateDTO); //대카테 해당하는 서브카테 전부가져와서 넣기
 			bean.setSub_cateList(subTitle);
@@ -222,5 +242,33 @@ public class ProductDAO {
 		
 		return item;
 	}
+	
+	
+	public int deleteImg(ItemImg img){
+		
+		int state = -1;
+		int state1 = -1;
+		
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			
+			state = sqlSession.getMapper(ProductMapper.class).deleteImg(img);
+			state1 =sqlSession.getMapper(ProductMapper.class).deleteThumImg(img);
+			if(state>0){//정상처리
+				sqlSession.commit();
+			}else{//비정상 처리
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
+		
+		return state;
+		
+	}
+	
 	
 }

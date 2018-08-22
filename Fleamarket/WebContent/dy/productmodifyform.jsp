@@ -8,6 +8,21 @@
     <script type="text/javascript" src="/Fleamarket/dy/jquery-3.1.0.js" charset="utf-8"></script>
     <script type="text/javascript" src="/Fleamarket/dy/imgadd.js" charset="utf-8"></script>
       
+     <script type="text/javascript">
+	    function modifyCheck(e) {
+	    	if (confirm("상품을 수정 하시겠습니까?")) 
+	    	{
+	    		
+	    		return true;
+	    		//document.getElementById('ff').submit();
+	    	} else {
+	    		alert("상품수정이 취소 되었습니다.");
+	    		//e.preventDefault();
+	    		return false;
+	    	}
+	    }
+    </script>
+      
     <style type="text/css">
         .imgs_wrap {
             width: 600px;
@@ -18,17 +33,15 @@
             max-height: 200px;
         }
     </style>
-    
 </head>
 
 <body>
 	<br>
 	
-		<form action="/Fleamarket/product/addproduct.do" method="post" enctype="multipart/form-data" name="multipleUpload">
+		<form action="/Fleamarket/product/productmodify.do" onsubmit="return modifyCheck()" method="post" enctype="multipart/form-data" name="multipleUpload">
 		
  		   
  		       <p class="title">업로드할 이미지를 선택해 주세요</p>
- 		       
  		       
 		      <div id="imgfiles">
 		       		<input type="file" id="inputimgs0" name="inputimgs0"/>
@@ -37,12 +50,17 @@
 		       		<input type="file" id="inputimgs3" name="inputimgs3"/>
 		       		<input type="file" id="inputimgs4" name="inputimgs4"/>
 		       </div>
-		   <div>
+		       <div class="imgs_wrap_now">
+		           <c:forEach items="${bean.itemDTO.itemImgList }" var="tmp" varStatus="status">
+		           		<img src="/Fleamarket/productimg/${tmp.thum_Img }" class="img${status.index }">
+		           		<button value="${tmp.thum_Img }/${tmp.big_Img }/${status.index }" class="btn" id="btn${status.index }">그림 삭제하기</button>
+		           </c:forEach>
+		       </div>
+		       
 		       <div class="imgs_wrap">
 		           
 		       </div>
-		   </div>
-			
+		       
 			<div>
 				<label >카테고리:</label>
 				<div>
@@ -68,7 +86,7 @@
 							</c:if>	
 							<c:if test="${tmp2 != bean.itemDTO.sub_Title }">
 								<option value="${tmp2 }">${tmp2 }</option>
-							</c:if>	
+							</c:if>
 						</c:forEach>
 					</select>
 				</div>
@@ -174,8 +192,8 @@
 				<input type="number" placeholder="1" value="${bean.itemDTO.amount }" name="amount"/>
 				
 				<br>
-				<input type="submit" value="등록">
+				<input type="submit" value="등록" id="aa">
 		</form>
-
 </body>
+
 </html>

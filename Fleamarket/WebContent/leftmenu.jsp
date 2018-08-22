@@ -10,7 +10,7 @@
 <body>
 	<c:choose>
 		<c:when test="${param.store_name != null}">
-			<a href="#">상품</a>
+			<a href="/Fleamarket/product/productlist.do?store_name=${bean.itemDTO.store_name }">상품</a>
 			<a href="#">상점후기</a>
 		</c:when>
 		<c:when test="${param.email != '' }"> 
