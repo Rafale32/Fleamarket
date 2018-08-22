@@ -22,20 +22,16 @@ public class MainAction implements Action {
     MainDetailService service = MainDetailService.getInstance();
     bean.setRecommend(service.recommend());
     bean.setHotItemList(service.hotItemList());
-		//bean.setCategoryList(service.hotList());
-    bean.setCategoryList(service.hotList());
+    bean.setHotList(service.hotList());
+    
 		ActionForward forward = new ActionForward();
 		forward.setPath("/template.jsp"); //원하는 경로가 완전 새로운 페이지가 아니라면 템플릿으로 가야겟지 템플릿이 헤더및 푸터 있으니까
 		forward.setRedirect(false); //완전 새로운 페이지로 갈거냐 안갈거냐
 		forward.setConPath("./jy/main_container.jsp"); //원하는 container 파일 경로
 		
 		request.setAttribute("forward", forward); // 컨테이너 경로 사용하기위한 등록
-
-		for(int i=0; i<bean.getCategoryList().size(); i++){
-		  
-		  for(int j=0; j<bean.getCategoryList().get(i).getHotList().size(); j++){
-		  }
-		}
+		
+		System.out.println("메인 액션 들어옴?");
 		
 		return forward;
 	}
