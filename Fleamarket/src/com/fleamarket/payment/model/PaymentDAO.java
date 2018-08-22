@@ -164,7 +164,6 @@ public class PaymentDAO {
  }
 
  
- 
  // 구매자 포인트 수정 - 20180820 재헌
  public int updateMemberPoint(MemManageDTO memManageDTO){
    int re = -1;

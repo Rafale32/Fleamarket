@@ -17,7 +17,7 @@ public class PaymentService {
     dao = PaymentDAO.getInstance();
     return service;
   }
-  // 결제페이지 들어올 때
+          // 결제페이지 들어올 때
 
   // 회원정보 가져오기
   public MemManageDTO selectMemberService(HttpServletRequest request) throws Exception {
@@ -45,7 +45,7 @@ public class PaymentService {
     return spellDTO_jh;
   }// selectSpellNoService
 
-  // 결제페이지에서 넘기기
+          // 결제페이지에서 넘기기
   // 주문정보 입력
   public int insertSpellService(HttpServletRequest request) throws Exception {
     SpellDTO_jh spell = new SpellDTO_jh();

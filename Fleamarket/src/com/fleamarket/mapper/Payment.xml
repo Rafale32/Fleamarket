@@ -21,7 +21,7 @@
     i.item_no
     and ib.store_no = s.store_no
     and ib.item_no = 1
-    
+<!--     ${item_no} -->
   </select>
   
   <select id="selectSpellNo" parameterType="int" resultType="SpellDTO_jh">
@@ -79,6 +79,34 @@
   </update>
 
 
+
+  <!--   주문상세내역 들어갈 때 -->
+  <select id="findSpell" parameterType="int" resultType="SpellDTO_jh">
+    select * from spell where item_no=#{item_no};
+  </select>
+  
+  <select id="findItem" parameterType="int" resultType="ItemDTO">
+    select * from itemboard ib, item i, store s
+    where ib.item_no = i.item_no
+    and ib.store_no = s.store_no
+    and ib.item_no = #{item_no}
+  </select>
+  
+  <select id="findPayment" parameterType="int" resultType="PaymentDTO">
+    select * from pay where spell_no=#{spell_no};
+  </select>
+  
+  <select id="findDeli" parameterType="int" resultType="DeliveryDTO_jh">
+    select * from delivery where spell_no=#{spell_no};
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
   <!-- 건엽 -->
   <!--밑에건 db에서 판매 제목, 상점이름, 썸네일 이미지 가져오는 쿼리 내용 -->
 	<select id="listPuerchaseBoard" resultType="PuerchaseDTO_gy">

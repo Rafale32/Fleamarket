@@ -124,7 +124,8 @@
       <tr>
         <td>배송비</td>
         <td id="delivery_fee">
-          <!--  배송 유무 확인 --> <c:choose>
+          <!--  배송 유무 확인 -->
+          <c:choose>
             <c:when test="${bean.itemDTO.delivery_fee == '1'}">
               <c:set var="deli_fee" value="2500"></c:set>
               <fmt:formatNumber value="${deli_fee}" />원

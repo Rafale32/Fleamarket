@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.fleamarket.bean.Action;
 import com.fleamarket.bean.ActionForward;
 import com.fleamarket.bean.Bean;
-import com.fleamarket.payment.service.InsertDeliveryAction_jh;
+import com.fleamarket.payment.service.DetailOrderAction_jh;
 import com.fleamarket.payment.service.InsertPaymentAction_jh;
 import com.fleamarket.payment.service.PaymentAction;
 
@@ -41,18 +41,9 @@ public class PaymentController extends HttpServlet {
       Bean bean = new Bean(request);
       request.setAttribute("bean", bean);
     }
-    
-    //insertDelivery.do => 배송정보 입력
-    if (command.equals("insertdelivery.do")) {
-      action = new InsertDeliveryAction_jh();
-      try {
-        forward = action.execute(request, response);
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
-      
-    //payment.do => 결제페이지, 필요한 정보 가져오기
-    } else if(command.equals("payment.do")) {
+
+    // payment.do => 결제페이지, 필요한 정보 가져오기
+    if (command.equals("payment.do")) {
       action = new PaymentAction();
       try {
         forward = action.execute(request, response);
@@ -60,24 +51,29 @@ public class PaymentController extends HttpServlet {
         e.printStackTrace();
       }
       
-      //detailPayment.do => 상세내역페이지로 이동
-    } else if(command.equals("detailpayment.do")) {
-      action = new PaymentAction();
-      try {
-        forward = action.execute(request, response);
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
-      
-      //결제페이지 값들 입력
-    }else if(command.equals("insertpayment.do")) {
+      // 결제페이지 값들 입력
+    } else if (command.equals("insertpayment.do")) {
       action = new InsertPaymentAction_jh();
       try {
         forward = action.execute(request, response);
       } catch (Exception e) {
         e.printStackTrace();
       }
+    
+       // detailPayment.do => 주문상세내역페이지로 이동
+    } else if (command.equals("detailpayment.do")) {
+      action = new DetailOrderAction_jh();
+      try {
+        forward = action.execute(request, response);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
     }
+    
+    
+
+
+  
 
     if (forward != null) {
       if (forward.isRedirect()) {

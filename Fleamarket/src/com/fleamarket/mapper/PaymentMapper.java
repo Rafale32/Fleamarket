@@ -11,6 +11,7 @@ import com.fleamarket.payment.model.PaymentDTO;
 import com.fleamarket.payment.model.PuerchaseDTO_gy;
 import com.fleamarket.payment.model.SellProductDTO_gy;
 import com.fleamarket.payment.model.SpellDTO_jh;
+import com.fleamarket.payment.model.StoreDTO_jh;
 import com.fleamarket.product.model.ItemDTO;
 
 public interface PaymentMapper {
@@ -53,6 +54,15 @@ public interface PaymentMapper {
   int updateMemberPoint(MemManageDTO memManageDTO);
   
   // 주문상세페이지 들어갈 때
-	
+  // 상품 및 상품글, 이미지 정보
+  ItemDTO findItem(int item_no);
+  // 주문내역
+  SpellDTO_jh findSpell(int item_no);
+  // 결제내역
+  PaymentDTO findPayment(int spell_no);
+  // 배송정보
+  DeliveryDTO_jh findDeli(int spell_no);
+  // 내상점
+//  StoreDTO_jh findStore();
 	
 }
