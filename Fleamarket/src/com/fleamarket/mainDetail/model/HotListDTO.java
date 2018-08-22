@@ -3,18 +3,18 @@ package com.fleamarket.mainDetail.model;
 import java.io.Serializable;
 import java.util.List;
 
-public class CategoryDTO implements Serializable{
-  private int category_no;
-  private String category_title;
-  private List<SubCategoryDTO> subCategory;
+public class HotListDTO implements Serializable{
+  private int category_no;  //대 카테고리 번호
+  private String category_title;  //대 카테고리 이름
+  private List<HotItemDTO> hotList; //대 카테고리별 인기상품정보 리스트
   
-  public CategoryDTO(){}
-  
-  public CategoryDTO(int category_no, String category_title, List<SubCategoryDTO> subCategory) {
+  public HotListDTO(){}
+
+  public HotListDTO(int category_no, String category_title, List<HotItemDTO> hotList) {
     super();
     this.category_no = category_no;
     this.category_title = category_title;
-    this.subCategory = subCategory;
+    this.hotList = hotList;
   }
 
   public int getCategory_no() {
@@ -33,12 +33,12 @@ public class CategoryDTO implements Serializable{
     this.category_title = category_title;
   }
 
-  public List<SubCategoryDTO> getSubCategory() {
-    return subCategory;
+  public List<HotItemDTO> getHotList() {
+    return hotList;
   }
 
-  public void setSubCategory(List<SubCategoryDTO> subCategory) {
-    this.subCategory = subCategory;
+  public void setHotItemList(List<HotItemDTO> hotList) {
+    this.hotList = hotList;
   }
 
   
