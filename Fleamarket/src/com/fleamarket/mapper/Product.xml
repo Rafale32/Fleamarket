@@ -21,18 +21,23 @@
 	<select id="itemList" resultType="ItemDTO" parameterType="String">
 		select * from itemboard ite 
 		inner Join store st on ite.STORE_NO = st.STORE_NO
-		where email=#{email }
+		where email=#{email } and ite.DELETE_STATE = 0 order by ite.ITEMBOARD_NO
 	</select>
 	
 	<select id="itemListByStore" resultType="ItemDTO" parameterType="String">
 		select * from itemboard ite 
 		inner Join store st on ite.STORE_NO = st.STORE_NO
-		where st.STORE_NAME=#{storeName }
+		where st.STORE_NAME=#{storeName } and ite.DELETE_STATE = 0 order by ite.ITEMBOARD_NO;
 	</select>
-	
-	<select id="itemImgList" parameterType="int" resultType="ItemImg">
+	 
+ 	<select id="itemImgList" parameterType="int" resultType="ItemImg">
 		select * from itemimg where ITEMBOARD_NO = #{itemboard_No }
 	</select>
+	
+<!-- 	<select id="itemImgList" parameterType="int" resultType="ItemImg">
+		select * from itemimg where ITEMBOARD_NO = #{itemboard_No } and IMG_NO=(select min(img_no) 
+		from itemimg where ITEMBOARD_NO = #{itemboard_No });
+	</select> 일단 아이템 이미지만 하나씩만 가지고 오게 할려고 아래걸로 바꿈 썸네일 이미지 하나만 있으면 되니까 근대에러왜남 -->
 
 	<select id="itemPrice" parameterType="int" resultType="int">
 		select price from item where ITEM_NO=#{item_No }
@@ -45,5 +50,89 @@
 	<select id="itemQnaCount" parameterType="int" resultType="int">
 		select count(*) from ITEM_QNA where ITEMBOARD_NO = #{itemboard_No }
 	</select>
+	<!-- select category_title from category -->
+	<select id="cateList" resultType="String" parameterType="CateDTO">
+		
+		<if test="category_title == null">
+			select category_title from category
+		</if>
+		
+		<if test="category_title != null">
+			select su.SUB_TITLE from category ca inner join category_sub su on ca.CATEGORY_NO = su.CATEGORY_NO
+			where ca.category_no=(select CATEGORY_NO from CATEGORY where CATEGORY_TITLE = #{category_title })
+		</if>
+	</select>
+	
+	
+	
+	
+	
+	<insert id="insertItem" parameterType="ItemDTO">
+		INSERT  into item(item_no, price, amount, delivery_fee, delivery_state, item_state) 
+			values (
+			  (select max(ITEM_NO) from item)+1,
+			  #{price },
+			  #{amount },
+			  #{delivery_Fee },
+			  1,
+			  #{item_State }
+			)
+	</insert>
+	
+	<!-- 이거 수정해놔봐 메인카테고리 cateName 이름 디비랑 똑같이 -->
+	<insert id="insertItemBoard" parameterType="ItemDTO">
+		INSERT  into itemboard (sub_no, itemboard_date, local, title, itemboard_contents, tag, 
+		hits, recommend_ornot, change_ornot, item_no, itemboard_no, store_no)
+			values(
+			  (select sub_no from CATEGORY_SUB su inner join  CATEGORY ma
+				on su.CATEGORY_NO = ma.CATEGORY_NO 
+				where su.SUB_TITLE = #{sub_Title } and ma.CATEGORY_TITLE = #{category_Title } ),
+			  sysdate,
+			  #{local },
+			  #{title },
+			  #{itemboard_Contents },
+			  #{tag },
+			  0,
+			  0,
+			  #{change_Ornot },
+			  (select max(ITEM_NO) from item),
+			  (select max(itemboard_no) from itemboard)+1,
+			  (select store_no from store where email = #{email })
+			)
+	</insert>
+	
+
+	<insert id="insertImgs" parameterType="ItemImg">
+		insert into itemimg(img_no, itemboard_no, big_img, thum_img ) values(
+		  (select max(IMG_NO) from itemimg)+1,
+		  (select max(itemboard_no) from itemboard),
+		  #{big_Img },
+		  #{thum_Img }
+		)
+	</insert>
+	
+	
+	<select id="countItemBoard" resultType="int">
+		select count(ITEMBOARD_NO) from itemboard
+	</select>
+	
+	
+	<!-- 실제 로우의 삭제가 아닌 삭제 상태의 변경이다 1로 바꾸는거지 -->
+	<update id="itemBoardDelete" parameterType="int">
+		UPDATE itemboard set DELETE_STATE = 1  where ITEMBOARD_NO = #{itemboard_No }
+	</update>
+	
+	
+	<select id="getAllFromProduct" parameterType="int" resultType="ItemDTO">
+		select * from ITEMBOARD itb inner join item it on itb.ITEM_NO = it.ITEM_NO
+		where itb.ITEM_NO = #{itemboard_No }
+	</select>
+	
+	<!--물품 수정 폼에서 카테고리명 가지고 오기위해 사용-->
+	<select id="getCatebySubNo" parameterType="int" resultType="ItemDTO">
+		select * from CATEGORY ca inner join CATEGORY_SUB su on
+		ca.CATEGORY_NO = su.CATEGORY_NO where su.SUB_NO= #{sub_no }
+	</select>
+	
 	
 </mapper>

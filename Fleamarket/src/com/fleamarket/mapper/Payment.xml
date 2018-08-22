@@ -2,42 +2,152 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-
 <!-- 여기에 이제 sql 문이들가지 mapper 안에 BoardMapper 로 했지 이걸 인터페이스이름과 같아야함 -->
 <mapper namespace="com.fleamarket.mapper.PaymentMapper">
-	<cache />
-<!-- 	배송 정보 입력 20180816 재헌-->
-	<insert id="insertDelivery" parameterType="DeliveryDTO_jh">
-		insert into delivery
-    (delivery_no, delivery_name, delivery_ph, delivery_address, delivery_address, delivery_contents, order_no)
-    values
-    (delivery_seq.nextval, #{delivery_name},#{delivery_ph},#{delivery_address},#{delivery_address2},#{delivery_contents},#{order_no});
-	</insert>
-  
-<!--   결제에 가져올 회원정보 20180817 재헌 -->
+  <cache />
+  <!-- 결제정보 가져올 때 -->
+  <!-- 결제에 가져올 구매자 회원정보 20180817 재헌 -->
   <select id="selectMember" parameterType="String" resultType="MemManageDTO">
-<!--   test -->
-    select * from member where email = 'user1@gmail.com'
-<!--     select * from member where email= #{email}; -->
+    <!-- test -->
+    select * from member where email = 'testjwpp@gmail.com'
+    <!-- select * from member where email= #{email}; -->
   </select>
-  
-<!--   결제에 가져올 상품정보 20180817 재헌-->
-  <select id="selectItem"  parameterType="int" resultType="ItemDTO">
-<!--   test -->
-    select * from item where item_no = 1
-<!--    select * from item where item_no= #{item_no}; -->
-  </select>
-  
-  
-	
 
+  <!-- 결제에 가져올 상품정보 및 판매자 정보 20180817 재헌 -->
+  <select id="selectItem" parameterType="int" resultType="ItemDTO">
+    <!-- test -->
+    select * from itemboard ib, item i, store s
+    where ib.item_no =
+    i.item_no
+    and ib.store_no = s.store_no
+    and ib.item_no = 1
+    
+  </select>
   
-  <select id="listPuerchaseBoard" resultType="PuerchaseDTO_gy">
-	 select distinct A.Title , S.Store_Name , Im.Thum_Img , Pa.Pay_Date
-	 from pay pa, spell sp, itemBoard a , store s, itemimg im where
-	 A.Store_No = S.Store_No and Im.Itemboard_No = A.Itemboard_No and Sp.Email = S.Email and
-	 Pa.Spell_No = Sp.Spell_No
+  <select id="selectSpellNo" parameterType="int" resultType="SpellDTO_jh">
+    <!-- test -->
+<!--     내림차순에 첫번째 로우의 주문번호를 불러와 마지막 주문번호를 부른다. -->
+    select spell_no from spell
+    where ROWNUM=1
+    order by spell_no desc
+  </select>
+  
+  
+  <!-- 결제 정보 넘길 때 -->
+  <!-- 배송 정보 입력 20180816 재헌 -->
+  <insert id="insertDelivery" parameterType="DeliveryDTO_jh">
+    insert into delivery
+    (delivery_no, delivery_name, delivery_ph, delivery_address,
+    delivery_address2, delivery_contents, spell_no)
+    values
+    (delivery_seq.nextval,
+    #{delivery_name},#{delivery_ph},#{delivery_address},#{delivery_address2},
+    #{delivery_contents},#{spell_no})
+  </insert>
+
+  <!-- 주문정보 입력 20180820 재헌 -->
+  <insert id="insertSpell" parameterType="SpellDTO_jh">
+    insert into spell
+    (spell_no, spell_date, email, item_no)
+    values
+    (#{spell_no}, sysdate, #{email}, #{item_no})
+  </insert>
+
+  <!-- 결제정보 입력 - 20180820 재헌 -->
+  <insert id="insertPayment" parameterType="PaymentDTO">
+    insert into pay
+    (pay_no, pay_date, pay_price, spell_no, use_point)
+    values
+    (pay_seq.nextval,sysdate,
+    #{pay_price},#{spell_no},#{use_point})
+  </insert>
+  
+  <!-- 상품 배송상태 수정 - 20180820 재헌 -->
+  <!-- 1:판매전,2:준비중,3:배송중,4:구매확정 => 2번상태로 변경-->
+  <update id="updateItemDeliveryState" parameterType="ItemDTO">
+    update item set
+    delivery_state = 2
+    where item_no = #{item_No}
+  </update>
+  
+  <!-- 구매자 포인트 수정 - 20180820 재헌 -->
+  <!-- 보유포인트-소모포인트+적립포인트 -->
+  <update id="updateMemberPoint" parameterType="MemManageDTO">
+    update member set
+    point = #{point}
+    where email = #{email}
+  </update>
+
+
+  <!-- 건엽 -->
+  <!--밑에건 db에서 판매 제목, 상점이름, 썸네일 이미지 가져오는 쿼리 내용 -->
+	<select id="listPuerchaseBoard" resultType="PuerchaseDTO_gy">
+	select distinct Itb.Title ,St.Store_Name,It.Delivery_State,It.Item_No,Ite.Thum_Img,It.Price,Pa.Pay_Date
+      from item it, Spell sp,Delivery de,Itemboard itb,Store st,Itemimg ite, pay pa
+      where It.Item_No = Sp.Item_No
+      and De.Spell_No = Sp.Spell_No
+      and Itb.Item_No = It.Item_No
+      and St.Store_No = Itb.Store_No
+      and Ite.Itemboard_No = Itb.Itemboard_No
+      and Pa.Spell_No = Sp.Spell_No order by It.Item_No
 	</select>
 
+  <!--밑에건 판매 내역에서 값 이미지 제목 날자를 뽑아오는 쿼리 내용 - 건엽 -->
+
+  <select id="listSellBoard" resultType="SellProductDTO_gy">
+	    select distinct Itb.Title ,St.Store_Name,It.Delivery_State,It.Item_No,Ite.Thum_Img,It.Price,Pa.Pay_Date
+      from item it, Spell sp,Delivery de,Itemboard itb,Store st,Itemimg ite, pay pa
+      where It.Item_No = Sp.Item_No
+      and De.Spell_No = Sp.Spell_No
+      and Itb.Item_No = It.Item_No
+      and St.Store_No = Itb.Store_No
+      and Ite.Itemboard_No = Itb.Itemboard_No
+      and Pa.Spell_No = Sp.Spell_No order by It.Item_No
+	</select>
+
+  <!-- 업데이트 문 입니다. 딜리버리 스테이트 라고 쳤지만 물품 아이디 입니다.-->
 	
+	<update id="changeDelieryState" parameterType="DeliveryDTO_gy">
+	update item set Delivery_State =4  where item_no = #{item_no}
+	</update>
+	
+	<update id="changeDelieryStateSell" parameterType="DeliveryDTO_gy">
+	update item set Delivery_State =3  where item_no = #{item_no}
+	</update>
+	
+	<select id="countBoard" resultType="int">
+	   select count(distinct It.Item_No)
+      from item it, Spell sp,Delivery de,Itemboard itb,Store st,Itemimg ite, pay pa
+      where It.Item_No = Sp.Item_No
+      and De.Spell_No = Sp.Spell_No
+      and Itb.Item_No = It.Item_No
+      and St.Store_No = Itb.Store_No
+      and Ite.Itemboard_No = Itb.Itemboard_No
+      and Pa.Spell_No = Sp.Spell_No 
+	</select>
+	
+	<!-- 원하는 갯수만 뽑기 코드 구매부 -->
+	
+	<select id="listBoardService" resultType="PuerchaseDTO_gy">
+	select distinct Itb.Title ,St.Store_Name,It.Delivery_State,It.Item_No,Ite.Thum_Img,It.Price,Pa.Pay_Date
+      from item it, Spell sp,Delivery de,Itemboard itb,Store st,Itemimg ite, pay pa
+      where It.Item_No = Sp.Item_No
+      and De.Spell_No = Sp.Spell_No
+      and Itb.Item_No = It.Item_No
+      and St.Store_No = Itb.Store_No
+      and Ite.Itemboard_No = Itb.Itemboard_No
+      and Pa.Spell_No = Sp.Spell_No order by It.Item_No
+	</select>
+	<!-- 원하는 갯수만 뽑기 코드 판매부 -->
+		<select id="listBoardService2" resultType="PuerchaseDTO_gy">
+	select distinct Itb.Title ,St.Store_Name,It.Delivery_State,It.Item_No,Ite.Thum_Img,It.Price,Pa.Pay_Date
+      from item it, Spell sp,Delivery de,Itemboard itb,Store st,Itemimg ite, pay pa
+      where It.Item_No = Sp.Item_No
+      and De.Spell_No = Sp.Spell_No
+      and Itb.Item_No = It.Item_No
+      and St.Store_No = Itb.Store_No
+      and Ite.Itemboard_No = Itb.Itemboard_No
+      and Pa.Spell_No = Sp.Spell_No order by It.Item_No
+	</select>
+
 </mapper>

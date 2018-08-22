@@ -12,7 +12,9 @@ public class JoinAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		MemberService service = MemberService.getInstance();
 		
-		System.out.println("aaaaaaaaaaaaaaaaaaaa:"+request.getParameter("email"));
+//		System.out.println("메일이다:"+request.getParameter("email"));
+//		System.out.println("주소다" + request.getParameter("address"));
+//		System.out.println("주소다주소다" + request.getParameter("address2"));
 		service.joinBoardService(request);
 		
 		ActionForward forward = new ActionForward();

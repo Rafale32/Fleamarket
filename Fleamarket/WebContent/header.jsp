@@ -19,9 +19,11 @@
 			<a href="/Fleamarket/memmanage/logout.do">로그아웃</a>
 		</c:when>
 	</c:choose>
+	
 	<c:if test="${member != null }">
 		<a href="/Fleamarket/product/productlist.do?email=${member.email }" class="btn">My Store</a>
-		<a href="" class="btn">내 정보보기</a>
+		<a href="/Fleamarket/memmanage/detailAction.do?email=${member.email }" class="btn">내 정보보기</a>
 	</c:if>
+
 </body>
 </html>

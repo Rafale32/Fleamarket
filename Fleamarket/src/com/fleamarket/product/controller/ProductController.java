@@ -26,6 +26,8 @@ public class ProductController extends HttpServlet {
     public void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
     	
     	request.setCharacterEncoding("utf-8");
+    	response.setCharacterEncoding("utf-8");
+    	response.setContentType("text/html; charset=UTF-8");
     	
     	String requestURI = request.getRequestURI();
     	
@@ -65,6 +67,27 @@ public class ProductController extends HttpServlet {
     		try {
     			forward = action.execute(request, response);
 			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    	}else if(command.equals("addproduct.do")){ // 물품 추가 디비와 서버에 파일 넣는곳
+    		action  = new AddProductAction();
+    		try {
+    			forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    	}else if(command.equals("productdelete.do")){ //등록된 물품 삭제 
+    		action  = new ProductDeleteAction();
+    		try {
+    			forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    	}else if(command.equals("productmodifyform.do")){ //물품 수정폼 으로 가서 디비 저장값 불러오게끔 
+    		action  = new ProductModifyFormAction();
+    		try {
+    			forward = action.execute(request, response);
+			}catch (Exception e) {
 				e.printStackTrace();
 			}
     	}
