@@ -58,6 +58,28 @@ public class MainDetailController extends HttpServlet {
         e.printStackTrace();
       }
     }
+    else if(command.equals("qnaAction.do")){
+      action = new QnaAction();
+      try {
+        forward = action.execute(request, response);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }else if(command.equals("deleteQnaAction.do")){
+      action = new DeleteQnaAction();
+      try {
+        forward = action.execute(request, response);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }else if(command.equals("categoryItemListAction.do")){
+      action = new CategoryItemListAction();
+      try {
+        forward = action.execute(request, response);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
 
     if (forward != null) {
       if (forward.isRedirect()) {

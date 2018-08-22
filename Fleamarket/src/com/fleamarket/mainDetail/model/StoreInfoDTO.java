@@ -11,13 +11,14 @@ public class StoreInfoDTO implements Serializable{
   private String store_name;
   private int store_no;
   private String contents;
+  private String name;
   private int itemCount;
   private List<ItemDetailDTO> itemList;
   
   public StoreInfoDTO(){}
 
   public StoreInfoDTO(int itemboard_no, String email, int hits, String open_date, String store_name, int store_no,
-      String contents, int itemCount, List<ItemDetailDTO> itemList) {
+      String contents, String name, int itemCount, List<ItemDetailDTO> itemList) {
     super();
     this.itemboard_no = itemboard_no;
     this.email = email;
@@ -26,6 +27,7 @@ public class StoreInfoDTO implements Serializable{
     this.store_name = store_name;
     this.store_no = store_no;
     this.contents = contents;
+    this.name = name;
     this.itemCount = itemCount;
     this.itemList = itemList;
   }
@@ -101,5 +103,14 @@ public class StoreInfoDTO implements Serializable{
   public void setItemList(List<ItemDetailDTO> itemList) {
     this.itemList = itemList;
   }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+  
   
 }

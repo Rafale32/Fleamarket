@@ -9,10 +9,12 @@ public class RecommendDTO implements Serializable{
   private String itemboard_date;
   private int delivery_fee;
   private String thum_img;
+  private int itemboard_no;
   
   public RecommendDTO(){}
 
-  public RecommendDTO(int item_no, String title, int price, String itemboard_date, int delivery_fee, String thum_img) {
+  public RecommendDTO(int item_no, String title, int price, String itemboard_date, int delivery_fee, String thum_img,
+      int itemboard_no) {
     super();
     this.item_no = item_no;
     this.title = title;
@@ -20,6 +22,7 @@ public class RecommendDTO implements Serializable{
     this.itemboard_date = itemboard_date;
     this.delivery_fee = delivery_fee;
     this.thum_img = thum_img;
+    this.itemboard_no = itemboard_no;
   }
 
   public int getItem_no() {
@@ -69,6 +72,13 @@ public class RecommendDTO implements Serializable{
   public void setThum_img(String thum_img) {
     this.thum_img = thum_img;
   }
-  
+
+  public int getItemboard_no() {
+    return itemboard_no;
+  }
+
+  public void setItemboard_no(int itemboard_no) {
+    this.itemboard_no = itemboard_no;
+  }
   
 }

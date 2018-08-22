@@ -6,6 +6,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+  $(function() {
+    $('.insertQnaBtn').click(function() {
+
+    });
+  });
+</script>
 </head>
 <body>
 	<div class="category">
@@ -37,7 +44,12 @@
 			<li>${bean.itemDetail.itemboard_contents}</li> 카테고리
 			<li>${bean.itemDetail.category_title}</li>
 			<li>${bean.itemDetail.sub_title}</li> 상품태그
-			<li>${bean.itemDetail.tag}</li>
+			<!-- 해시태그 목록 -->
+			<c:if test="${bean.itemDetail.tagList ne null}">
+				<c:forEach var="list" items="${bean.itemDetail.tagList}">
+					<a href="">${list }</a>
+				</c:forEach>
+			</c:if>
 		</ul>
 	</div>
 	<br>
@@ -47,6 +59,30 @@
 		<h4>상점 내 다른 아이템</h4>
 		<c:forEach var="itemList" items="${bean.storeInfo.itemList}">
 			<a href="">${itemList.thum_img }</a>
+		</c:forEach>
+	</div>
+
+	<div class="itemQna">
+		<h3>상품문의</h3>
+		<c:if test="${member.name ne null}">
+			<form action="qnaAction.do" method="post">
+				<input type="hidden" name="itemboard_no"
+					value="${bean.itemDetail.itemboard_no}"> <input
+					type="hidden" name="name" value="${member.name}"> 내용 <br>
+				<textarea rows="6" cols="70" name="contents"></textarea>
+				<br> <input class="insertQnaBtn" type="submit" value="등록">
+				<br>
+			</form>
+		</c:if>
+
+		<c:forEach var="qnaList" items="${bean.itemQnaList}">
+			<a href="">${qnaList.name }</a>
+			<a href="">${qnaList.store_no }</a>
+			<a
+				href="deleteQnaAction.do?item_qna_no=${qnaList.item_qna_no}&itemboard_no=${bean.itemDetail.itemboard_no}">삭제하기</a>
+
+			<br>
+			${qnaList.contents}<br>
 		</c:forEach>
 	</div>
 </body>

@@ -108,6 +108,7 @@ public class MainDetailDAO {
 	}
 	
 	public ItemDetailDTO itemDetail(int itemboard_no){
+	  
 	  SqlSession sqlSession = getSqlSessionFactory().openSession();
 	  ItemDetailDTO itemDetail = null;
 	  try {
@@ -117,6 +118,7 @@ public class MainDetailDAO {
     } finally {
       sqlSession.close();
     }
+	  
 	  return itemDetail;
 	}
 	
@@ -146,11 +148,11 @@ public class MainDetailDAO {
 	  return storeInfo;
 	}
 	
-	public List<ItemDetailDTO> storeItemList(int store_no){
+	public List<ItemDetailDTO> storeItemList(int store_no, int itemboard_no){
 	  SqlSession sqlSession = getSqlSessionFactory().openSession();
 	  List<ItemDetailDTO> storeItemList = null;
 	  try {
-      storeItemList = sqlSession.getMapper(MainDetailMapper.class).storeItem(store_no);
+      storeItemList = sqlSession.getMapper(MainDetailMapper.class).storeItem(store_no, itemboard_no);
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
@@ -159,4 +161,78 @@ public class MainDetailDAO {
 	  return storeItemList;
 	}
 	
+	public List<ItemQnaDTO> listQna(int itemboard_no){
+	  SqlSession sqlSession = getSqlSessionFactory().openSession();
+	  List<ItemQnaDTO> itemQnaList = null;
+	  try {
+      itemQnaList = sqlSession.getMapper(MainDetailMapper.class).listQna(itemboard_no);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      sqlSession.close();
+    }
+	  return itemQnaList;
+	}
+	
+	public int insertQna(ItemQnaDTO itemQna){
+	  int re = -1;
+	  SqlSession sqlSession = getSqlSessionFactory().openSession();
+	  try {
+      re = sqlSession.getMapper(MainDetailMapper.class).insertQna(itemQna);
+      if (re > 0){
+        sqlSession.commit();
+      } else {
+        sqlSession.rollback();
+      }
+	  } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      sqlSession.close();
+    }
+	  return re;
+	}
+	
+	public ItemQnaDTO storeNoInfo(String name){
+	  SqlSession sqlSession = getSqlSessionFactory().openSession();
+	  ItemQnaDTO storeNoInfo = null;
+	  try {
+      storeNoInfo = sqlSession.getMapper(MainDetailMapper.class).storeNoInfo(name);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      sqlSession.close();
+    }
+	  return storeNoInfo;
+	}
+	
+	public int deleteQna(int itemQnaNo){
+	  SqlSession sqlSession = getSqlSessionFactory().openSession();
+	  int re = -1;
+	  try {
+      re = sqlSession.getMapper(MainDetailMapper.class).deleteQna(itemQnaNo);
+      if(re > 0){
+        sqlSession.commit();
+      }else{
+        sqlSession.rollback();
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      sqlSession.close();
+    }
+	  return re;
+	}
+	
+	public List<ItemDetailDTO> categoryItemList(int category_no){
+	  SqlSession sqlSession = getSqlSessionFactory().openSession();
+	  List<ItemDetailDTO> categoryItemList = null;
+	  try {
+      categoryItemList = sqlSession.getMapper(MainDetailMapper.class).categoryItemList(category_no);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      sqlSession.close();
+    }
+	  return categoryItemList;
+	}
 }
