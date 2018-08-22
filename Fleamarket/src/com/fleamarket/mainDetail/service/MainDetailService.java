@@ -1,6 +1,8 @@
 package com.fleamarket.mainDetail.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -65,7 +67,59 @@ public class MainDetailService {
   public ItemDetailDTO itemDetail(int itemboard_no) {
     ItemDetailDTO itemDetail = new ItemDetailDTO();
     itemDetail = dao.itemDetail(itemboard_no);
-
+    
+    itemDetail.setHits(itemDetail.getHits()+1);
+    
+    //아이템상세글 작성시간 처리
+    Date date = new Date();
+    SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+    String today = f.format(date);
+    String itemDate = itemDetail.getItemboard_date();
+    
+    List<Integer> tlist = new ArrayList<Integer>();
+    List<Integer> ilist = new ArrayList<Integer>();
+    tlist.add(Integer.parseInt(today.substring(0,4)));
+    tlist.add(Integer.parseInt(today.substring(5,7)));
+    tlist.add(Integer.parseInt(today.substring(8,10)));
+    tlist.add(Integer.parseInt(today.substring(11,13)));
+    tlist.add(Integer.parseInt(today.substring(14,16)));
+    tlist.add(Integer.parseInt(today.substring(17,19)));
+    
+    ilist.add(Integer.parseInt(itemDate.substring(0,4)));
+    ilist.add(Integer.parseInt(itemDate.substring(5,7)));
+    ilist.add(Integer.parseInt(itemDate.substring(8,10)));
+    ilist.add(Integer.parseInt(itemDate.substring(11,13)));
+    ilist.add(Integer.parseInt(itemDate.substring(14,16)));
+    ilist.add(Integer.parseInt(itemDate.substring(17,19)));
+    String val1 = null;
+    String val2 = null;
+    int cnt = 0;
+    for(int i=0; i<6; i++){
+      if((tlist.get(i)-ilist.get(i))!=0){
+        val1 = String.valueOf((tlist.get(i)-ilist.get(i)));
+        break;
+      }
+      cnt++;
+    }
+    if(cnt == 0){
+      val2 = "년 전";
+    }else if(cnt == 1){
+      val2 = "달 전";
+    }else if(cnt == 2){
+      val2 = "일 전";
+    }else if(cnt == 3){
+      val2 = "시간 전";
+    }else if(cnt == 4){
+      val2 = "분 전";
+    }else if(cnt == 5){
+      val2 = "초 전";
+    }
+    String time = val1+val2;
+    
+    itemDetail.setItemboard_date(time);
+    //아이템상세글 작성시간 처리
+    
+    //태그쪼개서 태그리스트 처리
     if (itemDetail.getTag() == null) {
       return itemDetail;
     } else {
@@ -117,8 +171,10 @@ public class MainDetailService {
 
     for (int i = 0; i < listQna.size(); i++) {
       ItemQnaDTO storeNoInfo = new ItemQnaDTO();
-      storeNoInfo = dao.storeNoInfo(listQna.get(i).getName());
+      
+      storeNoInfo = dao.storeNoInfo(listQna.get(i).getEmail());
       listQna.get(i).setStore_no(storeNoInfo.getStore_no());
+      listQna.get(i).setstore_name(storeNoInfo.getstore_name());
     }
     return listQna;
   }
@@ -126,7 +182,7 @@ public class MainDetailService {
   public int insertQna(HttpServletRequest request) throws Exception {
     ItemQnaDTO itemQna = new ItemQnaDTO();
     itemQna.setContents(request.getParameter("contents"));
-    itemQna.setName(request.getParameter("name"));
+    itemQna.setEmail(request.getParameter("email"));
     String str = request.getParameter("itemboard_no");
     int itemboard_no = 0;
     if (str != null) {

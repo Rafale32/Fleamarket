@@ -111,8 +111,15 @@ public class MainDetailDAO {
 	  
 	  SqlSession sqlSession = getSqlSessionFactory().openSession();
 	  ItemDetailDTO itemDetail = null;
+	  int re = -1;
 	  try {
       itemDetail = sqlSession.getMapper(MainDetailMapper.class).itemDetail(itemboard_no);
+      re = sqlSession.getMapper(MainDetailMapper.class).updateHits(itemboard_no);
+      if(re >0){
+        sqlSession.commit();
+      }else{
+        sqlSession.rollback();
+      }
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
@@ -235,15 +242,5 @@ public class MainDetailDAO {
     }
 	  return categoryItemList;
 	}
-	
-	public StoreInfoDTO memberStoreInfo(String email){
-	  SqlSession sqlSession = getSqlSessionFactory().openSession();
-	  StoreInfoDTO memberStoreInfo = null;
-	  try {
-      memberStoreInfo = sqlSession.getMapper(MainDetailMapper.class).memberStoreInfo(email);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-	  return memberStoreInfo;
-	}
+
 }

@@ -73,7 +73,7 @@
 		e.change_ornot, d.delivery_fee,
 		e.local, e.itemboard_contents,
 		a.category_title, b.sub_title, e.tag,
-		e.store_no, f.thum_img
+		e.store_no, f.thum_img, d.item_no
 		from category a,
 		category_sub b, fav c, item d,
 		itemboard e, itemimg f
@@ -111,7 +111,7 @@
 
 	<select id="storeItem" parameterType="int" resultType="ItemDetailDTO">
 		select
-		distinct b.itemboard_no, c.thum_img, a.price
+		distinct b.itemboard_no, c.thum_img, a.price, b.title
 		from item a, itemboard b,
 		itemimg c
 		where a.item_no = b.item_no
@@ -131,22 +131,22 @@
 
 	<insert id="insertQna" parameterType="ItemQnaDTO">
 		insert into item_qna(
-		item_qna_no, itemboard_no, contents, qna_date, name
+		item_qna_no, itemboard_no, contents, qna_date, email
 		)values(
 		item_qna_seq.nextval,
 		#{itemboard_no},
 		#{contents},
 		sysdate,
-		#{name}
+		#{email}
 		)
 	</insert>
 
 	<select id="storeNoInfo" parameterType="String" resultType="ItemQnaDTO">
 		select
-		a.store_no
+		a.store_no, a.store_name
 		from store a, member b
 		where a.email = b.email
-		and b.name = #{name}
+		and b.email = #{email}
 	</select>
 	
 	<delete id="deleteQna" parameterType="int">
@@ -177,13 +177,8 @@
 		and a.category_no = #{category_no}
 	</select>
 	
-	<select id="memberStoreInfo" parameterType="String" resultType="storeInfoDTO">
-		select distinct
-		b.email, b.hits, b.open_date, b.store_name,
-		b.store_no, b.contents, c.name
-		from itemboard a, store b, member c
-		where a.store_no = b.store_no
-		and b.email = c.email
-		and b.email = #{email}
-	</select>
+	<update id="updateHits" parameterType="int">
+		update itemboard set hits = hits+1
+		where itemboard_no = #{itemboard_no}
+	</update>
 </mapper>
