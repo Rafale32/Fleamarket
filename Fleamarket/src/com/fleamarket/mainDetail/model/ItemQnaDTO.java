@@ -1,0 +1,79 @@
+package com.fleamarket.mainDetail.model;
+
+import java.io.Serializable;
+
+public class ItemQnaDTO implements Serializable{
+  private int item_qna_no;
+  private int itemboard_no;
+  private int store_no;
+  private String contents;
+  private String qna_date;
+  private String name;
+  
+  public ItemQnaDTO(){}
+
+  public ItemQnaDTO(int item_qna_no, int itemboard_no, int store_no, String contents, String qna_date, String name) {
+    super();
+    this.item_qna_no = item_qna_no;
+    this.itemboard_no = itemboard_no;
+    this.store_no = store_no;
+    this.contents = contents;
+    this.qna_date = qna_date;
+    this.name = name;
+  }
+
+  public int getItem_qna_no() {
+    return item_qna_no;
+  }
+
+  public void setItem_qna_no(int item_qna_no) {
+    this.item_qna_no = item_qna_no;
+  }
+
+  public int getItemboard_no() {
+    return itemboard_no;
+  }
+
+  public void setItemboard_no(int itemboard_no) {
+    this.itemboard_no = itemboard_no;
+  }
+
+  public String getContents() {
+    return contents;
+  }
+
+  public void setContents(String contents) {
+    this.contents = contents;
+  }
+
+  public String getQna_date() {
+    return qna_date;
+  }
+
+  public void setQna_date(String qna_date) {
+    this.qna_date = qna_date;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public int getStore_no() {
+    return store_no;
+  }
+
+  public void setStore_no(int store_no) {
+    this.store_no = store_no;
+  }
+
+  @Override
+  public String toString() {
+    return "ItemQnaDTO [item_qna_no=" + item_qna_no + ", itemboard_no=" + itemboard_no + ", store_no=" + store_no
+        + ", contents=" + contents + ", qna_date=" + qna_date + ", name=" + name + "]";
+  }
+  
+}
