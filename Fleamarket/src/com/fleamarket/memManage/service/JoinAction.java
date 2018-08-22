@@ -18,7 +18,7 @@ public class JoinAction implements Action {
 		service.joinBoardService(request);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("/Fleamarket/memmanage/login.do");
+		forward.setConPath("/Fleamarket/memmanage/login.do");
 		forward.setRedirect(true);
 		
 		return forward;

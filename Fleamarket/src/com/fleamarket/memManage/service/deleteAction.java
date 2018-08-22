@@ -17,12 +17,18 @@ public class deleteAction implements Action {
 		Bean bean = (Bean)request.getAttribute("bean");
 		MemberService service = MemberService.getInstance();
 		
+		System.out.println(request.getParameter("email") +"@@@@@@@@@@@@");
+		
 		String email = request.getParameter("email");
+		
+		System.out.println(request.getParameter("email") +"!!!!!!!!!!!!!");
 		
 		MemManageDAO dao = MemManageDAO.getInstance();
 		int dto = dao.deleteMember(email);
 		
 		request.setAttribute("email", email);
+		
+		System.out.println(request.getParameter("email") +"123123123123123");
 		
 		
 		ActionForward forward = new ActionForward();

@@ -25,8 +25,9 @@ public class updateAction implements Action {
 		
 		System.out.println(email +"너는 이메일이다");
 		
+		
 		MemManageDAO dao = MemManageDAO.getInstance();
-		int dto = dao.updateMember(email);
+		int dto = dao.updateMember(dto);
 		
 		service.updateMemberService(request);
 		System.out.println("야야야야야야3");

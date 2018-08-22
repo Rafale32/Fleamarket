@@ -23,16 +23,12 @@
  
     <form name="deleteform" method="post" action="/Fleamarket/memmanage/deleteAction.do" onsubmit="return checkValue()">
  
-        <table>
-            <tr>
-                <td bgcolor="skyblue">비밀번호</td>
-                <td><input type="password" name="password" maxlength="50"></td>
-            </tr>
-        </table>
+		<div> 회원탈퇴 화면입니다. 탈퇴하실 경우 탈퇴버튼을 눌러주세요 	</div> 
         
-        <br> 
+        <br><br>
+        <a href="/maindetail/mainAction.do"><input type="submit" value="탈퇴" onclick="return checkValue()"></a>
         <a href="detailForm.jsp"> <input type="button" value="취소"> </a>
-        <a href="./jy/main_container.jsp"><input type="submit" value="탈퇴">  </a>
+        
     </form>
 </body>
 </html>

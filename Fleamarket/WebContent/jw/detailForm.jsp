@@ -34,9 +34,9 @@
 	</table>
 		
 	<input type="button" value="뒤로" >
-    <a href="/Fleamarket/memmanage/updateAction.do?email=${bean.memManageDTO.email }">회원정보 </a>
+    <a href="/Fleamarket/memmanage/updateAction.do?email=${bean.memManageDTO.email }">회원정보 수정 </a>
 
-    <a href="/Fleamarket/memmanage/deleteAction.do?email=${bean.memManageDTO.email }">회원탈퇴 </a>	
+    <a href="deleteForm.jsp?email=${bean.memManageDTO.email }">회원탈퇴 </a>	
     
 	</form>
 </body>

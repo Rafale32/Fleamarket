@@ -1,10 +1,17 @@
 package com.fleamarket.memManage.service;
 
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
 
 import com.fleamarket.bean.Bean;
 import com.fleamarket.memManage.model.MemManageDAO;
@@ -20,6 +27,24 @@ public class MemberService {
 		dao = MemManageDAO.getInstance();
 		return service;
 	}
+	
+	Connection getConnection(){
+		Connection conn = null;
+		Context initContext;
+		
+		try{
+			initContext = new InitialContext();
+			DataSource ds = (DataSource)initContext.lookup("java:/comp/env/jdbc/myoracle");
+			conn = ds.getConnection();
+			
+		}catch(NamingException e){
+			e.printStackTrace();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return conn;
+	}
+	
 	
 	public int joinBoardService(HttpServletRequest request)throws Exception{
 		MemManageDTO dto = new MemManageDTO();
@@ -38,10 +63,10 @@ public class MemberService {
 		return dao.joinBoard(dto);
 	}//joinBoardService
 	
-	public boolean updateMemberService(HttpServletRequest request)throws Exception{
+	public int updateMemberService(HttpServletRequest request)throws Exception{
 		MemManageDTO dto = new MemManageDTO();
 		
-		boolean re1 = false;
+		int re = -1;
 		
 		HttpSession session = request.getSession();
 		dto = (MemManageDTO) session.getAttribute("member");
@@ -66,7 +91,7 @@ public class MemberService {
 		
 		System.out.println(dto.getName()+"이름이 수정된다.");
 		
-		return re1;
+		return re;
 	}//updateMember
 	
 	public int deleteMemberService(HttpServletRequest request)throws Exception{
@@ -74,12 +99,12 @@ public class MemberService {
 		
 		String email = request.getParameter("email");
 		
-		MemManageDAO da0 = new MemManageDAO();
+		MemManageDAO dao = new MemManageDAO();
 		int n =dao.deleteMember(email);
 		
 //		re = dto.setEmail(request.getParameter("email"));
-//		System.out.println(request.getParameter("email")+"삭제될 운명입니다.");
-//		
+		System.out.println(request.getParameter("email")+"삭제될 운명입니다.");
+		
 		System.out.println(request.getParameter("email") + "dmdkdmkdmdkmdkmdkdmkm");
 		
 		return dao.deleteMember(email);
