@@ -209,7 +209,7 @@ public class ProductDAO {
 			//카테고리번호로 그걸 가지고 카테고리명 가지고 오기
 			System.out.println(item.getSub_No());
 			ItemDTO tmp = sqlsession.getMapper(ProductMapper.class).getCatebySubNo(item.getSub_No());
-			item.setcategory_Title(tmp.getCategory_Title());
+			item.setCategory_Title(tmp.getCategory_Title());
 			item.setSub_Title(tmp.getSub_Title()); System.out.println(tmp.getSub_Title()+":aaaaaaa:"+tmp.getCategory_Title());
 			CateDTO cateDTO = new CateDTO(); cateDTO.setCategory_title(tmp.getCategory_Title());
 			List<String> subTitle = sqlsession.getMapper(ProductMapper.class).cateList(cateDTO); //대카테 해당하는 서브카테 전부가져와서 넣기

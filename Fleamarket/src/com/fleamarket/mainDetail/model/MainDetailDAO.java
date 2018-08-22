@@ -77,5 +77,4 @@ public class MainDetailDAO {
 	  return categoryList;
 	}
 	
-	
 }

@@ -30,6 +30,8 @@ public class MainAction implements Action {
 		forward.setConPath("./jy/main_container.jsp"); //원하는 container 파일 경로
 		
 		request.setAttribute("forward", forward); // 컨테이너 경로 사용하기위한 등록
+		
+		System.out.println("메인 액션 들어옴?");
 
 		for(int i=0; i<bean.getCategoryList().size(); i++){
 		  

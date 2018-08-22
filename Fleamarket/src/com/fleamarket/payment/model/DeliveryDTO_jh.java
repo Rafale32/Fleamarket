@@ -3,27 +3,18 @@ package com.fleamarket.payment.model;
 import java.io.Serializable;
 
 // 배송 정보 저장 되는 애
-public class DeliveryDTO_jh implements Serializable{
-  private int delivery_no;          // 배송번호
-  private String delivery_name;     // 수령인
-  private String delivery_ph;       // 수령인 연락처
-  private String delivery_address;  // 주소
+public class DeliveryDTO_jh implements Serializable {
+  private int delivery_no; // 배송번호
+  private String delivery_name; // 수령인
+  private String delivery_ph; // 수령인 연락처
+  private String delivery_address; // 주소
   private String delivery_address2; // 상세주소
   private String delivery_contents; // 배송시 요청사항
-  
-  public DeliveryDTO_jh(){}
+  private int spell_no; // 주문번호
 
-  public DeliveryDTO_jh(String delivery_name, String delivery_ph, String delivery_address, String delivery_address2,
-      String delivery_contents) {
-    super();
-    this.delivery_name = delivery_name;
-    this.delivery_ph = delivery_ph;
-    this.delivery_address = delivery_address;
-    this.delivery_address2 = delivery_address2;
-    this.delivery_contents = delivery_contents;
+  public DeliveryDTO_jh() {
   }
 
-  
   public int getDelivery_no() {
     return delivery_no;
   }
@@ -70,7 +61,14 @@ public class DeliveryDTO_jh implements Serializable{
 
   public void setDelivery_contents(String delivery_contents) {
     this.delivery_contents = delivery_contents;
+  }
+
+  public int getSpell_no() {
+    return spell_no;
+  }
+
+  public void setSpell_no(int spell_no) {
+    this.spell_no = spell_no;
   };
 
-  
 }

@@ -19,11 +19,12 @@ public class Bean {
 
 	// 20180816,재헌 DeliveryDTO 추가
 	DeliveryDTO_jh deliveryDTO_jh; // 배송정보
-	// 20180817,재헌 PaymentDTO, orderDTO 추가
+	// 20180817,재헌 PaymentDTO, SpellDTO_jh 추가
 	PaymentDTO paymentDTO; // 결제정보
 	SpellDTO_jh spellDTO_jh; //주문정보
 	ItemDTO itemDTO; // 상품정보
 	MemManageDTO memManageDTO; //회원정보
+	
 	
 	//두연
 	List<ItemDTO> itemList;
@@ -32,7 +33,7 @@ public class Bean {
 	List<String> sub_cateList; // 물품 수정폼에서 쓰기위해 만듬
 	PageModel pageModel;//페이지 처리위한넘
 	
-	//추천상품리스트 추가(주영)
+	//추천상품리스트 추가
 	private List<RecommendDTO> recommend;
 	//인기상품리스트 추가(주영)
 	private List<HotItemDTO> hotItemList;
@@ -122,7 +123,9 @@ public class Bean {
 	public void setCategoryList(List<CategoryDTO> categoryList) {
 		this.categoryList = categoryList;
 	}
-	public Bean(DeliveryDTO_jh deliveryDTO_jh, PaymentDTO paymentDTO, SpellDTO_jh spellDTO_jh, ItemDTO itemDTO,
+	
+
+  public Bean(DeliveryDTO_jh deliveryDTO_jh, PaymentDTO paymentDTO, SpellDTO_jh spellDTO_jh, ItemDTO itemDTO,
 			MemManageDTO memManageDTO, List<ItemDTO> itemList, HttpServletRequest request, List<RecommendDTO> recommend,
 			List<HotItemDTO> hotItemList, List<CategoryDTO> categoryList) {
 		super();
@@ -137,6 +140,6 @@ public class Bean {
 		this.hotItemList = hotItemList;
 		this.categoryList = categoryList;
 	}
-
+ 
 
 }
