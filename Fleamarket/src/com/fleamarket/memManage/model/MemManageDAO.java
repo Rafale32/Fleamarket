@@ -26,7 +26,7 @@ public class MemManageDAO {
 	
 	public SqlSessionFactory getSqlSessionFactory(){
 		
-		String resource = "mybatis-config-memManage.xml";
+		String resource = "mybatis-config-memManage.xml";//dao와 mybatis-config를 불러오는 값
 		
 		InputStream in = null;
 		
@@ -75,5 +75,56 @@ public class MemManageDAO {
 		return re;
 	}//joinBoard
 	
+	public MemManageDTO detailMember(String email){ //회원 상세 보기
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		MemManageDTO dto = null;
+		
+		try {
+			dto = sqlSession.getMapper(MemManageMapper.class).detailMember(email);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
+		return dto;
+	}//detailMember
 	
+	public int updateMember(String email){
+
+		int re = -1;
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			re = sqlSession.getMapper(MemManageMapper.class).updateMember(email);
+			if(re>0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+				}
+			}catch (Exception e) {
+				e.printStackTrace();	
+			}finally {
+				sqlSession.close();
+			}	
+		return re;
+	}//updateMember
+	
+	public int deleteMember(String email){//회원삭제
+		
+		int re = -1;
+		SqlSession sqlSession = getSqlSessionFactory().openSession();		
+		try {
+			re = sqlSession.getMapper(MemManageMapper.class).deleteMember(email);
+			if(re>0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
+		
+		return re;
+	}//deleteMember
 }

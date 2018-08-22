@@ -21,11 +21,21 @@
 	</select>
 	<insert id="joinMember" parameterType="MemManageDTO">
 		insert into member(email, password, name, phone, address, address2)
-			values(#{email}, #{password},#{name},#{phone},#{address},#{address2})
-			
+			values(#{email}, #{password},#{name},#{phone},#{address},#{address2})		
 	</insert>
+	
+	<select id="detailMember" parameterType="String" resultType="MemManageDTO">
+		select * from member where email = #{email}
+	</select>
 		
-
+	<update id="updateMember" parameterType="MemManageDTO">
+		update member set
+			password=#{password}, name=#{name}, phone=#{phone}, address=#{address}, address2=#{address2} where email =#{email}
+	</update>
+	
+	<delete id="deleteMember" parameterType="MemManageDTO">
+		delete from member where email = #{email}
+	</delete>
 
 
 

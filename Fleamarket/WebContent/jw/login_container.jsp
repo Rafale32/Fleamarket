@@ -5,12 +5,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>로그인</title>
+<script type="text/javascript" src="member/Check.js"></script>
 </head>
 <body>
-	<form action="/Fleamarket/memmanage/checklogin.do" method="post">
-		아이디: <input type="text" name="email">
-		비번: <input type="password" name="password">
-		<input type="submit" value="로그인">
+	<form action="/Fleamarket/memmanage/checklogin.do" method="post" name="frm">
+		<table>
+			<tr> 
+			<td>아이디</td>
+			<td><input type="email" id="email" name="email" value="${email }"></td>
+			</tr>
+			<tr>
+			<td>비번 </td>
+			<td><input type="password" name="password"></td>
+			</tr>
+			<tr>
+			<td colspan="2" aling="center">
+			<input type="submit" value="로그인" onclick="loginCheck()">
+			</td>
+			</tr>
+		</table>
 	</form>
 </body>
 </html>

@@ -2,7 +2,6 @@ package com.fleamarket.memManage.controller;
 
 import java.io.IOException;
 
-import javax.print.attribute.standard.JobImpressionsCompleted;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +17,9 @@ import com.fleamarket.memManage.service.JoinAction;
 import com.fleamarket.memManage.service.JoinFormAction;
 import com.fleamarket.memManage.service.LoginAction;
 import com.fleamarket.memManage.service.LogoutAction;
+import com.fleamarket.memManage.service.deleteAction;
+import com.fleamarket.memManage.service.detailAction;
+import com.fleamarket.memManage.service.updateAction;
 
 //경로관련된 문자는 모두 무조건 소문자로  /맡은페이지경로/원하는작업.do  식으로 처리하기
 @WebServlet("/memmanage/*")
@@ -91,8 +93,28 @@ public class MemManageController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			}
+    	}else if(command.equals("detailAction.do")){
+    		action = new detailAction();
+    	try{
+    		forward = action.execute(request, response);
+    	}catch (Exception e) {
+			e.printStackTrace();
+			}
+    	}else if(command.equals("updateAction.do")){
+    		action = new updateAction();
+    	try{
+    		forward = action.execute(request, response);
+    	}catch (Exception e) {
+			e.printStackTrace();
+			}
+    	}else if(command.equals("deleteAction.do")){
+    		action = new deleteAction();
+    	try{
+    		forward = action.execute(request, response);
+    	}catch (Exception e) {
+			e.printStackTrace();
+			}
     	}
-    	
     	
     	
     	if(forward != null){
@@ -109,12 +131,12 @@ public class MemManageController extends HttpServlet {
     }
     
     
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		doProcess(request, response);
 	}
 
-  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     doProcess(request, response);
   }

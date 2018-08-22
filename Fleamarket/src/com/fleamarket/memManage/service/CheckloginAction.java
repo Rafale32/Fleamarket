@@ -28,7 +28,6 @@ public class CheckloginAction implements Action {
 		
 	  HttpSession session = request.getSession();
 	  session.setAttribute("member", member);
-	  
 		ActionForward forward = new ActionForward();
 		if(member == null){
 		  forward.setPath("login.do"); //원하는 경로가 완전 새로운 페이지가 아니라면 템플릿으로 가야겟지 템플릿이 헤더및 푸터 있으니까
