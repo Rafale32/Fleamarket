@@ -176,4 +176,14 @@
 		and e.delete_state = 0
 		and a.category_no = #{category_no}
 	</select>
+	
+	<select id="memberStoreInfo" parameterType="String" resultType="storeInfoDTO">
+		select distinct
+		b.email, b.hits, b.open_date, b.store_name,
+		b.store_no, b.contents, c.name
+		from itemboard a, store b, member c
+		where a.store_no = b.store_no
+		and b.email = c.email
+		and b.email = #{email}
+	</select>
 </mapper>

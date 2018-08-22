@@ -235,4 +235,15 @@ public class MainDetailDAO {
     }
 	  return categoryItemList;
 	}
+	
+	public StoreInfoDTO memberStoreInfo(String email){
+	  SqlSession sqlSession = getSqlSessionFactory().openSession();
+	  StoreInfoDTO memberStoreInfo = null;
+	  try {
+      memberStoreInfo = sqlSession.getMapper(MainDetailMapper.class).memberStoreInfo(email);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+	  return memberStoreInfo;
+	}
 }
