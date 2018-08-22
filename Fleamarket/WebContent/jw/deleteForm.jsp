@@ -6,13 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>탈퇴 화면</title>
 <script type="text/javascript">
-	//비밀번호 미입력시 경고창
-	function checkValue(){
-		if(!document.deleform.password.value){
-			alert("비밀번호를 입력하지 않습니다.");
-			return false;
-		}
-	}
+
+	<% session.invalidate(); %>
+	
 </script>
 </head>
 <body>
@@ -21,14 +17,15 @@
     <b><font size="6" color="gray">내 정보</font></b>
     <br><br><br>
  
-    <form name="deleteform" method="post" action="/Fleamarket/memmanage/deleteAction.do" onsubmit="return checkValue()">
+    <form name="deleteform" method="post" action="/Fleamarket/memmanage/deleteAction.do">
  
-		<div> 회원탈퇴 화면입니다. 탈퇴하실 경우 탈퇴버튼을 눌러주세요 	</div> 
+		<div> 회원탈퇴 되었습니다. 그동안 이용해 주셔서 감사합니다.</div> 
         
         <br><br>
-        <a href="/maindetail/mainAction.do"><input type="submit" value="탈퇴" onclick="return checkValue()"></a>
-        <a href="detailForm.jsp"> <input type="button" value="취소"> </a>
         
     </form>
+    <a href="/Fleamarket/maindetail/main.do">
+           <input type="button" value="메인화면"> 
+        </a>
 </body>
 </html>

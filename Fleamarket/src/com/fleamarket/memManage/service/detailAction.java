@@ -24,9 +24,9 @@ public class detailAction implements Action {
 		MemManageDAO dao = MemManageDAO.getInstance();
 		MemManageDTO dto = dao.detailMember(email);
 		
-		System.out.println(request.getParameter("email") + "이메일이이이이이이");
+		//System.out.println(request.getParameter("email") + "이메일이이이이이이");
 		
-		System.out.println(dto.getEmail() +"kfjsalkdfjlaksdjflksdfj");
+	//	System.out.println(dto.getEmail() +"kfjsalkdfjlaksdjflksdfj");
 		
 		bean.setMemManageDTO(dto);
 		request.setAttribute("dto", dto);

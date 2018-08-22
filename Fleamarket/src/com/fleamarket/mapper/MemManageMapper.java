@@ -12,7 +12,7 @@ public interface MemManageMapper {
 	
 	MemManageDTO detailMember(String email);
 	
-	int updateMember(String email);
+	int updateMember(MemManageDTO dto);
 	
 	int deleteMember(String email);
 

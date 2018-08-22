@@ -89,12 +89,12 @@ public class MemManageDAO {
 		return dto;
 	}//detailMember
 	
-	public int updateMember(String email){
+	public int updateMember(MemManageDTO dto){
 
 		int re = -1;
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		try {
-			re = sqlSession.getMapper(MemManageMapper.class).updateMember(email);
+			re = sqlSession.getMapper(MemManageMapper.class).updateMember(dto);
 			if(re>0){
 				sqlSession.commit();
 			}else{
@@ -107,6 +107,8 @@ public class MemManageDAO {
 			}	
 		return re;
 	}//updateMember
+	
+	
 	
 	public int deleteMember(String email){//회원삭제
 		

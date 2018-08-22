@@ -13,7 +13,7 @@
 	<table>
 		<tr>
 			<th> 이메일  </th>
-		 	<td>${bean.MemManageDTO.email }</td>
+		 	<td>${bean.memManageDTO.email }</td>
 		</tr>			
 		<tr>
 			<th> 비밀번호</th>
@@ -21,23 +21,24 @@
 		</tr>
 		<tr>
 			<th> 이   름</th> 
-		 	<td><input type="text" name="name" value= "${bean.MemManageDTO.name}"></td>
+		 	<td><input type="text" name="name" value= "${bean.memManageDTO.name}"></td>
 		</tr>
 		<tr> 
 			<th>전화번호</th>
-			<td><input type="text" name="phone" value= "${bean.MemManageDTO.phone }"></td>
+			<td><input type="text" name="phone" value= "${bean.memManageDTO.phone }"></td>
 		</tr>
 		<tr> 
 			<th>주소</th>
-		 	<td><input type="text" name="address" value= "${bean.MemManageDTO.address }"></td>
+		 	<td><input type="text" name="address" value= "${bean.memManageDTO.address }"></td>
 		</tr>
 		<tr> 
 			<th>상세주소</th>
-		 	<td><input type="text" name="address2" value= "${bean.MemManageDTO.address2 }"></td>
+		 	<td><input type="text" name="address2" value= "${bean.memManageDTO.address2 }"></td>
 		</tr> 	
 	</table>
 	<br>
-	<input type = "submit" value = "확인" onclick="location.href='./jw/detailForm.jsp'">
+	<a href="/Fleamarket/memmanage/detailAction.do">
+	<input type="button" value="확인" ></a>
 	<input type="reset" value="다시 작성">
 	
 	</form>

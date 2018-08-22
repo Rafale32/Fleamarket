@@ -20,6 +20,7 @@ import com.fleamarket.memManage.service.LogoutAction;
 import com.fleamarket.memManage.service.deleteAction;
 import com.fleamarket.memManage.service.detailAction;
 import com.fleamarket.memManage.service.updateAction;
+import com.fleamarket.memManage.service.updateFormAction;
 
 //경로관련된 문자는 모두 무조건 소문자로  /맡은페이지경로/원하는작업.do  식으로 처리하기
 @WebServlet("/memmanage/*")
@@ -100,10 +101,21 @@ public class MemManageController extends HttpServlet {
     	}catch (Exception e) {
 			e.printStackTrace();
 			}
-    	}else if(command.equals("updateAction.do")){
-    		action = new updateAction();
+    	}else if(command.equals("updateFormAction.do")){
+    		
+    		action = new updateFormAction();
     	try{
     		forward = action.execute(request, response);
+    	}catch (Exception e) {
+			e.printStackTrace();
+			}
+    	}else if(command.equals("updateAction.do")){
+    		System.out.println("업뎃 액션 두 바로안");
+    		action = new updateAction();
+    	try{
+    		System.out.println("업뎃 액션 두트라이 바로안");
+    		forward = action.execute(request, response);
+    		System.out.println("업뎃 액션 두트라이 바로안2");
     	}catch (Exception e) {
 			e.printStackTrace();
 			}

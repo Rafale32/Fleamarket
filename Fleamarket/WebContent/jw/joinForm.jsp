@@ -77,11 +77,15 @@
 	<input type="text" id="address2" name="address2" placeholder="상세주소">
 	<br><br>
 	
-	<input type="submit" value="회원가입" onclick="location.href='/jw/login_container.jsp'">
+	<input type="submit" value="회원가입">
 	<input type="reset" value="다시입력">
-	<input type="button" value ="취소" onclick="location.href='/jy/main_container.jsp'">
-
+	<a href="/Fleamarket/maindetail/main.do"><input type="button" value="메인"></a>
+	
 	</form>
+	
+	
+
+	
 	</div>
 
 </body>

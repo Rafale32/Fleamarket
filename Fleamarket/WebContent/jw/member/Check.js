@@ -1,4 +1,4 @@
-function loginCheck(){
+function loginCheck(){	
 	if(document.frm.email.value.length == 0){
 		alert("Email을 입력하세요");
 		frm.email.focus();

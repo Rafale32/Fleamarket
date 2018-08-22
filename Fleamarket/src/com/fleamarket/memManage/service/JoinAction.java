@@ -18,8 +18,13 @@ public class JoinAction implements Action {
 		service.joinBoardService(request);
 		
 		ActionForward forward = new ActionForward();
-		forward.setConPath("/Fleamarket/memmanage/login.do");
-		forward.setRedirect(true);
+		forward.setPath("/template.jsp");
+		forward.setRedirect(false);
+		
+		forward.setConPath("/jw/login_container.jsp"); // 바꿔야 되는곳
+		request.setAttribute("forward", forward);
+		
+		System.out.println("조인액션으로 왔다.");
 		
 		return forward;
 		

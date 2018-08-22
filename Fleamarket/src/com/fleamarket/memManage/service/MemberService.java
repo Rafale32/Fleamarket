@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import org.apache.ibatis.session.SqlSession;
+
 import com.fleamarket.bean.Bean;
+import com.fleamarket.mapper.MemManageMapper;
 import com.fleamarket.memManage.model.MemManageDAO;
 import com.fleamarket.memManage.model.MemManageDTO;
 
@@ -62,38 +65,7 @@ public class MemberService {
 		
 		return dao.joinBoard(dto);
 	}//joinBoardService
-	
-	public int updateMemberService(HttpServletRequest request)throws Exception{
-		MemManageDTO dto = new MemManageDTO();
 		
-		int re = -1;
-		
-		HttpSession session = request.getSession();
-		dto = (MemManageDTO) session.getAttribute("member");
-		System.out.println(dto.getEmail() + " 이메일 나오나요?");
-		
-		//dto = (MemManageDTO) session.getAttribute("email");
-		
-		dto.setPassword(request.getParameter("password"));
-		System.out.println(request.getParameter("password") +"패스워드!!");
-		
-		dto.setName(request.getParameter("name"));
-		System.out.println(request.getParameter("name") +"이름!!");
-		
-		dto.setPhone(request.getParameter("phone"));
-		System.out.println(request.getParameter("phone") +"폰!!");
-		
-		dto.setAddress(request.getParameter("address"));
-		System.out.println(request.getParameter("address") +"주소!!");
-		
-		dto.setAddress2(request.getParameter("address2"));
-		System.out.println(request.getParameter("address2") +"상세주소!!");
-		
-		System.out.println(dto.getName()+"이름이 수정된다.");
-		
-		return re;
-	}//updateMember
-	
 	public int deleteMemberService(HttpServletRequest request)throws Exception{
 		MemManageDTO dto = new MemManageDTO();
 		
@@ -108,6 +80,18 @@ public class MemberService {
 		System.out.println(request.getParameter("email") + "dmdkdmkdmdkmdkmdkdmkm");
 		
 		return dao.deleteMember(email);
+	}
+	public int updateMemberService(HttpServletRequest request)throws Exception{
+		MemManageDTO dto = new MemManageDTO();
+		
+		dto.setEmail(request.getParameter("email"));	
+		dto.setPassword(request.getParameter("password"));
+		dto.setPhone(request.getParameter("phone"));
+		dto.setName(request.getParameter("name"));
+		dto.setAddress(request.getParameter("address"));
+		dto.setAddress2(request.getParameter("address2"));
+		
+		return dao.updateMember(dto);
 	}
 	
 }
