@@ -5,7 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>로그인</title>
-<script type="text/javascript" src="/Fleamarket/jw/member/Check.js"></script>
+<script type="text/javascript"></script>
+<script type="text/javascript" src="/Fleamarket/jw/Check.js">
+
+
+</script>
 </head>
 <body>
 	<form action="/Fleamarket/memmanage/checklogin.do" method="post" name="frm">
@@ -20,7 +24,7 @@
 			</tr>
 			<tr>
 			<td colspan="2" aling="center">
-			<input type="submit" value="로그인" onclick="loginCheck()">
+			<input type="submit" value="로그인" onclick="return ">
 			</td>
 			</tr>
 		</table>

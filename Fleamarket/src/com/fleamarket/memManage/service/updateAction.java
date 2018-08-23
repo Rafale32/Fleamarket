@@ -14,23 +14,34 @@ public class updateAction implements Action {
 	@Override
 	
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		System.out.println("액션 안으로 왔습니다.");
-		MemManageDTO dto =  new MemManageDTO();
+		
+		String email = request.getParameter("email");
+				
+		MemManageDTO memManageDTO =  new MemManageDTO();
+		Bean bean = (Bean)request.getAttribute("bean");
 		MemberService service = MemberService.getInstance();
-
+		
+		System.out.println("그냥 확인용");
+		
+		System.out.println("액션 안으로 왔습니다.5555" + memManageDTO.toString());
+		
 		MemManageDAO dao = MemManageDAO.getInstance();
-		System.out.println("액션 안으로 왔습니다.5555" + dto.toString());
 		
 		service.updateMemberService(request);
 		
-		dao.updateMember(dto);
+		bean.setMemManageDTO(memManageDTO);
+		
 		System.out.println("액션 안으로 왔습니다.6666");
-		System.out.println("그냥 확인용");
+		
+		
+		request.setAttribute("bean", bean);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("/template.jsp");
-		forward.setRedirect(false);
-		forward.setConPath("./jw/updateForm.jsp");
+//		forward.setPath("/template.jsp");
+		forward.setRedirect(true);
+		forward.setPath("/Fleamarket/memmanage/detailAction.do?email="+email);
 		request.setAttribute("forward", forward);
 		
 		System.out.println("업데이트폼으로 왔따.");

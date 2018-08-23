@@ -15,7 +15,7 @@ public class deleteAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		Bean bean = (Bean)request.getAttribute("bean");
+		Bean bean = (Bean)request.getAttribute("bean"); 
 		MemberService service = MemberService.getInstance();
 		
 		System.out.println(request.getParameter("email") +"@@@@@@@@@@@@");
@@ -27,7 +27,7 @@ public class deleteAction implements Action {
 		MemManageDAO dao = MemManageDAO.getInstance();
 		int dto = dao.deleteMember(email);
 		
-		request.setAttribute("email", email);
+		request.setAttribute("email", email); 
 		
 		System.out.println(request.getParameter("email") +"123123123123123");
 		

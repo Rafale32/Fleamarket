@@ -49,6 +49,9 @@
         }).open();
     }
 </script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="/Fleamarket/jw/Check.js"></script>
+
 </head>
 <body>
 
@@ -64,11 +67,15 @@
 	<form action="/Fleamarket/memmanage/joinAction.do" method="post" name="frm">
 	
 	EMAIL : <input type="email" id="email" name="email">
-			<input type="button" value="중복 확인" onclick="emailCheck()">
+			<input type="button" value="중복 확인">
 			<input type="hidden" name="emailDuplication">
 			<br><br>
-	비밀번호 : <input type="password" name="password">  4자이상 12자리까지<br><br>
-	비밀번호 확인 : <input type="password" name="password_cueco" ><br><br> 
+	비밀번호 : <input type="password" id="pass1" name="password" onkeyup="passwordCheckFunction();">
+	<br><br>
+	비밀번호 확인 : <input type="password" id="pass2" name="password2" onkeyup="passwordCheckFunction();">
+	<h5 style="color: red;"  id="passwordCheckMessage"></h5>
+
+  	<br> 
 	이름 : <input type="text" name="name"/><br><br>
 	전화번호 : <input type="text" name="phone"/><br><br>
 	

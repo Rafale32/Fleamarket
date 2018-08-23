@@ -18,7 +18,8 @@ public class updateFormAction implements Action {
 		
 		System.out.println("업데이트 액션입니당~~~~~~");
 		
-		//Bean bean = (Bean)request.getAttribute("bean");
+		String email = request.getParameter("email");
+		Bean bean = (Bean)request.getAttribute("bean");
 		
 		System.out.println("업데이2니당~~~~~~222222");
 		MemberService service = MemberService.getInstance();
@@ -27,11 +28,10 @@ public class updateFormAction implements Action {
 		MemManageDTO memManageDTO = new MemManageDTO();
 		MemManageDAO dao = MemManageDAO.getInstance();
 		
-		String email = request.getParameter("email");
-		memManageDTO = dao.detailMember(email);
-		
-		
-		//bean.setMemManageDTO(memManageDTO);
+		memManageDTO = dao.detailMember(email);// sql로 가져온가
+			
+		// 빈에다가 내가 가져온 디테일 맴버 정보 삽입
+		bean.setMemManageDTO(memManageDTO);
 		
 		//System.out.println("업데이트 액션입니당~~~~~~" + bean.getMemManageDTO().toString());
 
@@ -45,14 +45,14 @@ public class updateFormAction implements Action {
 		//int dto = dao.updateMember(email);
 
 		//bean.setMemManageDTO(dto);
-		//request.setAttribute("bean", bean);
+		request.setAttribute("bean", bean);
 		
 
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("/Fleamarket/memmanage/updateAction.do");
-		forward.setRedirect(true);
-		forward.setConPath("/jw/detailForm.jsp");
+		forward.setPath("/template.jsp");
+		forward.setRedirect(false);
+		forward.setConPath("/jw/updateForm.jsp");
 		request.setAttribute("forward", forward);
 		
 		System.out.println(request.getParameter("email")+"이름이 왔음요");
