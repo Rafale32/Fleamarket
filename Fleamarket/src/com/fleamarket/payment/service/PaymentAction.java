@@ -20,23 +20,23 @@ public class PaymentAction implements Action {
     ActionForward forward = new ActionForward();
     PaymentService service = PaymentService.getInstance();
     HttpSession session = request.getSession();
-    
-    // 물품번호
-//    String str = request.getParameter("item_no");
-//    int item_no = 0;
-//    if(str != null){
-//      item_no = Integer.parseInt(str);
-//    }
 
     Bean bean = (Bean) request.getAttribute("bean");
-//    20180822 세션에서 가져오게됨
+//    20180822 세션에서 가져오게 되서 안씀
 //    bean.setMemManageDTO(service.selectMemberService(request));
-    
+    // 상품정보
     bean.setItemDTO(service.selectItemService(request));
+    System.out.println("load itemInfo ok");
+    
+    // 주문번호
     bean.setSpellDTO_jh(service.selectSpellNoService(request));
+    System.out.println("load orderNo ok");
+    
+    // 이미지
+    bean.setItemImgDTO_jh(service.selectImgService(request));
+    System.out.println("load img ok");
     
     request.setAttribute("bean", bean);
-//    request.setAttribute("item_no", item_no);
 
     forward.setPath("/template.jsp"); 
     forward.setRedirect(false);

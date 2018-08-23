@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import com.fleamarket.memManage.model.MemManageDTO;
 import com.fleamarket.payment.model.DeliveryDTO_jh;
+import com.fleamarket.payment.model.ItemImgDTO_jh;
 import com.fleamarket.payment.model.PaymentDAO;
 import com.fleamarket.payment.model.PaymentDTO;
 import com.fleamarket.payment.model.SpellDTO_jh;
@@ -24,7 +25,7 @@ public class PaymentService {
   public MemManageDTO selectMemberService(HttpServletRequest request) throws Exception {
     HttpSession session = request.getSession();
     String email = (String)session.getAttribute("member.email");
-//    String email = request.getParameter("email");
+    // String email = request.getParameter("email");
     
     MemManageDTO memManageDTO = dao.selectMember(email);
     return memManageDTO;
@@ -49,6 +50,21 @@ public class PaymentService {
     SpellDTO_jh spellDTO_jh = dao.selectSpellNo();
     return spellDTO_jh;
   }// selectSpellNoService
+  
+  // 이미지정보
+  public ItemImgDTO_jh selectImgService(HttpServletRequest request) throws Exception {
+    String str = request.getParameter("item_no");
+  
+    int item_no = 0;
+    if (str != null) {
+      item_no = Integer.parseInt(str);
+    }
+    
+    ItemImgDTO_jh itemImgDTO_jh = dao.selectImg(item_no);
+  
+    return itemImgDTO_jh;
+  }// selectItemService
+  
 
           // 결제페이지에서 넘기기
   // 주문정보 입력

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import com.fleamarket.memManage.model.MemManageDTO;
 import com.fleamarket.payment.model.DeliveryDTO_gy;
 import com.fleamarket.payment.model.DeliveryDTO_jh;
+import com.fleamarket.payment.model.ItemImgDTO_jh;
 import com.fleamarket.payment.model.PaymentDTO;
 import com.fleamarket.payment.model.PuerchaseDTO_gy;
 import com.fleamarket.payment.model.SellProductDTO_gy;
@@ -40,6 +41,8 @@ public interface PaymentMapper {
 	ItemDTO selectItem(int item_no);
 	// 마지막 주문번호 가져오기 - 20180820 재헌
 	SpellDTO_jh selectSpellNo();
+	// 상품 이미지 가져오기 - 20180823 재헌
+	ItemImgDTO_jh selectImg(int item_no);
 	
 	// 결제페이지에서 나올 때
   // 주문정보 입력 - 20180820 재헌
@@ -62,7 +65,9 @@ public interface PaymentMapper {
   PaymentDTO findPayment(int item_no);
   // 배송정보
   DeliveryDTO_jh findDeli(int item_no);
+  // 이미지
+  ItemImgDTO_jh findImg(int item_no);
   // 내상점
-//  StoreDTO_jh findStore();
+  // StoreDTO_jh findStore();
 	
 }

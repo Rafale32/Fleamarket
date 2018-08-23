@@ -13,6 +13,8 @@ import com.fleamarket.bean.Action;
 import com.fleamarket.bean.ActionForward;
 import com.fleamarket.bean.Bean;
 import com.fleamarket.payment.service.PaymentPagingAction_gy;
+import com.fleamarket.payment.service.changeDeliveryPuerchaseAction_gy;
+import com.fleamarket.payment.service.changeDeliverySellAction_gy;
 
 
 //경로관련된 문자는 모두 무조건 소문자로  /맡은페이지경로/원하는작업.do  식으로 처리하기
@@ -38,7 +40,7 @@ public class PaymentPagingController_gy extends HttpServlet {
     	System.out.println(contextPath + " : 컨텍 페스"); 
     	contextPath += "payment/_view/";
     	String command = requestURI.substring(contextPath.length()+1); 
-    	System.out.println(command + " : 코멘드건엽");
+    	System.out.println(command + " : 코멘드건엽33");
     	
     	
     	Action action = null;
@@ -63,6 +65,17 @@ public class PaymentPagingController_gy extends HttpServlet {
 				e.printStackTrace();
 			}
 
+		}else if(command.equals("changeDeliveryChack_gy.gy")){
+			System.out.println("gy가즈아!");
+			action = new changeDeliveryPuerchaseAction_gy();
+			try {
+		
+				forward = action.execute(request, response); // 액션 포어들에 어떻게 갈지랑
+			} catch (Exception e) {
+
+				e.printStackTrace();
+			}
+			
 		}
     	
     	

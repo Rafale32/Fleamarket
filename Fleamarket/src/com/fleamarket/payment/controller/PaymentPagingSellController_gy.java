@@ -14,6 +14,7 @@ import com.fleamarket.bean.ActionForward;
 import com.fleamarket.bean.Bean;
 import com.fleamarket.payment.service.PaymentPagingAction_gy;
 import com.fleamarket.payment.service.PaymentPagingSellAction_gy;
+import com.fleamarket.payment.service.changeDeliverySellAction_gy;
 
 
 //경로관련된 문자는 모두 무조건 소문자로  /맡은페이지경로/원하는작업.do  식으로 처리하기
@@ -64,7 +65,18 @@ public class PaymentPagingSellController_gy extends HttpServlet {
 				e.printStackTrace();
 			}
 
+		}else if(command.equals("changeDeliverySellChack_gy.gg")){
+	
+		action = new changeDeliverySellAction_gy();
+		try {
+	
+			forward = action.execute(request, response); // 액션 포어들에 어떻게 갈지랑
+		} catch (Exception e) {
+
+			e.printStackTrace();
 		}
+		
+	}
     	
     	
     	

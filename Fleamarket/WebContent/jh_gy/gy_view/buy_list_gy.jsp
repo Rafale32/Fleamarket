@@ -14,15 +14,15 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	PuerchaseDAO_gy dao = PuerchaseDAO_gy.getInstance();
-  List<PuerchaseDTO_gy> list = dao.listBoard(0);
-  dao.countBoard();
+	List<PuerchaseDTO_gy> list = dao.listBoard(0);
+	dao.countBoard();
 	//request.setAttribute("purchaseModel", list);
 	DeliveryDTO_gy der = new DeliveryDTO_gy();
 	/* 새로운 코드 */
-	/* PaymentPagingService_gy daoservice = PaymentPagingService_gy.getInstance();
+/* 	PaymentPagingService_gy daoservice = PaymentPagingService_gy.getInstance();
 	PaymentPagingDTO_gy dao2 = new PaymentPagingDTO_gy();
-	dao2 = daoservice.listBoardService(2, request); */
-	/* request.setAttribute("purchaseModel", dao2); */
+	dao2 = daoservice.listBoardService(2, request);
+	request.setAttribute("purchaseModel", dao2);  */
 	
 %>
 
@@ -40,6 +40,12 @@
 <style type="text/css">
 </style>
 
+<script type="text/javascript" src="/Fleamarket/jh_gy/gy_view/check.js">
+
+
+</script>
+
+
 </head>
 <body>
 
@@ -55,7 +61,7 @@
 			<tr>
 			<%-- 왼쪽이미지 ${p.thum_img}   width="200px" height="150px"--%>
 				<td> 
-				<%-- <input value="${p.thum_img}"> --%>
+				
 				<img alt="물품임시이미지" src="../img/${p.thum_img}.jpg" width="200px" height="150px" style="margin-left: 50px;">
 				
 				</td>
@@ -89,18 +95,20 @@
 
 
 				<td>
-					<h2>제목(상품명) ${p.title}</h2>
+				<a href="">  <h2>제목(상품명) ${p.title}</h2> </a>	
 					<h4>구매상점 ${p.store_name }</h4>
 
 				</td>
 
 				<td>
 			<!-- 	<form action="/Fleamarket3/payment/changeDeliveryChack_gy.do"> -->
-				<form action="changeDeliveryChack_gy.jsp">
+				<form action="changeDeliveryChack_gy.gy" id="ff" onsubmit="return deleteCheck()">
 				<!-- style="display: none;"  나중에 넣어서 추가 할것-->
 					<input type="text" name="purchaseNo" value="${p.item_no}" style="display: none;">
 					<c:if test="${p.delivery_state == 3}">
-					<input type="submit" id="purchaseDetermin" class="purchaseDetermin" value="구매확정버튼" >
+					<input type="text" id="pageNo" name="pageNo" value=${purchaseModel.requestPage } style="display: none;" >
+					<input type="text" id="item_no" name="item_no" value=${p.item_no } style="display: none;">
+					<input type="submit" id="purchaseDetermin" class="purchaseDetermin" value="구매확정버튼">
 					</c:if>
 				</form>
 					<h2>리뷰확인하기</h2>
@@ -131,7 +139,7 @@
 		</c:forEach>
 		
 		<c:if test="${purchaseModel.requestPage < purchaseModel.endPage}">
-		<a href="PaymentPagingAction_gy.gy?pageNum=${purchaseModel.requestPage+1}"> [ 다 음 ]</a>
+		<a href="PaymentPagingAction_gy.gy?pageNum=${purchaseModel.requestPage+1}" onclick="return deleteCheck();"> [ 다 음 ]</a>
 		</c:if>
 		
 		<!-- 5개 이동  -->

@@ -51,13 +51,18 @@ function allPoint(point) {
 // 20180818 재헌 결제 값 계산
 function changePoint() {
   // 포인트
+  // point => 입력 포인트 가져오기
+  // #finalpoint => 문자형으로 포인트 입력
+  // final2point => 실제 넘길 숫자형 값 입력
+  // havepoint => 현재 보유 포인트
+  // 
   var point = document.getElementById('usePoint').value; // 포인트 가져오고
   point = isNaN(point) ? 0 : point; // 숫자인지 확인
   var strPoint = setComma(point);
 
   $('#finalPoint').text(strPoint + '원'); // 포인트 적고
-  document.getElementById('finalPoint2').value = point;//인풋에 값도 바꿔준다.
-  
+  document.getElementById('finalPoint2').value = point;// 인풋에 값도 바꿔준다.
+
   // 보유포인트
   var str = $('#havePoint').text().replace(/\n/g, '');
   str = str.replace(/\s/g, '');
@@ -74,6 +79,7 @@ function changePoint() {
     document.getElementById('finalPoint2').value = point;
   }
 
+  // price => 상품 가격
   // 가격
   var str = $('#price').text().replace(/\n/g, '');
   str = str.replace(/\s/g, '');
@@ -82,9 +88,12 @@ function changePoint() {
   var price = parseInt(str);
 
   // 수수료
+  // fee => (상품가격 * 3%) + 1000
   var fee = (price * 0.03) + 1000;
 
   // 배송비
+  // deliFe => 배송비
+  // #delivery_fee => 배송비 칸에 텍스트 입력
   var deliFee = 0;
   var str = $('#delivery_fee').text();
   str = str.replace(/\n/g, '');
@@ -97,15 +106,20 @@ function changePoint() {
   }
 
   // 최종결제금액
+  // total => 최종금액
+  // 
   var total = 0;
+  
   total = price + fee + deliFee - point;
   var strTotal = setComma(total);
+
+  // 히든 인풋 넘길 값
+  // 총금액
   $('#total').text(strTotal + '원');
-  //히든 인풋 넘길 값
-  //총금액
-  document.getElementById('total2').value = parseInt(total); 
+  document.getElementById('total2').value = parseInt(total);
+
   // 계산된 포인트
-  var totalPoint = havePoint-point+(total*0.001);
+  var totalPoint = havePoint - point + (total * 0.001);
   document.getElementById('point').value = parseInt(totalPoint);
 }
 
@@ -124,19 +138,18 @@ function setComma(n) {
 
 // 20180822 재헌 결제시 확인창
 function payCheck(e) {
-  
-  if($('input:checkbox[id="chk"]').is(":checked") == true){
-    if (confirm("결제 하시겠습니까?")){
+
+  if ($('input:checkbox[id="chk"]').is(":checked") == true) {
+    if (confirm("결제 하시겠습니까?")) {
       alert('결제 되었습니다.');
       return true;
     } else {
       alert("취소하셨습니다.");
       return false;
-    } 
+    }
   } else {
     alert("약관에 동의해주세요.");
     return false;
   }
-  
-  
+
 }

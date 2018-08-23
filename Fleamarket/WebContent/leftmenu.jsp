@@ -18,8 +18,8 @@
 			<a href="/Fleamarket/product/addproductform.do">물품등록</a>
 			<a href="#">찜</a><!-- 내가 찜한 상품들 일종의 장바구니 -->
 			<a href="#">상점후기</a>
-			<a href="">구매내역</a>
-			<a href="#">판매내역</a>
+			<a href="/Fleamarket/jh_gy/gy_view/PaymentPagingAction_gy.gy">구매내역</a>
+			<a href="/Fleamarket/jh_gy/gy_view/PaymentPagingSellController_gy.gg">판매내역</a>
 			<a href="#">정산</a>
 		</c:when>
 	</c:choose>

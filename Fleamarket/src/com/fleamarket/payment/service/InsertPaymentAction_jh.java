@@ -16,17 +16,17 @@ public class InsertPaymentAction_jh implements Action {
     
     //주문부터 해야한다 => 배송테이블과 결제테이블이 주문테이블 참조하기 때문
     service.insertSpellService(request);    // ok
-    System.out.println(1);
+    System.out.println("save orderInfo ok");
     service.insertDeliveryService(request); // ok
-    System.out.println(2);
+    System.out.println("save deliveryInfo ok");
     service.insertPaymentService(request);  // ok
-    System.out.println(3);
+    System.out.println("save paymentInfo ok");
     
     //update
     service.updateItemDeliverystateService(request); // ok
-    System.out.println(4);
+    System.out.println("update itemDeliveryState ok");
     service.updateMemberPointService(request); // ok
-    System.out.println(5);
+    System.out.println("update MemberPoint ok");
 
     // 물품번호
     String str = request.getParameter("item_No");

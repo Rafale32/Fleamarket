@@ -66,7 +66,10 @@ text
       <h3>${bean.itemDTO.store_name}</h3> <hr>
       <table border="1">
         <tr>
-          <td rowspan="3">이미지</td>
+          <td rowspan="3">
+            <c:set var="img" value="${bean.itemImgDTO_jh.thum_img }"></c:set>
+            <img src="../productimg/thumimg/${img}" width="200px" height="150">
+          </td>
           <td>상품명</td>
           <td>${bean.itemDTO.title}</td>
         </tr>

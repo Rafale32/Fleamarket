@@ -62,7 +62,7 @@ public class DetailOrderDAO_jh {
     return spellDTO_jh;
   } // findSpell
 
-  // 주문 내역 조회 - 20180821 재헌
+  // 결제 내역 조회 - 20180821 재헌
   public PaymentDTO findPayment(int item_no) {
     SqlSession sqlSession = getSqlSessionFactory().openSession();
     PaymentDTO paymentDTO = null;
@@ -76,7 +76,7 @@ public class DetailOrderDAO_jh {
     return paymentDTO;
   } // findPayment
 
-  // 주문 내역 조회 - 20180821 재헌
+  // 배송 내역 조회 - 20180821 재헌
   public DeliveryDTO_jh findDeli(int spell_no) {
     SqlSession sqlSession = getSqlSessionFactory().openSession();
     DeliveryDTO_jh deliveryDTO_jh = null;
@@ -90,6 +90,19 @@ public class DetailOrderDAO_jh {
     return deliveryDTO_jh;
   } // findDeli
   
-  
+  // 상품이미지 조회 - 20180823 재헌
+  public ItemImgDTO_jh findImg(int item_no) {
+    SqlSession sqlSession = getSqlSessionFactory().openSession();
+    ItemImgDTO_jh itemImgDTO_jh = null;
+
+    try {
+      itemImgDTO_jh = sqlSession.getMapper(PaymentMapper.class).findImg(item_no);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      sqlSession.close();
+    }
+    return itemImgDTO_jh;
+  } // findItem
 
 }

@@ -26,6 +26,11 @@
 
 <link rel="stylesheet" href="../gy_css/buySellTable.css" type="text/css">
 
+<script type="text/javascript" src="/Fleamarket/jh_gy/gy_view/check.js">
+
+
+</script>
+
 </head>
 <body>
 
@@ -76,9 +81,11 @@
 				</td>
 
 				<td>
-					<form action="changeDeliverySellChack_gy.jsp">
+					<form action="changeDeliverySellChack_gy.gg" onsubmit="return deleteCheck2()">
 				<!-- style="display: none;"  나중에 넣어서 추가 할것-->
 					<c:if test="${p.delivery_state == 2}">
+					<input type="text" id="pageNo" name="pageNo" value=${SellModel2.requestPage } style="display: none;">
+					<input type="text" id="item_no" name="item_no" value=${p.item_no } style="display: none;" >
 					<input type="submit" id="purchaseDetermin" class="purchaseDetermin" value="판매승인버튼" >
 					</c:if>
 					
@@ -110,7 +117,7 @@
 		<!-- 다음키 -->
 		</c:forEach>
 		<c:if test="${SellModel2.requestPage < SellModel2.endPage}">
-		<a href="PaymentPagingSellController_gy.gg?pageNum=${SellModel2.requestPage+1}"> [ 다음 ]</a>
+		<a href="PaymentPagingSellController_gy.gg?pageNum=${SellModel2.requestPage+1}" > [ 다음 ]</a>
 		</c:if>
 		
 		<!-- 엔드페이지 수가 적을때 나올수 있게끔 -->
