@@ -13,6 +13,7 @@
 		<c:when test="${member.name == null }">
 			<a href="/Fleamarket/memmanage/login.do">로그인</a>
 			<a href="/Fleamarket/memmanage/joinform.do">회원가입</a>
+			<a href="/Fleamarket/board/customerCenterList.do"> 공지사항</a>
 		</c:when>
 		<c:when test="${member.name != null }">
 			${member.name } 님 환영합니다.
