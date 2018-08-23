@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import com.fleamarket.product.model.CateDTO;
 import com.fleamarket.product.model.ItemDTO;
 import com.fleamarket.product.model.ItemImg;
+import com.fleamarket.product.service.ProductListService;
 
 public interface ProductMapper {
 	//int insertBoard(Board board); 
@@ -32,5 +33,12 @@ public interface ProductMapper {
 	
 	int deleteImg(ItemImg img);
 	int deleteThumImg(ItemImg img);
+	int updateProduct(ItemDTO itemDTO);
+	
+	int updateItem(ItemDTO itemDTO);
+	int updateItemBoard(ItemDTO itemDTO);
+	int updateInsertImgs(ItemDTO itemDTO);
+	List<ItemDTO> searchAll(RowBounds row,String searchSubj);
+	String getOneImg(int itemboard_No);
 	
 }

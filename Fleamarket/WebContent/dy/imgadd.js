@@ -121,7 +121,7 @@ $(document).ready(function() {
 				$.each(data,function(key,value) {
 					
 				//	$("#subsubname").empty();
-				//	alert('key:'+key+', name:'+value.cate);
+					//alert('key:'+key+', name:'+value.cate);
 					$("#subsubname").append( "<option value='"+ value.cate +"'>"+ value.cate +"</option>" );
 					
 				});
@@ -192,7 +192,7 @@ $(function() {
 			cnt++;
 		}
 		
-		alert(big_Img+":::::::::"+thum_Img);
+		//alert(big_Img+":::::::::"+thum_Img);
 		
 		if(confirm("이미지를 삭제 하시겠습니까?")){
 			$.ajax({

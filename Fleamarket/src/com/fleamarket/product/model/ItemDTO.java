@@ -16,10 +16,10 @@ public class ItemDTO implements Serializable{ //마이바티스는 DTO 로 사�
 	private Date itemboard_Date; //등록일자
 	private String local; //거래지역
 	private String title; // 상품게시판 의 상품 제목
-	private String itemboard_Contents; // 상품게시판의 상품설명
+	private String itemboard_Contents; // 상품게시판의 상품설명 //여기에 잠시 담자 썸네일 이미지 하나짜리
 	private String tag;// 태그
 	private int hits; //조회수
-	private String recommend_Ornot; //추천상품  구현안할듯 지금은
+	private int recommend_Ornot; //추천상품  구현안할듯 지금은 
 	private int change_Ornot; //교환 가능 여부
 	private int item_No; // 상품 번호
 	private int itemboard_No = 0; // 게시판글 번호
@@ -180,13 +180,13 @@ public class ItemDTO implements Serializable{ //마이바티스는 DTO 로 사�
 
 
 
-	public String getRecommend_Ornot() {
+	public int getRecommend_Ornot() {
 		return recommend_Ornot;
 	}
 
 
 
-	public void setRecommend_Ornot(String recommend_Ornot) {
+	public void setRecommend_Ornot(int recommend_Ornot) {
 		this.recommend_Ornot = recommend_Ornot;
 	}
 

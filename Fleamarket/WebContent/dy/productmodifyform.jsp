@@ -39,8 +39,8 @@
 	<br>
 	
 		<form action="/Fleamarket/product/productmodify.do" onsubmit="return modifyCheck()" method="post" enctype="multipart/form-data" name="multipleUpload">
-		
- 		   
+			<input type="hidden" name="itemboard_No" value="${bean.itemDTO.itemboard_No }">
+			
  		       <p class="title">업로드할 이미지를 선택해 주세요</p>
  		       
 		      <div id="imgfiles">
@@ -141,7 +141,7 @@
 
 				<div>
 					<input type="text" class="form-control" id="input_name" placeholder="제목 (최대 100자)" autocomplete="on" 
-					name="title" value="${bean.itemDTO.itemboard_Contents }"/>
+					name="title" value="${bean.itemDTO.title }"/>
 				</div>
 			</div>
 			<div>

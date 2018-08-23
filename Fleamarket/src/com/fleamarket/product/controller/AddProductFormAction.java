@@ -55,6 +55,7 @@ public class AddProductFormAction implements Action {
 			response.setCharacterEncoding("UTF-8");
 			out.print(jsonString);
 			out.flush();
+			System.out.println(jsonString);
 			
 			return null;
 			

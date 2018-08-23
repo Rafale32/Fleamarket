@@ -24,7 +24,6 @@ public class ImgDeleteService implements Action {
 		itemimg.setBig_Img(request.getParameter("big_Img"));
 		
 		int a = dao.deleteImg(itemimg);
-		System.out.println("asdfsadfasdfasdfa::::::::::::::"+a);
 		if(a>0){
 			String realPath = request.getRealPath("/productimg");
 			File img = new File(realPath+"/"+itemimg.getBig_Img());

@@ -103,13 +103,13 @@
 
 				</div>
 				<div >
-					<button>최근 지역</button>
+					<!-- <button>최근 지역</button> -->
 				</div>
 				<div >
-					<button>지하철 검색</button>
+					<!-- <button>지하철 검색</button> -->
 				</div>
 				<div>
-					<button>지역 검색</button>
+					<!-- <button>지역 검색</button> -->
 				</div>
 			</div>
 			<div >

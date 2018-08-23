@@ -156,6 +156,37 @@ public class ProductDAO {
 		return re3;
 	}
 	
+	public int updateProduct(ItemDTO itemDTO){
+		
+		int re1 = -1;
+		int re2 = -1;
+		int re3 = -1;
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			//re1 = sqlSession.getMapper(ProductMapper.class).insertItem(itemDTO);
+			re1 = sqlSession.getMapper(ProductMapper.class).updateItem(itemDTO);
+			//re2 = sqlSession.getMapper(ProductMapper.class).insertItemBoard(itemDTO);
+			re2 = sqlSession.getMapper(ProductMapper.class).updateItemBoard(itemDTO);
+			for(ItemImg tmp : itemDTO.getItemImgList()){
+				re3 = sqlSession.getMapper(ProductMapper.class).insertImgs(tmp);
+			}
+			if(re1>0 && re2>0 && re3>0){//정상처리
+				sqlSession.commit();
+				re3 = 1;
+			}else{//비정상 처리
+				sqlSession.rollback();
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
+		
+		return re3;
+		
+	}
 	
 	
 	public int countItemBoard(String email){ //페이징 처리 위한 아이템 전체 갯수 이지만 이메일로 검색한 전체 갯수
@@ -223,6 +254,7 @@ public class ProductDAO {
 		try {
 			
 			item = sqlsession.getMapper(ProductMapper.class).getAllFromProduct(itemboard_No);
+			
 			//item.setItemboard_Contents(item.getItemboard_Contents().trim()); //앞뒤 트림 처리
 			itemImg = sqlsession.getMapper(ProductMapper.class).itemImgList(itemboard_No);
 			item.setItemImgList(itemImg);
@@ -270,5 +302,26 @@ public class ProductDAO {
 		
 	}
 	
+	public List<ItemDTO> searchAll(String searchSubj,int start, int size){
+		
+		List<ItemDTO> list = null;
+		
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+				list= sqlSession.getMapper(ProductMapper.class).searchAll(new RowBounds(start, size),searchSubj);
+				if(list != null){
+					for(ItemDTO tmp : list){
+						tmp.setItemboard_Contents(sqlSession.getMapper(ProductMapper.class).getOneImg(tmp.getItemboard_No()));
+					}
+				}
+			} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
+		
+		return list;
+	}
 	
 }
