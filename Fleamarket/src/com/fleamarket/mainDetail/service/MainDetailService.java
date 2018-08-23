@@ -31,12 +31,22 @@ public class MainDetailService {
   public List<RecommendDTO> recommend() {
     List<RecommendDTO> recoList = new ArrayList<RecommendDTO>();
     recoList = dao.recommend();
+    
+    for(int i=0; i<recoList.size(); i++){
+      recoList.get(i).setImgList(dao.itemImgList(recoList.get(i).getItemboard_no()));
+      recoList.get(i).setItemboard_date(time(recoList.get(i).getItemboard_date()));
+    }
+    
     return recoList;
   }
 
   public List<HotItemDTO> hotItemList() {
     List<HotItemDTO> hotItemList = new ArrayList<HotItemDTO>();
     hotItemList = dao.hotItemList();
+    
+    for(int i=0; i<hotItemList.size(); i++){
+      hotItemList.get(i).setImgList(dao.itemImgList(hotItemList.get(i).getItemboard_no()));
+    }
     return hotItemList;
   }
 
@@ -63,18 +73,13 @@ public class MainDetailService {
     itemImgList = dao.itemImgList(itemboard_no);
     return itemImgList;
   }
-
-  public ItemDetailDTO itemDetail(int itemboard_no) {
-    ItemDetailDTO itemDetail = new ItemDetailDTO();
-    itemDetail = dao.itemDetail(itemboard_no);
     
-    itemDetail.setHits(itemDetail.getHits()+1);
-    
-    //아이템상세글 작성시간 처리
+  public String time(String itemTime){
+  //아이템상세글 작성시간 처리
     Date date = new Date();
     SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
     String today = f.format(date);
-    String itemDate = itemDetail.getItemboard_date();
+    String itemDate = itemTime;
     
     List<Integer> tlist = new ArrayList<Integer>();
     List<Integer> ilist = new ArrayList<Integer>();
@@ -116,9 +121,16 @@ public class MainDetailService {
     }
     String time = val1+val2;
     
-    itemDetail.setItemboard_date(time);
-    //아이템상세글 작성시간 처리
+    return time;
+  }
+  
+  public ItemDetailDTO itemDetail(int itemboard_no) {
+    ItemDetailDTO itemDetail = new ItemDetailDTO();
+    itemDetail = dao.itemDetail(itemboard_no);
     
+    itemDetail.setHits(itemDetail.getHits()+1);
+    itemDetail.setItemboard_date(time(itemDetail.getItemboard_date()));
+
     //태그쪼개서 태그리스트 처리
     if (itemDetail.getTag() == null) {
       return itemDetail;
@@ -141,11 +153,16 @@ public class MainDetailService {
     hotList = dao.hotList();
     List<HotItemDTO> hotItemList = new ArrayList<HotItemDTO>();
     hotItemList = dao.hotItemList();
-
+    
+    for(int i=0; i<hotItemList.size(); i++){
+      hotItemList.get(i).setImgList(dao.itemImgList(hotItemList.get(i).getItemboard_no()));
+    }
+    
     for (int i = 0; i < hotList.size(); i++) {
       List<HotItemDTO> list = new ArrayList<HotItemDTO>();
       for (int j = 0; j < hotItemList.size(); j++) {
         if (hotList.get(i).getCategory_title().equals(hotItemList.get(j).getCategory_title())) {
+          hotItemList.get(j).setItemboard_date(time(hotItemList.get(j).getItemboard_date()));
           list.add(hotItemList.get(j));
         }
       }
@@ -200,6 +217,11 @@ public class MainDetailService {
   public List<ItemDetailDTO> categoryItemList(int category_no) {
     List<ItemDetailDTO> categoryItemList = new ArrayList<ItemDetailDTO>();
     categoryItemList = dao.categoryItemList(category_no);
+    
+    for(int i=0; i<categoryItemList.size(); i++){
+      categoryItemList.get(i).setImgList(dao.itemImgList(categoryItemList.get(i).getItemboard_no()));
+    }
+    
     return categoryItemList;
   }
 

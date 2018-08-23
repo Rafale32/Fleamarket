@@ -21,7 +21,7 @@ public class MainAction implements Action {
 	  Bean bean = (Bean) request.getAttribute("bean");
     MainDetailService service = MainDetailService.getInstance();
     bean.setRecommend(service.recommend());
-    bean.setHotItemList(service.hotItemList());
+    //bean.setHotItemList(service.hotItemList());
     bean.setHotList(service.hotList());
     
 		ActionForward forward = new ActionForward();

@@ -6,6 +6,27 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.search-box-input {
+	width: 392px;
+	height: 34px;
+	padding-left: 14px;
+	padding-right: 48px;
+	border: 2px solid #3C5A91;
+	display: inline;
+	/* position : relative; */
+}
+.icon-search {
+	width: 40px;
+	height: 22px;
+	margin-top: 4px;
+	/* margin-left: 213px; */
+	position: relative;
+	top: 3px;
+	left: -55px;
+	text-align: center;
+}
+</style>
 </head>
 <body>
 	<a href="http://localhost:8081/Fleamarket/maindetail/main.do">Fleamarket</a>
@@ -24,6 +45,10 @@
 		<a href="/Fleamarket/product/productlist.do?email=${member.email }" class="btn">My Store</a>
 		<a href="/Fleamarket/memmanage/detailAction.do?email=${member.email }" class="btn">내 정보보기</a>
 	</c:if>
-
+	<br><br>
+	<form action="">
+	<input type="text" placeholder="상품명" class="search-box-input">
+	<input type="submit" value="검색" class="icon-search">
+	</form>
 </body>
 </html>
