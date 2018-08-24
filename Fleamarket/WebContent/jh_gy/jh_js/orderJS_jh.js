@@ -66,7 +66,7 @@ function changePoint() {
   // 보유포인트
   var str = $('#havePoint').text().replace(/\n/g, '');
   str = str.replace(/\s/g, '');
-  str = str.replace(/,/, '');
+  str = str.replace(/,/g, '');
   str = str.replace(/원/, '');
   var havePoint = parseInt(str);
 
@@ -83,8 +83,9 @@ function changePoint() {
   // 가격
   var str = $('#price').text().replace(/\n/g, '');
   str = str.replace(/\s/g, '');
-  str = str.replace(/,/, '');
+  str = str.replace(/,/g, '');
   str = str.replace(/원/, '');
+//  alert(str);
   var price = parseInt(str);
 
   // 수수료
@@ -98,9 +99,10 @@ function changePoint() {
   var str = $('#delivery_fee').text();
   str = str.replace(/\n/g, '');
   str = str.replace(/\s/g, '');
+  str = str.replace(/,/g, '');
 
   if (str != '무료배송') {
-    str = str.replace(/,/, '');
+    str = str.replace(/,/g, '');
     str = str.replace(/원/, '');
     deliFee = parseInt(str);
   }
@@ -115,8 +117,8 @@ function changePoint() {
 
   // 히든 인풋 넘길 값
   // 총금액
-  $('#total').text(strTotal + '원');
-  document.getElementById('total2').value = parseInt(total);
+  $('#total').text(strTotal + '원'); //text
+  document.getElementById('total2').value = parseInt(total); //int
 
   // 계산된 포인트
   var totalPoint = havePoint - point + (total * 0.001);

@@ -68,7 +68,7 @@ text
         <tr>
           <td rowspan="3">
             <c:set var="img" value="${bean.itemImgDTO_jh.thum_img }"></c:set>
-            <img src="../productimg/thumimg/${img}" width="200px" height="150">
+            <img src="../productimg/${img}" width="200px" height="150px">
           </td>
           <td>상품명</td>
           <td>${bean.itemDTO.title}</td>
@@ -168,9 +168,9 @@ text
   <hr>
 
   <!--   버튼 -->
-  <div>
-    <input type="button" value="리뷰쓰기">
-  </div>
+<!--   <div> -->
+<!--     <input type="button" value="리뷰쓰기"> -->
+<!--   </div> -->
 
 </body>
 </html>

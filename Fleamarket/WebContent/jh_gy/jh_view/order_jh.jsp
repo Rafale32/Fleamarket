@@ -96,7 +96,7 @@
     <tr>
       <td rowspan="2">
         <c:set var="img" value="${bean.itemImgDTO_jh.thum_img}"></c:set>
-        <img src="../productimg/thumimg/${img}" width="200px" height="150">
+        <img src="../productimg/${img}" width="200px" height="150px">
       </td>
       <td>상품명</td>
       <td class="right_text">${bean.itemDTO.title}</td>
@@ -199,13 +199,13 @@
     <!--     넘긴다 -->
     <!--     소모 포인트 -->
     <fmt:parseNumber var="finalPoint2" value="${finalPoint}" integerOnly="true" />
-    <input type="text" id="finalPoint2" name="finalPoint2" value="${finalPoint2}">
+    <input type="hidden" id="finalPoint2" name="finalPoint2" value="${finalPoint2}">
     <!--     총 금액 -->
     <fmt:parseNumber var="total2" value="${total}" integerOnly="true" />
-    <input type="text" id="total2" name="total2" value="${total2}">
+    <input type="hidden" id="total2" name="total2" value="${total2}">
     <!--     계산된 포인트 -->
     <fmt:parseNumber var="point" value="${startPoint-finalPoint+(total*0.001) }" integerOnly="true" />
-    <input type="text" id="point" name="point" value="${point}">
+    <input type="hidden" id="point" name="point" value="${point}">
     
   </div>
   <hr>

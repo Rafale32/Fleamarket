@@ -37,7 +37,6 @@
 
 #topmenu ul li:NTH-CHILD(1){
   margin-right: 600px;
-  background-color: red;
 }
 
 #bottommenu {
@@ -100,7 +99,7 @@
   font-weight: bold;
 }
 
-#notice a{
+#notice{
   text-align: center;
   display: inline-block;
   text-decoration: none;
