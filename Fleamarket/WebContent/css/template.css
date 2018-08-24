@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+
+body {
+  height: auto;
+  width: auto;
+  margin: 0;
+  font-family: 'NanumGothic', Dotum, Gulim, AppleGothic, sans-serif;
+}
+
+#wrap {
+  width: 1024px;
+  margin: 0 auto;
+  display: block;
+}
+
+#header {
+  background: #FAFAFA;
+  width: 1024px;
+  height: 100px;
+  display: block;
+  position: fixed;
+  top: 0px;
+    z-index: 99;
+}
+
+#container {
+  margin-top: 140px;
+}
+
+#footer{
+    background: #FAFAFA;
+    width: 1024px;
+    height: 140px;
+    top:0px;
+    padding: 10px 20px;
+}

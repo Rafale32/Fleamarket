@@ -35,7 +35,7 @@ function loginCheck(){
 			</tr>
 			<tr>
 			<td>비번 </td>
-			<td><input type="#pwd" name="password"></td>
+			<td><input type="password" name="password"></td>
 			</tr>
 			<tr>
 			<td colspan="2" aling="center">

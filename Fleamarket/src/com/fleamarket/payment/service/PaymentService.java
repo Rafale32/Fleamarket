@@ -1,9 +1,11 @@
 package com.fleamarket.payment.service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.fleamarket.memManage.model.MemManageDTO;
 import com.fleamarket.payment.model.DeliveryDTO_jh;
+import com.fleamarket.payment.model.ItemImgDTO_jh;
 import com.fleamarket.payment.model.PaymentDAO;
 import com.fleamarket.payment.model.PaymentDTO;
 import com.fleamarket.payment.model.SpellDTO_jh;
@@ -17,11 +19,14 @@ public class PaymentService {
     dao = PaymentDAO.getInstance();
     return service;
   }
-  // 결제페이지 들어올 때
+          // 결제페이지 들어올 때
 
   // 회원정보 가져오기
   public MemManageDTO selectMemberService(HttpServletRequest request) throws Exception {
-    String email = request.getParameter("email");
+    HttpSession session = request.getSession();
+    String email = (String)session.getAttribute("member.email");
+    // String email = request.getParameter("email");
+    
     MemManageDTO memManageDTO = dao.selectMember(email);
     return memManageDTO;
   } // selectMemberService
@@ -34,6 +39,7 @@ public class PaymentService {
     if (str != null) {
       item_no = Integer.parseInt(str);
     }
+    
     ItemDTO itemDTO = dao.selectItem(item_no);
 
     return itemDTO;
@@ -44,8 +50,23 @@ public class PaymentService {
     SpellDTO_jh spellDTO_jh = dao.selectSpellNo();
     return spellDTO_jh;
   }// selectSpellNoService
+  
+  // 이미지정보
+  public ItemImgDTO_jh selectImgService(HttpServletRequest request) throws Exception {
+    String str = request.getParameter("item_no");
+  
+    int item_no = 0;
+    if (str != null) {
+      item_no = Integer.parseInt(str);
+    }
+    
+    ItemImgDTO_jh itemImgDTO_jh = dao.selectImg(item_no);
+  
+    return itemImgDTO_jh;
+  }// selectItemService
+  
 
-  // 결제페이지에서 넘기기
+          // 결제페이지에서 넘기기
   // 주문정보 입력
   public int insertSpellService(HttpServletRequest request) throws Exception {
     SpellDTO_jh spell = new SpellDTO_jh();

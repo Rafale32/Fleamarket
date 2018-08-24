@@ -37,7 +37,7 @@ public class ItemDTO implements Serializable{ //마이바티스는 DTO 로 사�
 
 	// 20180818 재헌 상점이름, 배송 유무
 	private String store_name;
-//	private String delivery_fee;
+	// private String delivery_fee;
 	// 20180818 재헌 배송진행상태
 	private int delivery_state;
 	

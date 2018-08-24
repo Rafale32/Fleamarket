@@ -55,7 +55,7 @@ $(function() {
 							$(".itemtab").append(all);
 							
 							if(cnt%2 == 0){
-								alert("22");
+								
 								$(".itemtab").append("</tr>");
 							}
 							cnt = cnt + 1;

@@ -25,7 +25,7 @@ dao3.changeDelivery(drv);
 System.out.println("메소드 가즈아~!");
 
 
-response.sendRedirect("buy_list_gy.jsp");
+response.sendRedirect("buy_list_gy.do");
 %>
 
 

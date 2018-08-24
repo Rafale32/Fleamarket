@@ -16,7 +16,9 @@ public class PaymentPagingSellAction_gy implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//비지니스
 				String pageNum = request.getParameter("pageNum");
-				if (pageNum == null) {
+				if (pageNum == null ) {
+					pageNum = "1";
+				}else if (pageNum == "0" ) {
 					pageNum = "1";
 				}
 				
@@ -30,10 +32,18 @@ public class PaymentPagingSellAction_gy implements Action {
 				request.setAttribute("SellModel2", listModel);
 				
 				//어디로 갈지 정하는것
+				//어디로 갈지 정하는것2
 				ActionForward forward = new ActionForward();
-				forward.setPath("sell_list_gy.jsp");
-				forward.setRedirect(false);
+				forward.setPath("/template.jsp"); //원하는 경로가 완전 새로운 페이지가 아니라면 템플릿으로 가야겟지 템플릿이 헤더및 푸터 있으니까
+				forward.setRedirect(false); //완전 새로운 페이지로 갈거냐 안갈거냐
 				
+			
+				forward.setConPath("./subtemplate_mystore.jsp");
+				
+				
+				forward.setSubConPath("./jh_gy/gy_view/sell_list_gy.jsp"); // 여기만 수정
+				request.setAttribute("forward", forward); // 컨테이너 경로 사용하기위한 등록
+				System.out.println("건엽 첫작");
 				
 				return forward;
 	}
