@@ -17,9 +17,16 @@
 		return null;
 	}
 </script>
+<style type="text/css">
+	#tab{
+		text-align: center;
+		vertical-align: middle;
+	}
+</style>
 <title>Insert title here</title>
 </head>
 <body>
+	<div id="tab">
 	
 	<table border="1">
 		<tr> <td>상품사진</td> <td>물품명</td> <td>가격</td> <td>찜/댓글</td> <td>최근 수정일</td> <td>기능</td> </tr>
@@ -63,8 +70,6 @@
 		</c:if>
 	</c:if>
 	
-	
-	
 	<c:if test="${param.store_name != null }">
 		<c:if test="${bean.pageModel.startPage>5 }">
 			<a href="/Fleamarket/product/productlist.do?store_name=${bean.itemDTO.store_name }&pageNum=${bean.pageModel.startPage - 1 }">[이전]</a>
@@ -80,5 +85,7 @@
 			<a href="/Fleamarket/product/productlist.do?store_name=${bean.itemDTO.store_name }&pageNum=${bean.pageModel.startPage + 5 }">[이후]</a>
 		</c:if>
 	</c:if>
+	
+	</div>
 </body>
 </html>

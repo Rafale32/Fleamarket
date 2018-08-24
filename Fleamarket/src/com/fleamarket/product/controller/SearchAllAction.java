@@ -32,7 +32,7 @@ public class SearchAllAction implements Action {
 		
 		String searchSubj = request.getParameter("searchSubj");
 		String ajax = request.getParameter("aja");
-		System.out.println(ajax+":::::"+searchSubj);
+		//System.out.println(ajax+":::::"+searchSubj);
 		
 		if(ajax != null){
 			start = (Integer)session.getAttribute("searchStartpage");

@@ -34,9 +34,9 @@ $(function() {
 				success: function(data){
 					var cnt = 1;
 					
-					$.each(data.item, function(){
+					/* $.each(data.item, function(){
 						
-					})
+					}) */
 					
 					
 					$.each(data,function(key,value) {
@@ -109,11 +109,6 @@ $(function() {
 			  			거래지역:${tmp.local }
 			  		</a>
 			  	</td>
-			  <!--   <td>이미지1</td>
-			    <td>이미지2</td>
-			    <td>이미지3</td>
-			    <td>이미지4</td>
-			    <td>이미지5</td> -->
 			    
 			 	<c:if test="${sta.count%2 == 0  }"></tr><br></c:if>
 		  </c:forEach>
