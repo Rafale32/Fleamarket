@@ -33,34 +33,44 @@ $(function() {
 				dataType: "json",
 				success: function(data){
 					var cnt = 1;
+					
+					$.each(data.item, function(){
+						
+					})
+					
+					
 					$.each(data,function(key,value) {
 						
 					//	$("#subsubname").empty();
 					//	alert('key:'+key+', name:'+value.cate);
 					//$("#subsubname").append( "<option value='"+ value.cate +"'>"+ value.cate +"</option>" );
+					//$(".itemtab").append("<tr>");
+					var all = "<tr>";
 						$.each(value, function(i, value2) {
-							if(cnt == 1 || cnt%2==1){
-								$(".itemtab").append("<tr>");
-							}
+							/* if(cnt == 1 || cnt%2==1){
+								
+							} */
 							
 							//alert(value2.thum_img);
 							//"itemboard_No":16,"thum_img":"88441820_2_1534756574_w4341_small.jpg","price":2040,"title":"aaa","local":"신촌"
-							var all = "<td>"+ "<a href=/Fleamarket/maindetail/detailAction.do?itemboard_no="+ value2.itemboard_No +">"
+							var td = "<td>"+ "<a href=/Fleamarket/maindetail/detailAction.do?itemboard_no="+ value2.itemboard_No +">"
 									+ "<img src=/Fleamarket/productimg/"+value2.thum_img+"><br>" 
 									+ value2.title + "<br>" 
 									+ value2.price + "<br>" 
 									+ value2.local + "<br>" 
 									+ "</td>";
 									
-							$(".itemtab").append(all);
+							all = all + td;
 							
-							if(cnt%2 == 0){
+							/* if(cnt%2 == 0){
 								
-								$(".itemtab").append("</tr>");
-							}
-							cnt = cnt + 1;
+								
+							} */
+							//cnt = cnt + 1;
 						});
-						
+						//$(".itemtab").append("</tr>");
+						all = all + "</tr>";
+						$(".itemtab").append(all);
 					});
 					
 				}
@@ -105,7 +115,7 @@ $(function() {
 			    <td>이미지4</td>
 			    <td>이미지5</td> -->
 			    
-			 	<c:if test="${sta.count%2 == 0  }"><tr><br></c:if>
+			 	<c:if test="${sta.count%2 == 0  }"></tr><br></c:if>
 		  </c:forEach>
 		</table>
 	
