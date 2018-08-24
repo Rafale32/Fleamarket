@@ -95,7 +95,8 @@
 
 
 				<td>
-				<a href="">  <h2>제목(상품명) ${p.title}</h2> </a>	
+				<a href="/Fleamarket/payment/detailpayment.do?item_no=${p.item_no}">
+          <h2>제목(상품명) ${p.title}</h2> </a>	
 					<h4>구매상점 ${p.store_name }</h4>
 
 				</td>
