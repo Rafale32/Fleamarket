@@ -122,7 +122,7 @@
 
 			<br> <br>
 			<div class="itemDetail2">
-				상품정보
+				<%-- 상품정보
 				<li>${bean.itemDetail.itemboard_contents}</li> 카테고리
 				<li>${bean.itemDetail.category_title}</li>
 				<li>${bean.itemDetail.sub_title}</li> 상품태그
@@ -169,7 +169,108 @@
 						<br>
 			${qnaList.contents}<br>
 					</c:forEach>
+				</div> --%>
+				
+				<div class="product-desc-wrapper">
+		<div class="detail-tab-content">
+			<div class="detail-tab-content-wrapper">
+				<div class="product-content">
+					<div class="product-info-wrapper">
+						<div class="product-info">
+							<div class="title">상품정보</div>
+							<div class="description">글내용</div>
+							<ul class="assistant-list">
+								<li class="assistant-location"><strong>거래지역</strong> <span
+									class="value">안산시</span></li>
+								<li class="assistant"><strong>카테고리</strong>
+									<div>노트북/넛북</div></li>
+								<li class="assistant"><strong>상품태그</strong>
+									<div>태그 태그 태그</div></li>
+							</ul>
+						</div>
+					</div>
+					<div class="product-comments-wrapper">
+						<div class="product-comments">
+							<div class="title">
+							상품문의 <span class="comments-count">문의갯수</span>
+							</div>
+							<div class="comments-input-wrapper">
+								<div class="comment-input">
+									<div class="input-wrapper">
+										<textarea type="text" placeholder="문의 내용을 입력해주세요" 
+												rows="2"></textarea>
+									</div>
+									<div class="comment-footer">
+										<div class="comment-write-btn">
+											<div class="write-btn">등록</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="comments-wrapper">
+								<div class="comment-item">
+									<div class="comment-item-wrapper">
+										<div class="comment-info-wrapper">
+											<div class="comment-info-header">
+												<div class="comment-writer-name">
+													<a href="">댓글쓴 상점이름</a>
+												</div>
+											</div>
+											<div class="comment-content">
+											 문의 내용
+											</div>
+											<div class="split"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
+				<div class="seller-content">
+					<div class="product-seller-wrapper">
+						<div class="product-seller">
+							<div class="title">상점정보</div>
+							<div class="product-seller-wrapper">
+								<div class="seller-info">
+									<div class="seller-profile">
+										<div class="seller-basic-info">
+											<a class="seller-name">상점이름</a>
+											<div class="seller-count">
+												<a class="seller-product-count">판매상품수</a>
+											</div>
+										</div>
+									</div>
+									<!-- 판매상품 미니 이미지 반복 -->
+									<div class="seller-products">
+										<div class="seller-popular-product">
+											<a>
+												<div class="small-product">
+													<img alt="" src=""><!-- 상품이미지 -->
+													<div class="product-price">
+													
+													</div>
+												</div>
+											</a>
+										</div>
+										<div class="seller-popular-product">
+											<span class="bold">가격</span>
+										</div>
+										<div class="seller-product-more">
+											<span class="product-count">2개뺀 상품갯수 개</span>상품 더보기
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="product-detail-btns">
+						<button class="btn-call">연락하기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 			</div>
 		</div>
 	</div>
