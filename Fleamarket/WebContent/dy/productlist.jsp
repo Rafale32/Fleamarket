@@ -5,6 +5,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript">
+	function deleteCheck(itemboard_No) {
+		if (confirm("삭제 하시겠습니까?")) {
+			var url = "/Fleamarket/product/productdelete.do?itemboard_No="+itemboard_No;
+			location.href = url;
+		} else {
+			alert("삭제 취소 되었습니다.");
+			return;
+		}
+		return null;
+	}
+</script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -25,26 +37,48 @@
 			</c:when>
 			<c:when test="${param.email != '' }">
 				<td><a href="/Fleamarket/product/productmodifyform.do?itemboard_No=${tmp.itemboard_No }">수정</a> 
-				<a href="/Fleamarket/product/productdelete.do?itemboard_No=${tmp.itemboard_No }">삭제</a> </td> </tr>
+				<input type="button" onclick="deleteCheck(${tmp.itemboard_No })" value="삭제">
+				<%-- <a href="/Fleamarket/product/productdelete.do?itemboard_No=${tmp.itemboard_No }" onclick="deleteCheck(${tmp.itemboard_No })">삭제</a>  --%>
+				</td> 
+			</tr>
 			</c:when>
 		</c:choose>
 			 
 		</c:forEach>
 	</table>
-	
-	<c:if test="${bean.pageModel.startPage>5 }">
-		<a href="/Fleamarket/product/productlist.do?email=${member.email }&pageNum=${bean.pageModel.startPage - 1 }">[이전]</a>
+
+	<c:if test="${member.email != null && bean.itemDTO.store_name == null}">
+		<c:if test="${bean.pageModel.startPage>5 }">
+			<a href="/Fleamarket/product/productlist.do?email=${member.email }&pageNum=${bean.pageModel.startPage - 1 }">[이전]</a>
+		</c:if>
+		
+		<c:forEach var="pageNo"  begin="${bean.pageModel.startPage}" end="${bean.pageModel.endPage }">
+			<c:if test="${bean.pageModel.requestPage == pageNo }"><b></c:if>
+			<a href="/Fleamarket/product/productlist.do?email=${member.email }&pageNum=${pageNo }">[${pageNo }]</a>
+			<c:if test="${bean.pageModel.requestPage == pageNo }"></b></c:if>
+		</c:forEach>
+		
+		<c:if test="${bean.pageModel.endPage < bean.pageModel.totalPageCount}">
+			<a href="/Fleamarket/product/productlist.do?email=${member.email }&pageNum=${bean.pageModel.startPage + 5 }">[이후]</a>
+		</c:if>
 	</c:if>
 	
-	<c:forEach var="pageNo"  begin="${bean.pageModel.startPage}" end="${bean.pageModel.endPage }">
-		<c:if test="${bean.pageModel.requestPage == pageNo }"><b></c:if>
-		<a href="/Fleamarket/product/productlist.do?email=${member.email }&pageNum=${pageNo }">[${pageNo }]</a>
-		<c:if test="${bean.pageModel.requestPage == pageNo }"></b></c:if>
-	</c:forEach>
 	
-	<c:if test="${bean.pageModel.endPage < bean.pageModel.totalPageCount}">
-		<a href="/Fleamarket/product/productlist.do?email=${member.email }&pageNum=${bean.pageModel.startPage + 5 }">[이후]</a>
+	
+	<c:if test="${param.store_name != null }">
+		<c:if test="${bean.pageModel.startPage>5 }">
+			<a href="/Fleamarket/product/productlist.do?store_name=${bean.itemDTO.store_name }&pageNum=${bean.pageModel.startPage - 1 }">[이전]</a>
+		</c:if>
+		
+		<c:forEach var="pageNo"  begin="${bean.pageModel.startPage}" end="${bean.pageModel.endPage }">
+			<c:if test="${bean.pageModel.requestPage == pageNo }"><b></c:if>
+			<a href="/Fleamarket/product/productlist.do?store_name=${bean.itemDTO.store_name }&pageNum=${pageNo }">[${pageNo }]</a>
+			<c:if test="${bean.pageModel.requestPage == pageNo }"></b></c:if>
+		</c:forEach>
+		
+		<c:if test="${bean.pageModel.endPage < bean.pageModel.totalPageCount}">
+			<a href="/Fleamarket/product/productlist.do?store_name=${bean.itemDTO.store_name }&pageNum=${bean.pageModel.startPage + 5 }">[이후]</a>
+		</c:if>
 	</c:if>
-	
 </body>
 </html>

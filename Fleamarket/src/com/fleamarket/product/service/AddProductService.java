@@ -43,7 +43,6 @@ public class AddProductService {
 
 		String savePath = request.getRealPath("/productimg").replaceAll("\\\\", "/"); // 저장할
 																					// 디렉토리
-		System.out.println("파일 시스템 들어옴?");
 		
 		int  sizeLimit = 20 * 1024 * 1024; // 용량제한
 
@@ -60,7 +59,6 @@ public class AddProductService {
 //			response.setContentType("text/html; charset=UTF-8");
 			//response.setCharacterEncoding("UTF-8");
 			//response.getWriter().write("<script>alert('업로드실패'); location.href='/';</script>");
-			System.out.println("널이냐?");
 			return;
 		}else{
 			itemImgList = new ArrayList<ItemImg>();
@@ -111,8 +109,6 @@ public class AddProductService {
 		item.setEmail( ((MemManageDTO)session.getAttribute("member")).getEmail() );
 		item.setCategory_Title(multi.getParameter("subname"));//대 카테고리명 
 		
-		System.out.println("섭 타이틀:"+item.getSub_Title());
-		System.out.println("로컬값:"+item.getLocal());
 		
 		Enumeration forms = multi.getFileNames();
 		// getFileNames() : input태그 중 속성이 file로 된

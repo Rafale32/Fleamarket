@@ -12,8 +12,12 @@ public class JoinFormAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ActionForward forward = new ActionForward();
+		
+		forward.setPath("/template.jsp");
 		forward.setRedirect(false);
-		forward.setPath("/jw/joinForm.jsp");
+		forward.setConPath("/jw/joinForm.jsp");
+		request.setAttribute("forward", forward);
+	
 		//forward.setPath("/Fleamarket/memmanage/joinform.do");
 		
 		System.out.println("조인폼으로 왔다.");

@@ -7,7 +7,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset="UTF-8">
     <script type="text/javascript" src="/Fleamarket/dy/jquery-3.1.0.js" charset="utf-8"></script>
     <script type="text/javascript" src="/Fleamarket/dy/imgadd.js" charset="utf-8"></script>
-    
+    <script type="text/javascript">
+	    function addCheck(e) {
+	    	if (confirm("상품을 등록 하시겠습니까?")) 
+	    	{
+	    		
+	    		return true;
+	    		//document.getElementById('ff').submit();
+	    	} else {
+	    		alert("상품등록이 취소 되었습니다.");
+	    		//e.preventDefault();
+	    		return false;
+	    	}	
+	    }
+    </script>
     <style type="text/css">
         .imgs_wrap {
             width: 600px;
@@ -24,7 +37,7 @@
 <body>
 	<br>
 	
-		<form action="/Fleamarket/product/addproduct.do" method="post" enctype="multipart/form-data" name="multipleUpload">
+		<form action="/Fleamarket/product/addproduct.do" onsubmit="return addCheck()" method="post" enctype="multipart/form-data" name="multipleUpload">
 		
  		   
  		       <p class="title">업로드할 이미지를 선택해 주세요</p>
@@ -90,13 +103,13 @@
 
 				</div>
 				<div >
-					<button>최근 지역</button>
+					<!-- <button>최근 지역</button> -->
 				</div>
 				<div >
-					<button>지하철 검색</button>
+					<!-- <button>지하철 검색</button> -->
 				</div>
 				<div>
-					<button>지역 검색</button>
+					<!-- <button>지역 검색</button> -->
 				</div>
 			</div>
 			<div >

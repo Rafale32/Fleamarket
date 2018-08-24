@@ -4,21 +4,18 @@ import java.io.Serializable;
 import java.util.List;
 
 public class MemManageDTO implements Serializable { // 마이바티스는 DTO 로 사용하는 객체 무조건
-													// 시리얼라이즈 필수적으로 해줘야함
-	private String email; // 이메일
-	private String password; // 패스워드
-	private String name; // 이름
-	private String phone; // 전화번호
-	private String address; // 주소
-	private String address2; // 상세주소
-	private int point; // 포인트
-	private String state; // 회원 상태
-	private String stop_start; // 정지 시작일
-	private String stop_end; // 정지 종료일
-	private int admin; // 관리자 상태확인
-
-	public MemManageDTO() {
-	}
+// 시리얼라이즈 필수적으로 해줘야함
+private String email; // 이메일
+private String password; // 패스워드
+private String name; // 이름
+private String phone; // 전화번호
+private String address; // 주소
+private String address2; // 상세주소
+private int point; // 포인트
+private String state; // 회원 상태
+private String stop_start; // 정지 시작일
+private String stop_end; // 정지 종료일
+private int admin; // 관리자 상태확인
 
 	public String getEmail() {
 		return email;

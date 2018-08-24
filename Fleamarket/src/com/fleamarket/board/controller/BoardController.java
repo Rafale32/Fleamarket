@@ -36,7 +36,7 @@ public class BoardController extends HttpServlet {
     	contextPath += "board/";
     	String command = requestURI.substring(contextPath.length()+1); 
     	System.out.println(command);
-    	
+    	System.out.println("여기냐 설마");
     	
     	Action action = null;
     	ActionForward forward = null;
