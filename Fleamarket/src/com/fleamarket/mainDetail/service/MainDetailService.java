@@ -77,7 +77,7 @@ public class MainDetailService {
   public String time(String itemTime){
   //아이템상세글 작성시간 처리
     Date date = new Date();
-    SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+    SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss a");
     String today = f.format(date);
     String itemDate = itemTime;
     
@@ -89,34 +89,39 @@ public class MainDetailService {
     tlist.add(Integer.parseInt(today.substring(11,13)));
     tlist.add(Integer.parseInt(today.substring(14,16)));
     tlist.add(Integer.parseInt(today.substring(17,19)));
-    
+
     ilist.add(Integer.parseInt(itemDate.substring(0,4)));
     ilist.add(Integer.parseInt(itemDate.substring(5,7)));
     ilist.add(Integer.parseInt(itemDate.substring(8,10)));
-    ilist.add(Integer.parseInt(itemDate.substring(11,13)));
+    if(today.substring(20,22).equals("오후")){
+      ilist.add(Integer.parseInt(itemDate.substring(11,13))-12);
+    }else{
+      ilist.add(Integer.parseInt(itemDate.substring(11,13)));
+    }
     ilist.add(Integer.parseInt(itemDate.substring(14,16)));
     ilist.add(Integer.parseInt(itemDate.substring(17,19)));
+
     String val1 = null;
     String val2 = null;
     int cnt = 0;
     for(int i=0; i<6; i++){
+      cnt++;
       if((tlist.get(i)-ilist.get(i))!=0){
         val1 = String.valueOf((tlist.get(i)-ilist.get(i)));
         break;
       }
-      cnt++;
     }
-    if(cnt == 0){
+    if(cnt == 1){
       val2 = "년 전";
-    }else if(cnt == 1){
-      val2 = "달 전";
     }else if(cnt == 2){
-      val2 = "일 전";
+      val2 = "달 전";
     }else if(cnt == 3){
-      val2 = "시간 전";
+      val2 = "일 전";
     }else if(cnt == 4){
-      val2 = "분 전";
+      val2 = "시간 전";
     }else if(cnt == 5){
+      val2 = "분 전";
+    }else if(cnt == 6){
       val2 = "초 전";
     }
     String time = val1+val2;

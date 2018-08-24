@@ -15,12 +15,10 @@
 	<!-- 추천상품 정보 가져오는 쿼리 -->
 	<select id="recommend" resultType="RecommendDTO">
 		select distinct a.item_no, b.title, a.price, b.itemboard_date,
-    a.delivery_fee, c.thum_img, b.itemboard_no, a.item_state
+    a.delivery_fee, b.itemboard_no, a.item_state
 		from
-		item a, itemboard b, itemimg c
+		item a, itemboard b
 		where a.item_no=b.item_no
-		and
-		b.itemboard_no=c.itemboard_no
 		and b.recommend_ornot=1
 		and b.delete_state=0
     and a.delivery_state=1
