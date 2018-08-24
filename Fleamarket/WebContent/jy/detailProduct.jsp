@@ -124,101 +124,70 @@
 
 				<br> <br>
 				<div class="itemDetail2">
-					<%-- 상품정보
-				<li>${bean.itemDetail.itemboard_contents}</li> 카테고리
-				<li>${bean.itemDetail.category_title}</li>
-				<li>${bean.itemDetail.sub_title}</li> 상품태그
-				<!-- 해시태그 목록 -->
-				<c:if test="${bean.itemDetail.tagList ne null}">
-					<c:forEach var="list" items="${bean.itemDetail.tagList}">
-						<a href="">${list }</a>
-					</c:forEach>
-				</c:if>
-				</ul>
-
-
-				<br>
-				<div class="storeInfo">
-					<h3>상점정보</h3>
-					<a
-						href="/Fleamarket/product/productlist.do?store_name=${bean.storeInfo.store_name }">${bean.storeInfo.store_name }</a>
-					<h4>상점 내 다른 아이템</h4>
-					<c:forEach var="itemList" items="${bean.storeInfo.itemList}">
-						<a href="detailAction.do?itemboard_no=${itemList.itemboard_no}">${itemList.title}</a>
-					</c:forEach>
-				</div>
-
-				<div class="itemQna">
-					<h3>상품문의</h3>
-					<c:if test="${member.name ne null}">
-						<form action="qnaAction.do" method="post">
-							<input type="hidden" name="itemboard_no"
-								value="${bean.itemDetail.itemboard_no}"> <input
-								type="hidden" name="email" value="${member.email}"> 내용 <br>
-							<textarea rows="6" cols="70" name="contents"></textarea>
-							<br> <input class="insertQnaBtn" type="submit" value="등록">
-							<br>
-						</form>
-					</c:if>
-
-					<c:forEach var="qnaList" items="${bean.itemQnaList}">
-						<a href="">${qnaList.store_name }</a>
-						<a href="">${qnaList.store_no }</a>
-						<c:if test="${member.email eq qnaList.email }">
-							<a
-								href="deleteQnaAction.do?item_qna_no=${qnaList.item_qna_no}&itemboard_no=${bean.itemDetail.itemboard_no}">삭제하기</a>
-						</c:if>
-						<br>
-			${qnaList.contents}<br>
-					</c:forEach>
-				</div> --%>
-
 					<div class="detail-tab-content-wrapper">
 						<div class="product-content">
 							<div class="product-info-wrapper">
 								<div class="product-info">
 									<div class="title">상품정보</div>
-									<div class="description">글내용</div>
+									<div class="description">${bean.itemDetail.itemboard_contents}</div>
 									<ul class="assistant-list">
-										<li class="assistant-location"><strong>거래지역</strong> <span
-											class="value">안산시</span></li>
+										<li class="assistant"><strong>거래지역</strong><br> <span
+											class="value">${bean.itemDetail.local}</span></li>
 										<li class="assistant"><strong>카테고리</strong>
-											<div>노트북/넛북</div></li>
+											<div>${bean.itemDetail.category_title}</div></li>
 										<li class="assistant"><strong>상품태그</strong>
-											<div>태그 태그 태그</div></li>
+											<div>
+												<c:if test="${bean.itemDetail.tagList ne null}">
+													<c:forEach var="list" items="${bean.itemDetail.tagList}">
+														<a href="">${list }</a>
+													</c:forEach>
+												</c:if>
+											</div></li>
 									</ul>
 								</div>
 							</div>
 							<div class="product-comments-wrapper">
 								<div class="product-comments">
 									<div class="title">
-										상품문의 <span class="comments-count">문의갯수</span>
+										상품문의 <span class="comments-count"></span>
 									</div>
 									<div class="comments-input-wrapper">
 										<div class="comment-input">
 											<div class="input-wrapper">
-												<textarea type="text" placeholder="문의 내용을 입력해주세요" rows="2"></textarea>
-											</div>
-											<div class="comment-footer">
-												<div class="comment-write-btn">
-													<div class="write-btn">등록</div>
-												</div>
+												<c:if test="${member.name ne null}">
+													<form action="qnaAction.do" method="post">
+														<input type="hidden" name="itemboard_no"
+															value="${bean.itemDetail.itemboard_no}"> <input
+															type="hidden" name="email" value="${member.email}">
+														<textarea name="contents" placeholder="문의 내용을 입력해주세요"
+															rows="2"></textarea>
+														<input class="write-btn" type="submit" value="등록">
+													</form>
+												</c:if>
 											</div>
 										</div>
 									</div>
 									<div class="comments-wrapper">
 										<div class="comment-item">
-											<div class="comment-item-wrapper">
-												<div class="comment-info-wrapper">
-													<div class="comment-info-header">
-														<div class="comment-writer-name">
-															<a href="">댓글쓴 상점이름</a>
+											<c:forEach var="qnaList" items="${bean.itemQnaList}">
+												<div class="comment-item-wrapper">
+													<div class="comment-info-wrapper">
+														<div class="comment-info-header">
+															<div class="comment-writer-name">
+																<a href="">${qnaList.store_name }</a>
+															</div>
 														</div>
+														<div class="comment-content">${qnaList.contents}</div>
+														<c:if test="${member.email eq qnaList.email }">
+															<a
+																href="deleteQnaAction.do?item_qna_no=${qnaList.item_qna_no}&itemboard_no=${bean.itemDetail.itemboard_no}">
+																<div class="delete-qna">삭제하기</div>
+															</a>
+														</c:if>
+														<div class="split"></div>
 													</div>
-													<div class="comment-content">문의 내용</div>
-													<div class="split"></div>
 												</div>
-											</div>
+											</c:forEach>
 										</div>
 									</div>
 								</div>
@@ -232,41 +201,77 @@
 										<div class="seller-info">
 											<div class="seller-profile">
 												<div class="seller-basic-info">
-													<a class="seller-name">상점이름</a>
+													<a class="seller-name"
+														href="/Fleamarket/product/productlist.do?store_name=${bean.storeInfo.store_name }">${bean.storeInfo.store_name }</a>
 													<div class="seller-count">
-														<a class="seller-product-count">판매상품수</a>
+														<a class="seller-product-count">${bean.storeInfo.itemCount }
+															개 판매중</a>
 													</div>
 												</div>
 											</div>
 											<!-- 판매상품 미니 이미지 반복 -->
 											<div class="seller-products">
 												<div class="seller-popular-product">
-													<a>
-														<div class="small-product">
-															<img alt="" src="">
-															<!-- 상품이미지 -->
-															<div class="product-price"></div>
-														</div>
+													<a> <c:forEach var="itemList"
+															items="${bean.storeInfo.itemList}" begin="0" end="1"
+															step="1">
+															<a
+																href="detailAction.do?itemboard_no=${itemList.itemboard_no}">
+																<div class="small-product">
+																<c:forEach var="img" items="${itemList.imgList }" begin="0" end="0">
+																	<img alt="" src="../productimg/${img.thum_img}">
+																</c:forEach>
+																	<div class="product-price">
+																		<div class="seller-popular-product">
+																			<span class="bold">
+																				<fmt:formatNumber value="${itemList.price}" />
+																				<small>원</small>
+																			</span>
+																		</div>
+																	</div>
+																</div>
+															</a>
+														</c:forEach>
 													</a>
 												</div>
-												<div class="seller-popular-product">
-													<span class="bold">가격</span>
-												</div>
-												<div class="seller-product-more">
-													<span class="product-count">2개뺀 상품갯수 개</span>상품 더보기
-												</div>
+												<a class="seller-name"
+													href="/Fleamarket/product/productlist.do?store_name=${bean.storeInfo.store_name }">
+													<div class="seller-product-more">
+														<span class="product-count">${bean.storeInfo.itemCount-2}</span>개
+														상품 더보기
+													</div>
+												</a>
 											</div>
+										</div>
+										<div class="product-detail-btns">
+											<c:choose>
+												<c:when test="${bean.itemDetail.delivery_state eq 1 }">
+													<c:choose>
+														<c:when test="${member.name ne null}">
+															<button
+																onclick="location.href = '/Fleamarket/payment/payment.do?item_no=${bean.itemDetail.item_no }'"
+																class="btn-call">안심결제</button>
+														</c:when>
+														<c:otherwise>
+															<button
+																onclick="location.href = '/Fleamarket/memmanage/login.do'"
+																class="btn-call">안심결제</button>
+														</c:otherwise>
+													</c:choose>
+												</c:when>
+												<c:otherwise>
+													<button class="btn-call">판매완료</button>
+												</c:otherwise>
+											</c:choose>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="product-detail-btns">
-								<button class="btn-call">연락하기</button>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 </body>
 </html>

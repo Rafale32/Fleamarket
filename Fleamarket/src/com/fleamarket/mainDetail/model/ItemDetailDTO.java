@@ -32,12 +32,11 @@ public class ItemDetailDTO implements Serializable{ //마이바티스는 DTO 로
 
 	
 	public ItemDetailDTO(){}
-
-
+	
   public ItemDetailDTO(int itemboard_no, String title, int price, int fav_no, int hits, String itemboard_date,
       int item_state, int change_ornot, int delivery_fee, int delivery_state, String local, String itemboard_contents,
-      String category_title, String sub_title, String tag, List<String> tagList, int item_no,
-      List<ItemImgDTO> imgList) {
+      String category_title, String sub_title, String tag, List<String> tagList, List<ItemImgDTO> imgList,
+      String thum_img, int item_no) {
     super();
     this.itemboard_no = itemboard_no;
     this.title = title;
@@ -55,10 +54,18 @@ public class ItemDetailDTO implements Serializable{ //마이바티스는 DTO 로
     this.sub_title = sub_title;
     this.tag = tag;
     this.tagList = tagList;
-    this.item_no = item_no;
     this.imgList = imgList;
+    this.thum_img = thum_img;
+    this.item_no = item_no;
   }
 
+  public String getThum_img() {
+    return thum_img;
+  }
+
+  public void setThum_img(String thum_img) {
+    this.thum_img = thum_img;
+  }
 
   public int getDelivery_state() {
     return delivery_state;
