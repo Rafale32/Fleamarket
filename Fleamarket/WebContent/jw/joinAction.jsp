@@ -7,8 +7,12 @@
     MemberService service = MemberService.getInstance();
     int re = service.joinBoardService(request);
     
+    System.out.print(re);
+    
     if(re == 1){
     	response.sendRedirect("joinForm.jsp");
+    	
+    	System.out.print("asdfasdfasdf");
     }
     
     %>
@@ -20,6 +24,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	 회원가입이 완료되었습니다.
 </body>
 </html>

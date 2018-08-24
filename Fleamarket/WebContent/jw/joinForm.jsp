@@ -49,6 +49,13 @@
         }).open();
     }
 </script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="/Fleamarket/jw/Check.js"></script>
+<script type="text/javascript">
+
+</script>
+
+
 </head>
 <body>
 
@@ -61,14 +68,18 @@
 	<!-- 입력한 값을 전송하기 위해 form 태그를 사용  -->
 	<!-- 값 전송은 post방식, 전송할 페이지는 login페이지 -->
 	
-	<form action="/Fleamarket/memmanage/joinAction.do" method="post" name="frm">
+	<form action="/Fleamarket/memmanage/joinAction.do" method="post" name="frm" onsubmit="return checkValue()">
 	
 	EMAIL : <input type="email" id="email" name="email">
-			<input type="button" value="중복 확인" onclick="emailCheck()">
+			<input type="button" value="중복 확인">
 			<input type="hidden" name="emailDuplication">
 			<br><br>
-	비밀번호 : <input type="password" name="password">  4자이상 12자리까지<br><br>
-	비밀번호 확인 : <input type="password" name="password_cueco" ><br><br> 
+	비밀번호 : <input type="password" id="pass1" name="password" onkeyup="passwordCheckFunction();">
+	<br><br>
+	비밀번호 확인 : <input type="password" id="pass2" name="password2" onkeyup="passwordCheckFunction();">
+	<h5 style="color: red;"  id="passwordCheckMessage"></h5>
+
+  	<br> 
 	이름 : <input type="text" name="name"/><br><br>
 	전화번호 : <input type="text" name="phone"/><br><br>
 	
@@ -79,9 +90,13 @@
 	
 	<input type="submit" value="회원가입">
 	<input type="reset" value="다시입력">
-	<input type="button" value ="취소">
-
+	<a href="/Fleamarket/maindetail/main.do"><input type="button" value="메인"></a>
+	
 	</form>
+	
+	
+
+	
 	</div>
 
 </body>

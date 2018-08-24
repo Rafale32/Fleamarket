@@ -10,6 +10,7 @@ import com.fleamarket.mainDetail.model.ItemDetailDTO;
 import com.fleamarket.mainDetail.model.ItemImgDTO;
 import com.fleamarket.mainDetail.model.ItemQnaDTO;
 import com.fleamarket.memManage.model.MemManageDTO;
+import com.fleamarket.memManage.model.StoreDTO;
 import com.fleamarket.payment.model.DeliveryDTO_jh;
 import com.fleamarket.payment.model.PaymentDTO;
 import com.fleamarket.payment.model.SpellDTO_jh;
@@ -51,6 +52,9 @@ public class Bean {
 	private StoreInfoDTO storeInfo;
 	private List<ItemQnaDTO> itemQnaList;
 	private List<ItemDetailDTO> categoryItemList;
+	
+	//상점추가-주원 0823
+	private StoreDTO storeDTO;
 	
 	
 	//--------------------------

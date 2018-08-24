@@ -2,27 +2,24 @@
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
-
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.fleamarket.memManage.model.MemManageDTO" alias="MemManageDTO"/>
-		<typeAlias type="com.fleamarket.memManage.model.StoreDTO" alias="StoreDTO"/>
-
+		<typeAlias type="com.fleamarket.board.model.MyBoard" alias="MyBoard"/>
 	</typeAliases>
 	
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC"/>
-
-
+			<!--  db연결 jndi방식으로 -->
 			<dataSource type="JNDI">
 				<property name="data_source" value="java:comp/env/jdbc/oracle"/>
-			</dataSource>
-		</environment>
+			</dataSource><!--  까지  -->
+		</environment>		
 	</environments>
 	
 	<mappers>
-		<mapper resource="com/fleamarket/mapper/MemManage.xml"/>
+		<!--sql문이 들어간 보드 매핑 경로 잡아준다. -->
+		<mapper resource="com/fleamarket/mapper/MyBoard.xml"/>
 	</mappers>
 	
 </configuration>
