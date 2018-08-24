@@ -32,7 +32,7 @@ public class TestUpdateAction implements TestAction {
 		request.setAttribute("ups", myBoard);
 		
 		TestActionForward upaction = new TestActionForward();
-		upaction.setPath("updateView.jsp");
+		upaction.setPath("/sy/updateView.jsp");
 		upaction.setRedirect(false);
 		System.out.println("--retrun UpdateAcation--");
 		return upaction;
