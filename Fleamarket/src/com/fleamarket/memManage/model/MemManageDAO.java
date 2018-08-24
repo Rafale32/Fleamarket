@@ -134,19 +134,19 @@ public class MemManageDAO {
 	}
 	//중복 아이디 체크
 	public List<MemManageDTO> idCheck(){
-		List<MemManageDTO> idCh = new ArrayList<MemManageDTO>();
+		List<MemManageDTO> idCheck = new ArrayList<MemManageDTO>();
 		
 	SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
 		try {
-			idCh = sqlSession.getMapper(MemManageMapper.class).idCheck();
+			idCheck = sqlSession.getMapper(MemManageMapper.class).idCheck();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			sqlSession.close();
 		}
 		
-		return idCh;
+		return idCheck;
 	}
 	
 	//회원 상세 보기
