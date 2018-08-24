@@ -16,19 +16,23 @@ public class ItemDetailDTO implements Serializable{ //마이바티스는 DTO 로
 	private int item_state;
 	private int change_ornot;
 	private int delivery_fee;
+	private int delivery_state;
 	private String local;
 	private String itemboard_contents;
 	private String category_title;
 	private String sub_title;
 	private String tag;
 	private List<String> tagList;
-	private String thum_img;
+	private int item_no;
+	private List<ItemImgDTO> imgList;
 	
 	public ItemDetailDTO(){}
 
+
   public ItemDetailDTO(int itemboard_no, String title, int price, int fav_no, int hits, String itemboard_date,
-      int item_state, int change_ornot, int delivery_fee, String local, String itemboard_contents,
-      String category_title, String sub_title, String tag, List<String> tagList, String thum_img) {
+      int item_state, int change_ornot, int delivery_fee, int delivery_state, String local, String itemboard_contents,
+      String category_title, String sub_title, String tag, List<String> tagList, int item_no,
+      List<ItemImgDTO> imgList) {
     super();
     this.itemboard_no = itemboard_no;
     this.title = title;
@@ -39,16 +43,35 @@ public class ItemDetailDTO implements Serializable{ //마이바티스는 DTO 로
     this.item_state = item_state;
     this.change_ornot = change_ornot;
     this.delivery_fee = delivery_fee;
+    this.delivery_state = delivery_state;
     this.local = local;
     this.itemboard_contents = itemboard_contents;
     this.category_title = category_title;
     this.sub_title = sub_title;
     this.tag = tag;
     this.tagList = tagList;
-    this.thum_img = thum_img;
+    this.item_no = item_no;
+    this.imgList = imgList;
   }
 
 
+  public int getDelivery_state() {
+    return delivery_state;
+  }
+
+
+  public void setDelivery_state(int delivery_state) {
+    this.delivery_state = delivery_state;
+  }
+
+
+  public int getItem_no() {
+    return item_no;
+  }
+
+  public void setItem_no(int item_no) {
+    this.item_no = item_no;
+  }
 
   public String getTitle() {
     return title;
@@ -161,13 +184,13 @@ public class ItemDetailDTO implements Serializable{ //마이바티스는 DTO 로
   public void setItemboard_no(int itemboard_no) {
     this.itemboard_no = itemboard_no;
   }
-
-  public String getThum_img() {
-    return thum_img;
+  
+  public List<ItemImgDTO> getImgList() {
+    return imgList;
   }
 
-  public void setThum_img(String thum_img) {
-    this.thum_img = thum_img;
+  public void setImgList(List<ItemImgDTO> imgList) {
+    this.imgList = imgList;
   }
 
   public List<String> getTagList() {

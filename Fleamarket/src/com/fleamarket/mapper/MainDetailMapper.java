@@ -29,4 +29,5 @@ public interface MainDetailMapper {
 	ItemQnaDTO storeNoInfo(String name);
 	int deleteQna(int itemQnaNo);
 	List<ItemDetailDTO> categoryItemList(int category_no);
+	int updateHits(int itemboard_no);
 }

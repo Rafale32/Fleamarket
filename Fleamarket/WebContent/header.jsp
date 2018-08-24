@@ -38,6 +38,7 @@
 	}
 </style>
 <title>Insert title here</title>
+
 </head>
 <body>
 	<a href="http://localhost:8081/Fleamarket/maindetail/main.do">Fleamarket</a>
@@ -58,15 +59,13 @@
 		<a href="/Fleamarket/product/productlist.do?email=${member.email }" class="btn">My Store</a>
 		<a href="/Fleamarket/memmanage/detailAction.do?email=${member.email }" class="btn">내 정보보기</a>
 	</c:if>
-	
-	
+
 		<form action="/Fleamarket/product/searchall.do">
 			<div id="sear">
 			   <input type="text" placeholder="상품명" class="search-box-input" name="searchSubj">
 			   <input type="submit" value="검 색" class="icon-search" id="subbtn">
 		   </div>
 	    </form>
-	
 
 </body>
 </html>

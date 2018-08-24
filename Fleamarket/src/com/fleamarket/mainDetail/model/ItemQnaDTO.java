@@ -6,21 +6,34 @@ public class ItemQnaDTO implements Serializable{
   private int item_qna_no;
   private int itemboard_no;
   private int store_no;
+  private String store_name;
   private String contents;
   private String qna_date;
-  private String name;
+  private String email;
   
   public ItemQnaDTO(){}
 
-  public ItemQnaDTO(int item_qna_no, int itemboard_no, int store_no, String contents, String qna_date, String name) {
+
+  public ItemQnaDTO(int item_qna_no, int itemboard_no, int store_no, String store_name, String contents,
+      String qna_date, String email) {
     super();
     this.item_qna_no = item_qna_no;
     this.itemboard_no = itemboard_no;
     this.store_no = store_no;
+    this.store_name = store_name;
     this.contents = contents;
     this.qna_date = qna_date;
-    this.name = name;
+    this.email = email;
   }
+
+  public String getstore_name() {
+    return store_name;
+  }
+
+  public void setstore_name(String store_name) {
+    this.store_name = store_name;
+  }
+
 
   public int getItem_qna_no() {
     return item_qna_no;
@@ -54,12 +67,12 @@ public class ItemQnaDTO implements Serializable{
     this.qna_date = qna_date;
   }
 
-  public String getName() {
-    return name;
+  public String getEmail() {
+    return email;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setEmail(String email) {
+    this.email = email;
   }
 
   public int getStore_no() {
@@ -73,7 +86,7 @@ public class ItemQnaDTO implements Serializable{
   @Override
   public String toString() {
     return "ItemQnaDTO [item_qna_no=" + item_qna_no + ", itemboard_no=" + itemboard_no + ", store_no=" + store_no
-        + ", contents=" + contents + ", qna_date=" + qna_date + ", name=" + name + "]";
+        + ", contents=" + contents + ", qna_date=" + qna_date + ", email=" + email + "]";
   }
   
 }

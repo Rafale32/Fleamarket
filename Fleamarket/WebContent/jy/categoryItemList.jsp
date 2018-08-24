@@ -11,6 +11,9 @@
 <body>
 	<div class="itemList">
 		<c:forEach var="list" items="${bean.categoryItemList}">
+			<c:forEach var="img" items="${list.imgList}" begin="0" end="0">
+				${img.thum_img}
+			</c:forEach>
 			<a href="detailAction.do?itemboard_no=${list.itemboard_no}">${list.title}</a>
 			${list.price}
 		</c:forEach>
