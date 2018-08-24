@@ -8,7 +8,7 @@ public class TestWriteViewAction implements TestAction {
 	@Override
 	public TestActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		TestActionForward returnWrite = new TestActionForward();
-		returnWrite.setPath("notice_Write_View.jsp");
+		returnWrite.setPath("/sy/notice_Write_View.jsp");
 		System.out.println("공지 작성 이동");
 		returnWrite.setRedirect(true);
 		System.out.println("리다이렉트: Falese >디스패치: ture");

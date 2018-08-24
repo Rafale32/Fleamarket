@@ -14,7 +14,7 @@
   <div id="topmenu">
     <ul>
     <li>
-    <a href="#" id="notice">NOTICE</a>
+    <a href="/Fleamarket/board/customerCenterList.do" id="notice">NOTICE</a>
     </li>
       <c:if test="${member != null }">
         <li> [${member.name }] </li>
