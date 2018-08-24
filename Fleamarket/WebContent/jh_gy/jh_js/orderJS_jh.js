@@ -68,6 +68,7 @@ function changePoint() {
   str = str.replace(/\s/g, '');
   str = str.replace(/,/g, '');
   str = str.replace(/원/g, '');
+
   var havePoint = parseInt(str);
 
   // 현재 가진 포인트보다 많을 경우 경고창 띄우고 0으로 셋팅
@@ -98,10 +99,12 @@ function changePoint() {
   var str = $('#delivery_fee').text();
   str = str.replace(/\n/g, '');
   str = str.replace(/\s/g, '');
+  str = str.replace(/,/g, '');
 
   if (str != '무료배송') {
     str = str.replace(/,/g, '');
     str = str.replace(/원/g, '');
+
     deliFee = parseInt(str);
   }
 
@@ -115,8 +118,10 @@ function changePoint() {
 
   // 히든 인풋 넘길 값
   // 총금액
-  $('#total').text(strTotal + '원');
-  document.getElementById('total').value = parseInt(total);
+
+  $('#total').text(strTotal + '원'); //text
+  document.getElementById('total2').value = parseInt(total); //int
+
 
   // 계산된 포인트
   var totalPoint = havePoint - point + (total * 0.001);
