@@ -16,6 +16,7 @@ public class CategoryItemListAction implements Action{
     
     Bean bean = (Bean) request.getAttribute("bean");
     bean.setCategoryItemList(service.categoryItemList(Integer.parseInt(request.getParameter("category_no"))));
+    
     ActionForward forward = new ActionForward();
     
     forward.setPath("/template.jsp"); //원하는 경로가 완전 새로운 페이지가 아니라면 템플릿으로 가야겟지 템플릿이 헤더및 푸터 있으니까

@@ -2,6 +2,7 @@ package com.fleamarket.payment.service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fleamarket.bean.Action;
 import com.fleamarket.bean.ActionForward;
@@ -15,27 +16,33 @@ public class PaymentAction implements Action {
   // false 사용할때는 .jsp 를 사용 해서 보내는것임
   @Override
   public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    System.out.println("PaymentAction 접속");
     ActionForward forward = new ActionForward();
     PaymentService service = PaymentService.getInstance();
-//     MemManageDTO member = service.selectMemberService(request);
-    // ItemDTO item = service.selectItemService(request);
+    HttpSession session = request.getSession();
 
     Bean bean = (Bean) request.getAttribute("bean");
-    
-    // bean.getMemManageDTO().
-    bean.setMemManageDTO(service.selectMemberService(request));
+//    20180822 세션에서 가져오게 되서 안씀
+//    bean.setMemManageDTO(service.selectMemberService(request));
+    // 상품정보
     bean.setItemDTO(service.selectItemService(request));
+    System.out.println("load itemInfo ok");
+    
+    // 주문번호
     bean.setSpellDTO_jh(service.selectSpellNoService(request));
+    System.out.println("load orderNo ok");
+    
+    // 이미지
+    bean.setItemImgDTO_jh(service.selectImgService(request));
+    System.out.println("load img ok");
     
     request.setAttribute("bean", bean);
 
-    forward.setPath("/template.jsp"); // 원하는 경로가 완전 새로운 페이지가 아니라면 템플릿으로 가야겟지
-                                      // 템플릿이 헤더및 푸터 있으니까
-    forward.setRedirect(false); // 완전 새로운 페이지로 갈거냐 안갈거냐
-    forward.setConPath("./jh_gy/jh_view/order_jh.jsp"); // 원하는 container 파일 경로
+    forward.setPath("/template.jsp"); 
+    forward.setRedirect(false);
+    forward.setConPath("./jh_gy/jh_view/order_jh.jsp");
 
     request.setAttribute("forward", forward); // 컨테이너 경로 사용하기위한 등록
-
     return forward;
   }
 

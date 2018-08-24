@@ -1,6 +1,7 @@
 package com.fleamarket.bean;
 
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import com.fleamarket.mainDetail.model.CategoryDTO;
@@ -9,16 +10,17 @@ import com.fleamarket.mainDetail.model.HotListDTO;
 import com.fleamarket.mainDetail.model.ItemDetailDTO;
 import com.fleamarket.mainDetail.model.ItemImgDTO;
 import com.fleamarket.mainDetail.model.ItemQnaDTO;
+import com.fleamarket.mainDetail.model.RecommendDTO;
+import com.fleamarket.mainDetail.model.StoreInfoDTO;
+import com.fleamarket.mainDetail.model.SubCategoryDTO;
 import com.fleamarket.memManage.model.MemManageDTO;
 import com.fleamarket.memManage.model.StoreDTO;
 import com.fleamarket.payment.model.DeliveryDTO_jh;
+import com.fleamarket.payment.model.ItemImgDTO_jh;
 import com.fleamarket.payment.model.PaymentDTO;
 import com.fleamarket.payment.model.SpellDTO_jh;
 import com.fleamarket.product.model.ItemDTO;
 import com.fleamarket.product.model.PageModel;
-import com.fleamarket.mainDetail.model.RecommendDTO;
-import com.fleamarket.mainDetail.model.StoreInfoDTO;
-import com.fleamarket.mainDetail.model.SubCategoryDTO;
 
 
 public class Bean {
@@ -27,11 +29,13 @@ public class Bean {
 	// 20180816,재헌 DeliveryDTO 추가
 	DeliveryDTO_jh deliveryDTO_jh; // 배송정보
 	// 20180817,재헌 PaymentDTO, SpellDTO_jh 추가
-	PaymentDTO paymentDTO; // 결제정보
-	SpellDTO_jh spellDTO_jh; //주문정보
-	ItemDTO itemDTO; // 상품정보
-	MemManageDTO memManageDTO; //회원정보
-	
+	PaymentDTO paymentDTO;       // 결제정보
+	SpellDTO_jh spellDTO_jh;     //주문정보
+	ItemDTO itemDTO;             // 상품정보
+	MemManageDTO memManageDTO;   //회원정보
+	// 20180823,재헌 상품이미지추가
+	ItemImgDTO_jh itemImgDTO_jh; //상품 이미지
+
 	
 	//두연
 	List<ItemDTO> itemList;
@@ -184,6 +188,14 @@ public class Bean {
 	public void setCategoryItemList(List<ItemDetailDTO> categoryItemList) {
 		this.categoryItemList = categoryItemList;
 	}
+  public ItemImgDTO_jh getItemImgDTO_jh() {
+    return itemImgDTO_jh;
+  }
+  public void setItemImgDTO_jh(ItemImgDTO_jh itemImgDTO_jh) {
+    this.itemImgDTO_jh = itemImgDTO_jh;
+  }
+	
+	
 	
 
 

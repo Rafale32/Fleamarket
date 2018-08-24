@@ -8,29 +8,34 @@
   <!-- 결제정보 가져올 때 -->
   <!-- 결제에 가져올 구매자 회원정보 20180817 재헌 -->
   <select id="selectMember" parameterType="String" resultType="MemManageDTO">
-    <!-- test -->
-    select * from member where email = 'testjwpp@gmail.com'
-    <!-- select * from member where email= #{email}; -->
+    select * from member where email = #{email}
   </select>
 
   <!-- 결제에 가져올 상품정보 및 판매자 정보 20180817 재헌 -->
   <select id="selectItem" parameterType="int" resultType="ItemDTO">
-    <!-- test -->
     select * from itemboard ib, item i, store s
-    where ib.item_no =
-    i.item_no
+    where ib.item_no = i.item_no
     and ib.store_no = s.store_no
-    and ib.item_no = 1
-    
+    and ib.item_no = #{item_no}
   </select>
   
+  <!-- 내림차순에 첫번째 로우의 주문번호를 불러와 마지막 주문번호를 부른다. -->
   <select id="selectSpellNo" parameterType="int" resultType="SpellDTO_jh">
-    <!-- test -->
-<!--     내림차순에 첫번째 로우의 주문번호를 불러와 마지막 주문번호를 부른다. -->
     select spell_no from spell
     where ROWNUM=1
     order by spell_no desc
   </select>
+  
+  <!-- 결제에 가져올 상품의 썸네일 이미지 -->
+  <select id="selectImg" parameterType="int" resultType="ItemImgDTO_jh" >
+    select THUM_IMG from
+      (select DISTINCT thum_img from itemimg where itemboard_no=
+        (select itemboard_no from itemboard where item_no = #{item_no})
+      )
+    where ROWNUM=1
+  </select>
+  
+  
   
   
   <!-- 결제 정보 넘길 때 -->
@@ -79,6 +84,48 @@
   </update>
 
 
+
+  <!-- 주문상세내역 들어갈 때-->
+  <!-- 주문내역  -20180821 재헌-->
+  <select id="findSpell" parameterType="int" resultType="SpellDTO_jh">
+    select * from spell where item_no=#{item_no}
+  </select>
+  
+  <!-- 상품정보 -20180821 재헌 -->
+  <select id="findItem" parameterType="int" resultType="ItemDTO">
+    select * from itemboard ib, item i, store s
+    where ib.item_no = i.item_no
+    and ib.store_no = s.store_no
+    and ib.item_no = #{item_no}
+  </select>
+  
+  <!-- 결제내역 -20180821 재헌 -->
+  <select id="findPayment" parameterType="int" resultType="PaymentDTO">
+    select * from pay where spell_no=
+    (select spell_no from spell where item_no=#{item_no})
+<!--     select * from pay where spell_no=#{spell_no} -->
+  </select>
+  
+  <!-- 배송정보 -20180821 재헌 -->
+  <select id="findDeli" parameterType="int" resultType="DeliveryDTO_jh">
+    select * from delivery where spell_no=
+    (select spell_no from spell where item_no=#{item_no})
+<!--     select * from delivery where spell_no=#{spell_no} -->
+  </select>
+  
+  <!-- 상품이미지 가져오기 -20180823 재헌 -->
+  <select id="findImg" parameterType="int" resultType="ItemImgDTO_jh" >
+    select THUM_IMG from
+      (select DISTINCT thum_img from itemimg where itemboard_no=
+        (select itemboard_no from itemboard where item_no = #{item_no})
+      )
+    where ROWNUM=1
+  </select>
+  
+  
+  
+  
+  
   <!-- 건엽 -->
   <!--밑에건 db에서 판매 제목, 상점이름, 썸네일 이미지 가져오는 쿼리 내용 -->
 	<select id="listPuerchaseBoard" resultType="PuerchaseDTO_gy">
@@ -139,7 +186,7 @@
       and Pa.Spell_No = Sp.Spell_No order by It.Item_No
 	</select>
 	<!-- 원하는 갯수만 뽑기 코드 판매부 -->
-		<select id="listBoardService2" resultType="PuerchaseDTO_gy">
+  <select id="listBoardService2" resultType="PuerchaseDTO_gy">
 	select distinct Itb.Title ,St.Store_Name,It.Delivery_State,It.Item_No,Ite.Thum_Img,It.Price,Pa.Pay_Date
       from item it, Spell sp,Delivery de,Itemboard itb,Store st,Itemimg ite, pay pa
       where It.Item_No = Sp.Item_No

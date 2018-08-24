@@ -1,34 +1,45 @@
 package com.fleamarket.mainDetail.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class HotItemDTO implements Serializable{
   private int itemboard_no; //상품번호
   private String category_title;  //대 카테고리 이름
   private String sub_title; //소 카테고리 이름
-  private String thum_img; // 썸네일 이미지
   private String title; //상품 이름
   private int price; //가격
   private String itemboard_date; //작성일자
   private int delivery_fee; //무료배송 여부
   private int hits; //조회수
   private int ranking; //조회수 순위
+  private int delivery_date;
+  private List<ItemImgDTO> imgList;
   
   public HotItemDTO(){}
 
-  public HotItemDTO(int itemboard_no, String category_title, String sub_title, String thum_img, String title, int price,
-      String itemboard_date, int delivery_fee, int hits, int ranking) {
+  public HotItemDTO(int itemboard_no, String category_title, String sub_title, String title, int price,
+      String itemboard_date, int delivery_fee, int hits, int ranking, int delivery_date, List<ItemImgDTO> imgList) {
     super();
     this.itemboard_no = itemboard_no;
     this.category_title = category_title;
     this.sub_title = sub_title;
-    this.thum_img = thum_img;
     this.title = title;
     this.price = price;
     this.itemboard_date = itemboard_date;
     this.delivery_fee = delivery_fee;
     this.hits = hits;
     this.ranking = ranking;
+    this.delivery_date = delivery_date;
+    this.imgList = imgList;
+  }
+
+  public int getDelivery_date() {
+    return delivery_date;
+  }
+
+  public void setDelivery_date(int delivery_date) {
+    this.delivery_date = delivery_date;
   }
 
   public String getCategory_title() {
@@ -47,12 +58,12 @@ public class HotItemDTO implements Serializable{
     this.sub_title = sub_title;
   }
 
-  public String getThum_img() {
-    return thum_img;
+  public List<ItemImgDTO> getImgList() {
+    return imgList;
   }
 
-  public void setThum_img(String thum_img) {
-    this.thum_img = thum_img;
+  public void setImgList(List<ItemImgDTO> imgList) {
+    this.imgList = imgList;
   }
 
   public String getTitle() {
