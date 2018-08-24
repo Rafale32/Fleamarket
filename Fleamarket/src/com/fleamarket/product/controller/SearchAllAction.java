@@ -36,7 +36,7 @@ public class SearchAllAction implements Action {
 		
 		if(ajax != null){
 			start = (Integer)session.getAttribute("searchStartpage");
-			size = 5;
+			size = 2;
 			List<ItemDTO> list = service.searchAll(searchSubj, start, size);
 			
 			
@@ -81,7 +81,7 @@ public class SearchAllAction implements Action {
 			
 			Bean bean = (Bean)request.getAttribute("bean");
 			start =1;
-			size = 10;
+			size = 4;
 			bean.setItemList(service.searchAll(searchSubj,start,size));
 			session = request.getSession();
 			session.setAttribute("searchStartpage", start);
