@@ -51,6 +51,10 @@
 </script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="/Fleamarket/jw/Check.js"></script>
+<script type="text/javascript">
+
+</script>
+
 
 </head>
 <body>
@@ -64,7 +68,7 @@
 	<!-- 입력한 값을 전송하기 위해 form 태그를 사용  -->
 	<!-- 값 전송은 post방식, 전송할 페이지는 login페이지 -->
 	
-	<form action="/Fleamarket/memmanage/joinAction.do" method="post" name="frm">
+	<form action="/Fleamarket/memmanage/joinAction.do" method="post" name="frm" onsubmit="return checkValue()">
 	
 	EMAIL : <input type="email" id="email" name="email">
 			<input type="button" value="중복 확인">
