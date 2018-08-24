@@ -26,26 +26,30 @@
 	<div>
 		<h3>고객센터</h3>
 		<div>
-			<a href="">공지사항</a>
+			<a href="/Fleamarket/maindetail/main.do"><input type="button" value="메인이동"></a>
 		</div>
-		<div>
-			<a href="">판매관련</a>
+		<div>공지사항
+			<!-- <a href=""><input type="button" value="공지사항"></input></a> -->
 		</div>
-		<div>
-			<a href="">구매관련</a>
+		<div>판매관련
+			<!-- <a href=""><input type="button" value="판매관련"></input></a> -->
 		</div>
-		<div>
-			<a href="">이벤트</a>
+		<div>구매관련
+			<!-- <a href=""><input type="button" value="구매관련"></input></a> -->
 		</div>
-		<div>
-			<a href="">1:1문의</a>
+		<div>이 벤 트
+			<!-- <a href=""><input type="button" value=" 이 벤 트"></input></a> -->
 		</div>
+		<div>1:1  문의
+			<!-- <a href="" ><input type="button" value="1:1  문의"></input></a> -->
+		</div>
+		
 	</div>
 
 	<div class="noticelist">
 
-		<h3><a href="go_notice">공지사항</a></h3>
-		<a href="TestWriteViewAction.do">공지 작성</a>
+		<h3>공지사항</h3>
+		<a href="TestWriteViewAction.do"><input type="button" value="공지 작성"></input></a>
 		<table width="500" border="1" cellpadding="0" cellspacing="0">
 			<thead>
 				<tr>

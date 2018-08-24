@@ -31,7 +31,7 @@ public class TestDetailAction implements TestAction {
 		
 		
 		TestActionForward testaf = new TestActionForward();
-		testaf.setPath("detailView.jsp");
+		testaf.setPath("/sy/detailView.jsp");
 		System.out.println("디테일 뷰.jsp 이동");
 		testaf.setRedirect(false);
 		System.out.println("리다이렉트: Falese >디스패치: ture");

@@ -25,7 +25,7 @@ public class TestListAction implements TestAction {
 		System.out.println("");
 		System.out.println("--TestListAction--");
 		TestActionForward testActionForward = new TestActionForward();
-		testActionForward.setPath("customerCenterList.jsp");
+		testActionForward.setPath("/sy/customerCenterList.jsp");
 		testActionForward.setRedirect(false);
 		System.out.println("경로 in 리스트 엑션안  "+testActionForward.getPath());
 		
