@@ -19,9 +19,9 @@ public class JoinAction implements Action {
         //
 		*/
 		
-		
 		MemberService service = MemberService.getInstance();
 		
+		service.idCheckService(request);
 		service.joinBoardService(request); 	//회원생성
 		service.joinStoreService(request);	//스토어 생성
 		service.listStoreService(request); 	//중복 스토어명 찾기		

@@ -27,6 +27,12 @@ function loginCheck(){
 
 </head>
 <body>
+	<div id = login>
+		<acricle class="login">
+			<header>
+				<h2>로그인</h2>
+			</header>
+		</acricle>
 	<form action="/Fleamarket/memmanage/checklogin.do" method="post" name="frm">
 		<table>
 			<tr> 
@@ -35,7 +41,7 @@ function loginCheck(){
 			</tr>
 			<tr>
 			<td>비번 </td>
-			<td><input type="#pwd" name="password"></td>
+			<td><input type="password" name="password"></td>
 			</tr>
 			<tr>
 			<td colspan="2" aling="center">
@@ -44,5 +50,6 @@ function loginCheck(){
 			</tr>
 		</table>
 	</form>
+	</div>
 </body>
 </html>
