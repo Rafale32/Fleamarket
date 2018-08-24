@@ -39,6 +39,11 @@
 		select * from store
 	</select>
 	
+	<!-- 아이디 중복 확인 -->
+	<select id="idCheck" resultType="MemManageDTO">
+		select * from member where  email = #{email}
+	</select>
+	
 	<!-- 상세보기 -->
 	<select id="detailMember" parameterType="String" resultType="MemManageDTO">
 		select * from member where email = #{email}

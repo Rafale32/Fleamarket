@@ -52,6 +52,26 @@ public class MemberService {
 		return dao.joinBoard(dto);
 	}//joinBoardService
 	
+	//중복 아이디 체크
+	public int idCheckService(HttpServletRequest request)throws Exception{
+		
+		MemManageDTO memmanageDTO = new MemManageDTO();
+		MemberService service = MemberService.getInstance();
+		
+		memmanageDTO.setEmail(request.getParameter("email"));
+		
+		List<MemManageDTO> list = dao.idCheck();
+		
+		for(int i=0; i< list.size(); i++){
+			if(list.get(i).getEmail().equals("email")){
+				idCheckService(request);
+			}else{
+			}
+		}
+		return service.joinBoardService(request);
+	}
+	
+	//상점생성
 	public int joinStoreService(HttpServletRequest request)throws Exception{
 		StoreDTO storedto = new StoreDTO();
 		
@@ -62,17 +82,13 @@ public class MemberService {
 	//	storedto.setStore_no(Integer.parseInt(request.getParameter("store_no")));
 
 		
-		return dao.joinStore(storedto);
-		
+		return dao.joinStore(storedto);	
 	}
+		
 	//랜덤 스토어명 생성
 	public int randomStoreService(HttpServletRequest request , String randomNum)throws Exception{
 		StoreDTO storedto = new StoreDTO();
-	/*	Random ran = new Random();
-		//랜덤 숫자 생성
-		int randomInt = (ran.nextInt(100000)+1);
-		String randomNum = ""+randomInt;
-		*/
+
 		storedto.setEmail(request.getParameter("email"));
 		storedto.setStore_name(randomNum);
 		
@@ -103,11 +119,8 @@ public class MemberService {
 			if(list.get(i).getStore_name().equals(randomNum) ){
 				listStoreService(request);
 			}else{//중복안됨
-				
 				System.out.println(i);
-			
 			}
-			
 		}
 		return service.randomStoreService(request, randomNum);
 	}

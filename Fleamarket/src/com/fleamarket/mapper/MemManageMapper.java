@@ -18,7 +18,8 @@ public interface MemManageMapper {
 	int randomStore(StoreDTO dto);
 	//중복 상점 제거
 	List<StoreDTO> listStore();
-	
+	//아이디 중복체크
+	List<MemManageDTO> idCheck();	
 	//회원 정보 보기
 	MemManageDTO detailMember(String email);
 	//회원 정보 수정

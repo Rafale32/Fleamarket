@@ -27,6 +27,12 @@ function loginCheck(){
 
 </head>
 <body>
+	<div id = login>
+		<acricle class="login">
+			<header>
+				<h2>로그인</h2>
+			</header>
+		</acricle>
 	<form action="/Fleamarket/memmanage/checklogin.do" method="post" name="frm">
 		<table>
 			<tr> 
@@ -44,5 +50,6 @@ function loginCheck(){
 			</tr>
 		</table>
 	</form>
+	</div>
 </body>
 </html>

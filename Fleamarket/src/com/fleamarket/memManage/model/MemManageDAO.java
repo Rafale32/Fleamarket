@@ -94,7 +94,7 @@ public class MemManageDAO {
 	
 		return re;
 	}
-	
+	//랜덤번호 생성
 	public int randomStore(StoreDTO dto){
 		int re = -1;
 		System.out.println("렌덤 넘버 스토어 db업데이트");
@@ -115,7 +115,7 @@ public class MemManageDAO {
 	
 		return re;
 	}
-	
+	//중복된 번호 찾기
 	public List<StoreDTO> listStore(){
 		List<StoreDTO> list = new ArrayList<StoreDTO>();
 		
@@ -131,6 +131,22 @@ public class MemManageDAO {
 		}
 	
 		return list;
+	}
+	//중복 아이디 체크
+	public List<MemManageDTO> idCheck(){
+		List<MemManageDTO> idCheck = new ArrayList<MemManageDTO>();
+		
+	SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			idCheck = sqlSession.getMapper(MemManageMapper.class).idCheck();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			sqlSession.close();
+		}
+		
+		return idCheck;
 	}
 	
 	//회원 상세 보기

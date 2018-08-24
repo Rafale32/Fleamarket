@@ -19,6 +19,7 @@ import com.fleamarket.memManage.service.LoginAction;
 import com.fleamarket.memManage.service.LogoutAction;
 import com.fleamarket.memManage.service.deleteAction;
 import com.fleamarket.memManage.service.detailAction;
+import com.fleamarket.memManage.service.emailCheckAction;
 import com.fleamarket.memManage.service.updateAction;
 import com.fleamarket.memManage.service.updateFormAction;
 
@@ -121,6 +122,13 @@ public class MemManageController extends HttpServlet {
 			}
     	}else if(command.equals("deleteAction.do")){
     		action = new deleteAction();
+    	try{
+    		forward = action.execute(request, response);
+    	}catch (Exception e) {
+			e.printStackTrace();
+			}
+    	}else if(command.equals("emailCheckAction.do")){
+    		action = new emailCheckAction();
     	try{
     		forward = action.execute(request, response);
     	}catch (Exception e) {
