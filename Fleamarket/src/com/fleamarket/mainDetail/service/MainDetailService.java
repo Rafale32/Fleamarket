@@ -178,7 +178,12 @@ public class MainDetailService {
     storeItemList = dao.storeItemList(storeInfo.getStore_no(), itemboard_no);
     storeInfo.setItemList(storeItemList);
     storeInfo.setItemCount(storeItemList.size());
-    storeInfo.setItemList(storeItemList);
+    
+    for(int i=0; i<storeItemList.size(); i++){
+      storeItemList.get(i).setImgList(dao.itemImgList(storeItemList.get(i).getItemboard_no()));
+    }
+    
+    
     return storeInfo;
   }
 
@@ -198,6 +203,11 @@ public class MainDetailService {
 
   public int insertQna(HttpServletRequest request) throws Exception {
     ItemQnaDTO itemQna = new ItemQnaDTO();
+    
+    System.out.println(request.getParameter("contents"));
+    System.out.println(request.getParameter("email"));
+    System.out.println(request.getParameter("itemboard_no"));
+    
     itemQna.setContents(request.getParameter("contents"));
     itemQna.setEmail(request.getParameter("email"));
     String str = request.getParameter("itemboard_no");

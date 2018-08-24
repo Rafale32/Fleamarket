@@ -110,16 +110,12 @@
 
 	<select id="storeItem" parameterType="int" resultType="ItemDetailDTO">
 		select
-		distinct b.itemboard_no, c.thum_img, a.price, b.title
-		from item a, itemboard b,
-		itemimg c
+		distinct b.itemboard_no, a.price, b.title
+		from item a, itemboard b
 		where a.item_no = b.item_no
-		and b.itemboard_no =
-		c.itemboard_no
 		and b.store_no = #{store_no}
 		and b.delete_state = 0
-		and b.itemboard_no !=
-		#{itemboard_no}
+		and b.itemboard_no != #{itemboard_no}
 	</select>
 
 	<select id="listQna" parameterType="int" resultType="ItemQnaDTO">
