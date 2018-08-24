@@ -77,7 +77,7 @@ public class MainDetailService {
   public String time(String itemTime){
   //아이템상세글 작성시간 처리
     Date date = new Date();
-    SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+    SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss a");
     String today = f.format(date);
     String itemDate = itemTime;
     
@@ -93,7 +93,12 @@ public class MainDetailService {
     ilist.add(Integer.parseInt(itemDate.substring(0,4)));
     ilist.add(Integer.parseInt(itemDate.substring(5,7)));
     ilist.add(Integer.parseInt(itemDate.substring(8,10)));
-    ilist.add(Integer.parseInt(itemDate.substring(11,13)));
+    if(today.substring(20,22).equals("오후")){
+      ilist.add(Integer.parseInt(itemDate.substring(11,13))-12);
+    }else{
+      ilist.add(Integer.parseInt(itemDate.substring(11,13)));
+    }
+//    ilist.add(Integer.parseInt(itemDate.substring(11,13)));
     ilist.add(Integer.parseInt(itemDate.substring(14,16)));
     ilist.add(Integer.parseInt(itemDate.substring(17,19)));
     String val1 = null;

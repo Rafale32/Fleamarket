@@ -45,7 +45,7 @@
 			<!-- 테이블 내용-->
 			<tr>
 			<!-- 추후 이미지 경로 src 만 수정 하면 됨 -->
-				<td> <%-- ${p.thum_img} --%> <img alt="물품임시이미지" src="../img/${p.thum_img}.jpg" width="200px" height="150px"></td>
+				<td> <%-- ${p.thum_img} --%> <img alt="물품임시이미지" src="../../productimg/${p.thum_img}" width="200px" height="150px"></td>
 				
 				<td>
 				<!-- 거래 상태를 볼수 있는 코드 1~4까지 있고 설명을 적어 놓았고 나중에 이미지 파일로 변경하면 됨  -->

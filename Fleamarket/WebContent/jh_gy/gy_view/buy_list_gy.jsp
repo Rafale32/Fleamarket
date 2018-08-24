@@ -62,7 +62,7 @@
 			<%-- 왼쪽이미지 ${p.thum_img}   width="200px" height="150px"--%>
 				<td> 
 				
-				<img alt="물품임시이미지" src="../img/${p.thum_img}.jpg" width="200px" height="150px" style="margin-left: 50px;">
+				<img alt="물품임시이미지" src="../../productimg/${p.thum_img}" width="200px" height="150px" style="margin-left: 50px;">
 				
 				</td>
 

@@ -36,7 +36,7 @@ public class TestBoardDao {
 			System.out.println("펙토리 트라이안 22");
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		} 
 			System.out.println("SqlSession 리턴 ");
 		return new SqlSessionFactoryBuilder().build(in);
 	}
@@ -73,7 +73,9 @@ public class TestBoardDao {
 			list = sqlSession.getMapper(MyBoardMapper.class).ListBoard();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}finally {
+      sqlSession.close();
+    }
 		
 		return list;
 		
