@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.fleamarket.bean.Action;
 import com.fleamarket.bean.ActionForward;
 import com.fleamarket.bean.Bean;
+import com.fleamarket.product.service.ImgDeleteService;
 
 
 //경로관련된 문자는 모두 무조건 소문자로  /맡은페이지경로/원하는작업.do  식으로 처리하기
@@ -83,8 +84,29 @@ public class ProductController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-    	}else if(command.equals("productmodifyform.do")){ //물품 수정폼 으로 가서 디비 저장값 불러오게끔 
+    	}else if(command.equals("productmodifyform.do")){ //물품 수정폼 으로 가서 수정할값 디비에서 가져옴
     		action  = new ProductModifyFormAction();
+    		try {
+    			forward = action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+    	}else if(command.equals("imgdelete.do")){ //이미지 아작스로 삭제하는것
+    		action  = new ImgDeleteService();
+    		try {
+    			forward = action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+    	}else if(command.equals("productmodify.do")){ //상품 수정 내용 반영 하는곳
+    		action  = new ProductModifyAction();
+    		try {
+    			forward = action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+    	}else if(command.equals("searchall.do")){ //상품 전체 검색 및 아작스로 처리되는 추가 아이템
+    		action  = new SearchAllAction();
     		try {
     			forward = action.execute(request, response);
 			}catch (Exception e) {

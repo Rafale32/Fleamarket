@@ -1,6 +1,8 @@
 package com.fleamarket.mainDetail.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -29,12 +31,22 @@ public class MainDetailService {
   public List<RecommendDTO> recommend() {
     List<RecommendDTO> recoList = new ArrayList<RecommendDTO>();
     recoList = dao.recommend();
+    
+    for(int i=0; i<recoList.size(); i++){
+      recoList.get(i).setImgList(dao.itemImgList(recoList.get(i).getItemboard_no()));
+      recoList.get(i).setItemboard_date(time(recoList.get(i).getItemboard_date()));
+    }
+    
     return recoList;
   }
 
   public List<HotItemDTO> hotItemList() {
     List<HotItemDTO> hotItemList = new ArrayList<HotItemDTO>();
     hotItemList = dao.hotItemList();
+    
+    for(int i=0; i<hotItemList.size(); i++){
+      hotItemList.get(i).setImgList(dao.itemImgList(hotItemList.get(i).getItemboard_no()));
+    }
     return hotItemList;
   }
 
@@ -61,11 +73,65 @@ public class MainDetailService {
     itemImgList = dao.itemImgList(itemboard_no);
     return itemImgList;
   }
-
+    
+  public String time(String itemTime){
+  //아이템상세글 작성시간 처리
+    Date date = new Date();
+    SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+    String today = f.format(date);
+    String itemDate = itemTime;
+    
+    List<Integer> tlist = new ArrayList<Integer>();
+    List<Integer> ilist = new ArrayList<Integer>();
+    tlist.add(Integer.parseInt(today.substring(0,4)));
+    tlist.add(Integer.parseInt(today.substring(5,7)));
+    tlist.add(Integer.parseInt(today.substring(8,10)));
+    tlist.add(Integer.parseInt(today.substring(11,13)));
+    tlist.add(Integer.parseInt(today.substring(14,16)));
+    tlist.add(Integer.parseInt(today.substring(17,19)));
+    
+    ilist.add(Integer.parseInt(itemDate.substring(0,4)));
+    ilist.add(Integer.parseInt(itemDate.substring(5,7)));
+    ilist.add(Integer.parseInt(itemDate.substring(8,10)));
+    ilist.add(Integer.parseInt(itemDate.substring(11,13)));
+    ilist.add(Integer.parseInt(itemDate.substring(14,16)));
+    ilist.add(Integer.parseInt(itemDate.substring(17,19)));
+    String val1 = null;
+    String val2 = null;
+    int cnt = 0;
+    for(int i=0; i<6; i++){
+      if((tlist.get(i)-ilist.get(i))!=0){
+        val1 = String.valueOf((tlist.get(i)-ilist.get(i)));
+        break;
+      }
+      cnt++;
+    }
+    if(cnt == 0){
+      val2 = "년 전";
+    }else if(cnt == 1){
+      val2 = "달 전";
+    }else if(cnt == 2){
+      val2 = "일 전";
+    }else if(cnt == 3){
+      val2 = "시간 전";
+    }else if(cnt == 4){
+      val2 = "분 전";
+    }else if(cnt == 5){
+      val2 = "초 전";
+    }
+    String time = val1+val2;
+    
+    return time;
+  }
+  
   public ItemDetailDTO itemDetail(int itemboard_no) {
     ItemDetailDTO itemDetail = new ItemDetailDTO();
     itemDetail = dao.itemDetail(itemboard_no);
+    
+    itemDetail.setHits(itemDetail.getHits()+1);
+    itemDetail.setItemboard_date(time(itemDetail.getItemboard_date()));
 
+    //태그쪼개서 태그리스트 처리
     if (itemDetail.getTag() == null) {
       return itemDetail;
     } else {
@@ -87,11 +153,16 @@ public class MainDetailService {
     hotList = dao.hotList();
     List<HotItemDTO> hotItemList = new ArrayList<HotItemDTO>();
     hotItemList = dao.hotItemList();
-
+    
+    for(int i=0; i<hotItemList.size(); i++){
+      hotItemList.get(i).setImgList(dao.itemImgList(hotItemList.get(i).getItemboard_no()));
+    }
+    
     for (int i = 0; i < hotList.size(); i++) {
       List<HotItemDTO> list = new ArrayList<HotItemDTO>();
       for (int j = 0; j < hotItemList.size(); j++) {
         if (hotList.get(i).getCategory_title().equals(hotItemList.get(j).getCategory_title())) {
+          hotItemList.get(j).setItemboard_date(time(hotItemList.get(j).getItemboard_date()));
           list.add(hotItemList.get(j));
         }
       }
@@ -117,8 +188,10 @@ public class MainDetailService {
 
     for (int i = 0; i < listQna.size(); i++) {
       ItemQnaDTO storeNoInfo = new ItemQnaDTO();
-      storeNoInfo = dao.storeNoInfo(listQna.get(i).getName());
+      
+      storeNoInfo = dao.storeNoInfo(listQna.get(i).getEmail());
       listQna.get(i).setStore_no(storeNoInfo.getStore_no());
+      listQna.get(i).setstore_name(storeNoInfo.getstore_name());
     }
     return listQna;
   }
@@ -126,7 +199,7 @@ public class MainDetailService {
   public int insertQna(HttpServletRequest request) throws Exception {
     ItemQnaDTO itemQna = new ItemQnaDTO();
     itemQna.setContents(request.getParameter("contents"));
-    itemQna.setName(request.getParameter("name"));
+    itemQna.setEmail(request.getParameter("email"));
     String str = request.getParameter("itemboard_no");
     int itemboard_no = 0;
     if (str != null) {
@@ -144,6 +217,11 @@ public class MainDetailService {
   public List<ItemDetailDTO> categoryItemList(int category_no) {
     List<ItemDetailDTO> categoryItemList = new ArrayList<ItemDetailDTO>();
     categoryItemList = dao.categoryItemList(category_no);
+    
+    for(int i=0; i<categoryItemList.size(); i++){
+      categoryItemList.get(i).setImgList(dao.itemImgList(categoryItemList.get(i).getItemboard_no()));
+    }
+    
     return categoryItemList;
   }
 

@@ -25,9 +25,9 @@
 	</select>
 	
 	<select id="itemListByStore" resultType="ItemDTO" parameterType="String">
-		select * from itemboard ite 
-		inner Join store st on ite.STORE_NO = st.STORE_NO
-		where st.STORE_NAME=#{storeName } and ite.DELETE_STATE = 0 order by ite.ITEMBOARD_NO;
+		select * from itemboard ite
+		inner join store st on ite.STORE_NO = st.STORE_NO
+		where st.STORE_NAME=#{storeName } and ite.DELETE_STATE = 0 order by ite.ITEMBOARD_NO
 	</select>
 	 
  	<select id="itemImgList" parameterType="int" resultType="ItemImg">
@@ -82,7 +82,7 @@
 	<!-- 이거 수정해놔봐 메인카테고리 cateName 이름 디비랑 똑같이 -->
 	<insert id="insertItemBoard" parameterType="ItemDTO">
 		INSERT  into itemboard (sub_no, itemboard_date, local, title, itemboard_contents, tag, 
-		hits, recommend_ornot, change_ornot, item_no, itemboard_no, store_no)
+		hits, recommend_ornot, change_ornot, item_no, itemboard_no, store_no, delete_state)
 			values(
 			  (select sub_no from CATEGORY_SUB su inner join  CATEGORY ma
 				on su.CATEGORY_NO = ma.CATEGORY_NO 
@@ -97,7 +97,8 @@
 			  #{change_Ornot },
 			  (select max(ITEM_NO) from item),
 			  (select max(itemboard_no) from itemboard)+1,
-			  (select store_no from store where email = #{email })
+			  (select store_no from store where email = #{email }),
+			  0
 			)
 	</insert>
 	
@@ -112,10 +113,15 @@
 	</insert>
 	
 	
-	<select id="countItemBoard" resultType="int">
-		select count(ITEMBOARD_NO) from itemboard
+	<select id="countItemBoard" resultType="int" parameterType="String">
+		select count(ITEMBOARD_NO) from itemboard 
+		where STORE_NO = (select STORE_NO from store where email = #{email }) and delete_state = 0
 	</select>
 	
+	<select id="countItemBoardByStore" resultType="int" parameterType="String">
+		select count(ITEMBOARD_NO) from itemboard 
+		where STORE_NO = (select STORE_NO from store where STORE_NAME = #{storeName }) and delete_state = 0
+	</select>
 	
 	<!-- 실제 로우의 삭제가 아닌 삭제 상태의 변경이다 1로 바꾸는거지 -->
 	<update id="itemBoardDelete" parameterType="int">
@@ -134,5 +140,51 @@
 		ca.CATEGORY_NO = su.CATEGORY_NO where su.SUB_NO= #{sub_no }
 	</select>
 	
+	<delete id="deleteImg" parameterType="ItemImg">
+		delete from itemimg where BIG_IMG = #{big_Img }
+	</delete>
+	
+	<delete id="deleteThumImg" parameterType="ItemImg">
+		delete from itemimg where THUM_IMG = #{thum_Img }
+	</delete>
+	
+	
+	
+	<!-- updateItem updateItemBoard updateInsertImgs -->
+	<update id="updateItem" parameterType="ItemDTO">
+		update item set price = #{price },
+		  amount = #{amount },
+		  delivery_fee = #{delivery_Fee },
+		  delivery_state = delivery_state, 
+		  item_state = #{item_State }
+		where item_no = (select item_no from itemboard where itemboard_no = #{itemboard_No })
+	</update>
+	
+	<update id="updateItemBoard" parameterType="ItemDTO">
+		update ITEMBOARD set sub_no = (select sub_no from CATEGORY_SUB su inner join  CATEGORY ma
+				on su.CATEGORY_NO = ma.CATEGORY_NO 
+				where su.SUB_TITLE = #{sub_Title } and ma.CATEGORY_TITLE = #{category_Title } ) ,
+			local = #{local }, 
+			title = #{title }, 
+			itemboard_contents = #{itemboard_Contents }, 
+			tag = #{tag },
+			recommend_ornot = #{recommend_Ornot }, 
+			change_ornot = #{change_Ornot }
+			where itemboard_no = #{itemboard_No }
+	</update>
+	
+	<!-- 이미지는 일단 보류 수정이 아니라 삭제후에 들어가야하니까 -->
+	<update id="updateInsertImgs" parameterType="ItemDTO">
+	
+	</update>
+	
+	<select id="searchAll" resultType="ItemDTO" parameterType="String">
+		select itb.ITEMBOARD_NO, itb.title,itb.local , it.PRICE  from ITEMBOARD itb inner join item it 
+		on it.ITEM_NO = itb.ITEM_NO where TITLE like '%' ||  #{searchSubj } || '%'
+	</select>
+	
+	<select id="getOneImg" resultType="String" parameterType="int">
+		select THUM_IMG from ITEMIMG where ITEMBOARD_NO = #{itemboard_No } and rownum =1
+	</select>
 	
 </mapper>

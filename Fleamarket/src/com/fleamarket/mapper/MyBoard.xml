@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.fleamarket.mapper.MyBoardMapper">
+	<cache />
+	
+		<insert id="insertBoard" parameterType="MyBoard">
+		insert into notice(<!-- 이 데이터를 넣는다. -->
+			notice_no, category, title, contents, notice_date)
+		values(<!-- no값을 하나씩 증가 시킨다. -->
+			noti_no.nextval, #{category}, #{title}, #{contents}, sysdate)
+		</insert>
+		
+		
+		<select id="ListBoard" resultType="MyBoard">
+		select * from notice
+		</select>
+		
+		
+		<select id="testListBoard" resultType="MyBoard">
+			select * from MyBoard
+			<if test="area != null">
+				<where>
+					<foreach collection="area" item="item" separator="OR" open="(" close=")">
+					${item} LIKE #{searchKey}
+					</foreach>
+				</where>
+			</if>
+		</select>
+		<select id="detail" parameterType="int" resultType="MyBoard">
+			select * from notice where notice_no=#{notice_no}
+		</select>
+		
+		<update id="update" parameterType="MyBoard">
+		<!-- sql쿼리 작성 -->
+			update notice set category= #{category}, title= #{title}, notice_date= sysdate, contents= #{contents} where notice_no= #{notice_no}
+		</update>
+		
+		<delete id="delete" parameterType="MyBoard">
+			delete from notice where notice_no = #{notice_no}
+		</delete>
+
+</mapper>

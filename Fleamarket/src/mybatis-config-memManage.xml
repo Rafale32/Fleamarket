@@ -6,6 +6,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.fleamarket.memManage.model.MemManageDTO" alias="MemManageDTO"/>
+		<typeAlias type="com.fleamarket.memManage.model.StoreDTO" alias="StoreDTO"/>
 
 	</typeAliases>
 	
