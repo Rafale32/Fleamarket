@@ -12,10 +12,12 @@
 </head>
 <body>
   <div id="topmenu">
-    <a href="#" id="notice">공지사항</a>
-    <ul id="right">
-          <c:if test="${member != null }">
-        <li> WELL COME [${member.name }] </li>
+    <ul>
+    <li>
+    <a href="#" id="notice">NOTICE</a>
+    </li>
+      <c:if test="${member != null }">
+        <li> [${member.name }] </li>
       </c:if>
       <c:choose>
         <c:when test="${member.name == null }">
@@ -26,7 +28,6 @@
           <li class="detailmenu"><a href="/Fleamarket/memmanage/logout.do">LOGOUT</a></li>
         </c:when>
       </c:choose>
-
     </ul>
   </div>
 

@@ -24,12 +24,21 @@
 }
 
 #topmenu {
-/*   text-align: right; */
+  text-align: right;
   background: #FAFAFA;
   height: 60px;
   width: 1024px;
-  display: block;
+  display: inline-block;
   font-weight: bold;
+}
+
+#topmenu a{
+  margin:0;
+}
+
+#topmenu ul li:NTH-CHILD(1){
+  margin-right: 600px;
+  background-color: red;
 }
 
 #bottommenu {
@@ -39,8 +48,6 @@
   display: inline-block;
   line-height: 60px;
   font-weight: bold;
-  text-align: right;
-  
 }
 
 #secondmenu {
@@ -94,7 +101,7 @@
   font-weight: bold;
 }
 
-#noticeli a{
+#notice a{
   text-align: center;
   display: inline-block;
   text-decoration: none;
