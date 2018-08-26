@@ -89,7 +89,7 @@ public class MainDetailService {
     tlist.add(Integer.parseInt(today.substring(11,13)));
     tlist.add(Integer.parseInt(today.substring(14,16)));
     tlist.add(Integer.parseInt(today.substring(17,19)));
-    
+
     ilist.add(Integer.parseInt(itemDate.substring(0,4)));
     ilist.add(Integer.parseInt(itemDate.substring(5,7)));
     ilist.add(Integer.parseInt(itemDate.substring(8,10)));
@@ -98,30 +98,31 @@ public class MainDetailService {
     }else{
       ilist.add(Integer.parseInt(itemDate.substring(11,13)));
     }
-//    ilist.add(Integer.parseInt(itemDate.substring(11,13)));
+
     ilist.add(Integer.parseInt(itemDate.substring(14,16)));
     ilist.add(Integer.parseInt(itemDate.substring(17,19)));
+
     String val1 = null;
     String val2 = null;
     int cnt = 0;
     for(int i=0; i<6; i++){
+      cnt++;
       if((tlist.get(i)-ilist.get(i))!=0){
         val1 = String.valueOf((tlist.get(i)-ilist.get(i)));
         break;
       }
-      cnt++;
     }
-    if(cnt == 0){
+    if(cnt == 1){
       val2 = "년 전";
-    }else if(cnt == 1){
-      val2 = "달 전";
     }else if(cnt == 2){
-      val2 = "일 전";
+      val2 = "달 전";
     }else if(cnt == 3){
-      val2 = "시간 전";
+      val2 = "일 전";
     }else if(cnt == 4){
-      val2 = "분 전";
+      val2 = "시간 전";
     }else if(cnt == 5){
+      val2 = "분 전";
+    }else if(cnt == 6){
       val2 = "초 전";
     }
     String time = val1+val2;
