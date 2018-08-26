@@ -116,7 +116,7 @@ public class ProductModifyService {
 				ItemImg itemImg = new ItemImg();
 				itemImg.setBig_Img(fileName);
 				itemImg.setThum_Img(headName + "_small." + pattern);
-				itemImgList.add(itemImg);
+				itemImgList.add(itemImg);//
 				
 			}
 			
